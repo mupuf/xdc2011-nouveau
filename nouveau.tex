@@ -61,14 +61,14 @@
 	\begin{frame}
 		\begin{block}{History: The open-source strickes back}
 			\begin{itemize}
-				\item 2005: Stephane Marchesin decides to improve the pre-obfuscation version by adding 3D
+				\item 2005: Stephane Marchesin improves nv and work on 3D
 				\begin{itemize}
-					\item The project is named Nouveau because of an automatic spelling correction
-					\item Back-port of the missing features from nv to Nouveau
+					\item Project named Nouveau after an unfortunate automatic spelling correction
+					\item Back-port nv updates to Nouveau
 				\end{itemize}
-				\item 2008: Open Arena runs on nv40 powered by Nouveau and the nvfx gallium driver
-				\item 2009: Nouveau gets a working KMS driver based on TTM
-				\item 2010: Nouveau is merged in Linux 2.6.33
+				\item 2008: Open Arena runs on nv40, nvfx gallium driver
+				\item 2009: KMS driver based on TTM
+				\item 2010: Merged in Linux 2.6.33
 				\item 2010: Nv is deprecated by NVIDIA, say ``use VESA''.
 			\end{itemize}
 		\end{block}
@@ -131,32 +131,27 @@
 			\begin{block}{NV30/40 microcodes}
 				\begin{itemize}
 					\item HWSQ: very limited use (LVDS)
-					\item CtxProgs on nv40
+					\item CtxProgs on nv40: Context switching
 				\end{itemize}
 			\end{block}
 
 			\begin{block}{NV50 microcodes}
 				\begin{itemize}
-					\item CtxProgs: Context-switching microcode 
+					\item CtxProgs: Context-switching microcode
 					\item HWSQ v2(formerly PMS): memory reclocking, no flow control
 					\item nv98+ Flexible MicroCode(F$\mu$c): a general-purpose microcode. Broad usage (PCrypt, PDaemon, Vdec, ...)
 				\end{itemize}
 			\end{block}
 
-			\begin{block}{NVC0}
+			\begin{block}{NVC0-D0}
 				\begin{itemize}
-					\item F$\mu$C: PGRAPH (the central engines) is converted to F$\mu$c
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{NVD0}
-				\begin{itemize}
-					\item F$\mu$C: A bunch of remaining engines are converted to F$\mu$c
+					\item nvc0: PGRAPH (the rendering engine) is converted to F$\mu$c
+					\item nvd0: some remaining engines are converted to F$\mu$c
 				\end{itemize}
 			\end{block}
 		\end{frame}
 
-\section{Current status}
+\section{Past \& current work}
 	\subsection{Modesetting, 2D}
 		\begin{frame}
 			\begin{block}{ModeSetting - Done}
@@ -170,6 +165,12 @@
 					\item NVC0: Geforce 400/500, AKA Fermi
 				\end{itemize}
 			\end{block}
+
+			\begin{block}{ModeSetting - WIP}
+				\begin{itemize}
+					\item NVD0: Kepler, nvd9 is the first partial version
+				\end{itemize}
+			\end{block}
 		\end{frame}
 
 	\subsection{3D support}
@@ -181,12 +182,12 @@
 					\item nouveau (nv50-d0): gallium driver. Supported! 
 				\end{itemize}
 			\end{block}
-
 	
-			\begin{block}{Application support}
+			\begin{block}{WIP}
 				\begin{itemize}
-					\item nvfx: Any app that runs with OpenGL 2.1 (NPOT software emulation)
-					\item nouveau: Any app that runs with OpenGL 2.1
+					\item add nvc1 support
+					\item improve performance
+					\item crashes with Unigine Tropics \& Heaven
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -197,70 +198,17 @@
  				\begin{itemize}
 					\item Readings: Temperature \& clocks
 					\item vbios parsing: mostly
-					\item fan management: left untouched
-					\item AGP/PCIE: left untouched
-					\item clock gating: left untouched
-					\item setting clocks: unreliable and potentially dangerous
-				\end{itemize}
-			\end{block}
-		\end{frame}
-
-	\subsection{HW video decoding}
-		\begin{frame}
-			\begin{block}{HW video decoding}
-				\begin{itemize}
-					\item mpeg1/2: Kernel support, no userland support
-					\item mpeg4: No support
+					\item setting clocks: unreliable, potentially dangerous
 				\end{itemize}
 			\end{block}
 
-			\begin{block}{Why MPEG4 hw decoding is hard}
-				\begin{itemize}
-					\item involves at least 3 engines
-					\item microcodes are not all in F$\mu$c
-					\item qsdfg
-					\item codecs needs to be implemented
-				\end{itemize}
-			\end{block}
-		\end{frame}
-
-\section{Current work}
-	\subsection{Modesetting, 2D}
-		\begin{frame}
-			\begin{block}{ModeSetting - TODO}
-				\begin{itemize}
-					\item NVD0: Kepler, nvd9 is the first partial version
-				\end{itemize}
-			\end{block}
-		\end{frame}
-
-	\subsection{3D support}
-		\begin{frame}
-			\begin{block}{Current 3D-related work}
-				\begin{itemize}
-					\item add support for nvc1
-					\item improve performance
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{Application support}
-				\begin{itemize}
-					\item some crashes with Unigine Tropics \& Heaven
-				\end{itemize}
-			\end{block}
-		\end{frame}
-
-	\subsection{Power management}
-		\begin{frame}
-			\begin{block}{Current work on power management}
+			\begin{block}{WIP}
 				\begin{itemize}
 					\item nvc0: setting clocks
-					\item nv30/40/50: memory timings (almost ready)
-					\item nv30/40/50: reliable clock changes (almost ready)
-					\item AGP/PCIE: reverse engineering
-					\item clock gating: almost ready
-					\item performance counters: WIP
-					\item dynamic reclocking: WIP
+					\item nv40-c0: memory timings (almost ready)
+					\item nv30-c0: reliable clock changes (almost ready)
+					\item AGP/PCIE, clock gating: reverse engineering
+					\item performance counters, dynamic reclocking: WIP
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -269,15 +217,22 @@
 		\begin{frame}
 			\begin{block}{HW video decoding}
 				\begin{itemize}
-					\item mpeg1/2: mergeable
-					\item mpeg4: no support
+					\item MPEG1/2: kernel-side: done, mesa: mergeable
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Why is MPEG4 hw decoding so hard?}
+				\begin{itemize}
+					\item involves at least 4 engines
+					\item different ISAs (F$\mu$c, VPx)
+					\item codecs needs to be implemented
 				\end{itemize}
 			\end{block}
 		\end{frame}
 
 \section{Demos}
 	\begin{frame}
-		\begin{block}{mpeg1/2 video decoding}
+		\begin{block}{MPEG1/2 video decoding}
 			\begin{itemize}
 				\item using MPlayer
 				\item soon to be merged into mesa
