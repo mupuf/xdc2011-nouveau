@@ -64,7 +64,7 @@
 				\item 2005: Stephane Marcheusin decides to improve the pre-obfuscation version by adding 3D
 				\begin{itemize}
 					\item The project is named Nouveau because of an automatic spelling correction
-					\item Back-port of the missing features from nv to nouveau
+					\item Back-port of the missing features from nv to Nouveau
 				\end{itemize}
 				\item 2008: Open Arena runs on nv40 powered by Nouveau and the nvfx gallium driver
 				\item 2009: Nouveau gets a working KMS driver based on TTM
@@ -103,7 +103,7 @@
 
 	\subsection{Components}
 		\begin{frame}
-			\begin{block}{Linux module nouveau}
+			\begin{block}{Linux module Nouveau}
 				\begin{itemize}
 					\item Kernel Mode Setting
 					\item Command-submission
@@ -176,7 +176,7 @@
 		\begin{frame}
 			\begin{block}{3D Drivers and support}
 				\begin{itemize}
-					\item Nouveau\_vieux (nvXX-30): classic mesa driver. Unsupported.
+					\item nouveau\_vieux (nvXX-30): classic mesa driver. Unsupported.
 					\item nvfx (nv30-50): gallium driver. Works but no maintainer.
 					\item nouveau (nv50-d0): gallium driver. Supported! 
 				\end{itemize}
@@ -211,6 +211,15 @@
 				\begin{itemize}
 					\item mpeg1/2: Kernel support, no userland support
 					\item mpeg4: No support
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Why MPEG4 hw decoding is hard}
+				\begin{itemize}
+					\item involves at least 3 engines
+					\item microcodes are not all in F$\mu$c
+					\item qsdfg
+					\item codecs needs to be implemented
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -268,15 +277,24 @@
 
 \section{Demos}
 	\begin{frame}
-		\begin{block}{HW video decoding}
+		\begin{block}{mpeg1/2 video decoding}
 			\begin{itemize}
-				\item mpeg1/2 video decoding
-				\item mpeg4: No support
+				\item using Mplayer
+				\item soon to be merged into mesa
 			\end{itemize}
 		\end{block}
 	\end{frame}
 
-\section{The nouveau community}
+	\begin{frame}
+		\begin{block}{Dynamic reclocking}
+			\begin{itemize}
+				\item see clocks changing according to the load
+				\item performance improvements in openarena
+			\end{itemize}
+		\end{block}
+	\end{frame}
+
+\section{The Nouveau community}
 	\subsection{Composition}
 		\begin{frame}
 			\begin{block}{The nouveau community}
@@ -307,6 +325,9 @@
 				Christoph Bumiller (calim) maintains the nv50-c0 gallium driver:
 				\begin{itemize}
 					\item Physics master student at the University of Vienna (Austria, GMT+1)
+					\item Main Gallium contributor
+					\item Nvc0 3D support
+					\item performance improvements
 				\end{itemize}
 			\end{block}
 
@@ -331,8 +352,14 @@
 			\begin{block}{Francisco Jerez (curro)}
 				\begin{itemize}
 					\item Spanish (GMT+1)
-					\item 
-					\item Does some communication-related work
+					\item Physics student
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Marcin Slusarz (joi)}
+				\begin{itemize}
+					\item Fixes software bugs (mesa + kernel)
+					\item SQL/C++/Java developer
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -365,23 +392,22 @@
 				\end{itemize}
 			\end{block}
 
-		\end{frame}
-
-		\begin{frame}
-			\begin{block}{Maxim Levintsky (MaximLevintsky)}
+			\begin{block}{Maxim Levitsky (MaximLevintsky)}
 				\begin{itemize}
 					\item Student at the Technion University of Haifa (GMT+2)
-					\item Major reverse engineering work on reducing power consumption
+					\item Important reverse engineering work on reducing power consumption
 					\item Stability-related reverse engineering
 					\item New-comer
 				\end{itemize}
 			\end{block}
+		\end{frame}
 
+		\begin{frame}
 			\begin{block}{Maarten Lankhorst (mlankhorst)}
 				\begin{itemize}
 					\item Netherlands (GMT+1)
 					\item Implemented XVMC support
-					\item Work on implementing more using the VPx engines
+					\item Work towards an open VDPAU
 					\item New-comer
 				\end{itemize}
 			\end{block}
