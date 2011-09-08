@@ -1,0 +1,389 @@
+\documentclass[11pt,english,compress]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{eurosym}
+\usepackage{ stmaryrd }
+
+\useoutertheme{smoothbars}
+\useinnertheme[shadow=true]{rounded}
+\usecolortheme{orchid}
+\usecolortheme{whale}
+\title{Nouveau}
+\subtitle{The community \& past, current and future developments}
+\author{Martin Peres \& the Nouveau community}
+\institute{Ph.D. student at LaBRI}
+%\logo{\includegraphics[width=1.5cm]{imgs/ensib.jpg}}
+
+\AtBeginSection[]{
+  \begin{frame}{Summary}
+  \small \tableofcontents[currentsection, hideothersubsections]
+  \end{frame} 
+}
+
+\begin{document}
+
+\setbeamertemplate{navigation symbols}{}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\section{History}
+	\begin{frame}
+		\begin{block}{History: Nvidia, a new hope}
+			\begin{itemize}
+				\item 1998(?): NVidia releases a Linux open-source 2D-only driver(nv)
+				\item 1998: Obfuscation commit (release only pre-processed source)
+			\end{itemize}
+		\end{block}
+	\end{frame}
+
+	\begin{frame}
+		\begin{block}{}
+			After we already finalized XFree86-3.3.3 NVIDIA forced The XFree86 Project
+			to replace the sources we had with sources that were partly run through the
+			C preprocessor in order to remove some of the names that NVIDIA thought
+			might give away IP from NVIDIA. This resulted in unreadable and unmaintainable
+			code.
+		\end{block}
+
+		\begin{block}{}
+			The XFree86 Project is strongly opposed to such obfuscated code. We do not
+			regard this as free software according to our standards. Due to the extremely
+			late date of this decision from NVIDIA we decided to include the code as
+			offered by NVIDIA. We are considering to remove support for the later NVIDIA
+			chips in a future release, though.
+		\end{block}
+% http://cvsweb.xfree86.org/cvsweb/xc/programs/Xserver/hw/xfree86/vga256/drivers/nv/Attic/README.RIVATNT.diff?r1=1.1.2.2&r2=1.1.2.3&hideattic=0&only_with_tag=xf-3_3_3
+% http://cvsweb.xfree86.org/cvsweb/xc/programs/Xserver/hw/xfree86/vga256/drivers/nv/Attic/nv3driver.c.diff?r1=1.1.2.5&r2=1.1.2.6&hideattic=0&only_with_tag=xf-3_3_3
+	\end{frame}
+
+	\begin{frame}
+		\begin{block}{History: The open-source strickes back}
+			\begin{itemize}
+				\item 2005: Stephane Marcheusin decides to improve the pre-obfuscation version by adding 3D
+				\begin{itemize}
+					\item The project is named Nouveau because of an automatic spelling correction
+					\item Back-port of the missing features from nv to nouveau
+				\end{itemize}
+				\item 2008: Open Arena runs on nv40 powered by Nouveau and the nvfx gallium driver
+				\item 2009: Nouveau gets a working KMS driver based on TTM
+				\item 2010: Nouveau is merged in Linux 2.6.33
+				\item 2010: Nv is deprecated by Nvidia, say ``use VESA''.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+
+	\begin{frame}
+		\begin{block}{History: The return of the jedi}
+			``It's so hard to write a graphics driver than open-sourcing it
+			would not help [...] In addition, customers aren't asking for opensource drivers.''\\
+			Andrew Fear, Nvidia software product manager
+			%http://news.com.com/New+Linux+look+fuels+old+debate/2100­7344_3­6061491.html
+		\end{block}
+	\end{frame}
+
+\section{Architecture}
+	\subsection{Chipset families}
+		\begin{frame}
+			\begin{block}{Chipset families}
+				\begin{itemize}
+					\item NV03: RIVA 128
+					\item NV04: RIVA TNT/TNT2
+					\item NV10: Geforce2/4 MX
+					\item NV20: Geforce 3, Geforce 4 Ti
+					\item NV30: Geforce 5/FX
+					\item NV40: Geforce 6/7 (the first real family) 
+					\item NV50: Geforce 8/9/200/300 (the biggest family)
+					\item NVC0: Geforce 400/500, AKA Fermi
+					\item NVD0: Kepler, nvd9 is the first partial version
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+	\subsection{Components}
+		\begin{frame}
+			\begin{block}{Linux module nouveau}
+				\begin{itemize}
+					\item Kernel Mode Setting
+					\item Command-submission
+					\item Channel allocation
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Nouveau DDX}
+				\begin{itemize}
+					\item EXA (2D acceleration) 
+					\item X-Video
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Mesa: 3D acceleration}
+				\begin{itemize}
+					\item Nouveau\_vieux: 3D for NV04-NV30 (mesa classic)
+					\item NVFX: 3D for the nv30/40 families (gallium)
+					\item Nouveau: 3D for NV50/C0 families (gallium)
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{NV30/40 microcodes}
+				\begin{itemize}
+					\item HWSQ: very limited use (LVDS)
+					\item CtxProgs on nv40
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{NV50 microcodes}
+				\begin{itemize}
+					\item CtxProgs: Context-switching microcode 
+					\item HWSQ v2(formerly PMS): memory reclocking, no flow control
+					\item nv98+ Flexible MicroCode(F$\mu$c): a general-purpose microcode. Broad usage (PCrypt, PDaemon, Vdec, ...)
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{NVC0}
+				\begin{itemize}
+					\item F$\mu$C: PGRAPH and PFIFO (the central engines) are converted to F$\mu$c
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{NVD0}
+				\begin{itemize}
+					\item F$\mu$C: The remaining engines are converted to F$\mu$c
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+\section{Current status}
+	\subsection{Modesetting, 2D}
+		\begin{frame}
+			\begin{block}{ModeSetting - Done}
+				\begin{itemize}
+					\item NV04: TNT2
+					\item NV10: Geforce2/4 MX
+					\item NV20: Geforce 3, Geforce 4 Ti
+					\item NV30: Geforce 5/FX
+					\item NV40: Geforce 6/7
+					\item NV50: Geforce 8/9/200/300 (the biggest family)
+					\item NVC0: Geforce 400/500, AKA Fermi
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+	\subsection{3D support}
+		\begin{frame}
+			\begin{block}{3D Drivers and support}
+				\begin{itemize}
+					\item Nouveau\_vieux (nvXX-30): classic mesa driver. Unsupported.
+					\item nvfx (nv30-50): gallium driver. Works but no maintainer.
+					\item nouveau (nv50-d0): gallium driver. Supported! 
+				\end{itemize}
+			\end{block}
+
+	
+			\begin{block}{Application support}
+				\begin{itemize}
+					\item nvfx: Any app that runs with OpenGL 2.1 (NPOT software emulation)
+					\item nouveau: Any app that runs with OpenGL 2.1
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+	\subsection{Power management}
+		\begin{frame}
+			\begin{block}{Power management}
+ 				\begin{itemize}
+					\item Readings: Temperature \& clocks
+					\item vbios parsing: mostly
+					\item fan management: left untouched
+					\item agp/pcie: left untouched
+					\item clock gating: left untouched
+					\item setting clocks: unreliable and potentially dangerous
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+	\subsection{HW video decoding}
+		\begin{frame}
+			\begin{block}{HW video decoding}
+				\begin{itemize}
+					\item mpeg1/2: Kernel support, no userland support
+					\item mpeg4: No support
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+\section{Current work}
+	\subsection{Modesetting, 2D}
+		\begin{frame}
+			\begin{block}{ModeSetting - TODO}
+				\begin{itemize}
+					\item NVD0: Kepler, nvd9 is the first partial version
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+	\subsection{3D support}
+		\begin{frame}
+			\begin{block}{Current 3D-related work}
+				\begin{itemize}
+					\item add support for nvc1
+					\item improve performance
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Application support}
+				\begin{itemize}
+					\item some crashes with unigine tropics \& heaven
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+	\subsection{Power management}
+		\begin{frame}
+			\begin{block}{Current work on power management}
+				\begin{itemize}
+					\item nvc0: setting clocks
+					\item nv30/40/50: memory timings (almost ready)
+					\item nv30/40/50: reliable clock changes (almost ready)
+					\item agp/pcie: reverse engineering
+					\item clock gating: almost ready
+					\item performance counters: WIP
+					\item dynamic reclocking: WIP
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+	\subsection{HW video decoding}
+		\begin{frame}
+			\begin{block}{HW video decoding}
+				\begin{itemize}
+					\item mpeg1/2: mergeable
+					\item mpeg4: No support
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+\section{Demos}
+	\begin{frame}
+		\begin{block}{HW video decoding}
+			\begin{itemize}
+				\item mpeg1/2 video decoding
+				\item mpeg4: No support
+			\end{itemize}
+		\end{block}
+	\end{frame}
+
+\section{The nouveau community}
+	\subsection{Composition}
+		\begin{frame}
+			\begin{block}{The nouveau community}
+				\begin{itemize}
+					\item The largest xorg-related IRC channel
+					\item Composed of:
+						\begin{itemize}
+							\item One paid developer
+							\item Former developers
+							\item Student developers
+							\item Enthusiasts
+						\end{itemize}
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{The nouveau maintainer}
+				Nouveau is maintained by Ben Skeggs(darktama):
+				\begin{itemize}
+					\item Hired by Red Hat in 200X
+					\item Located in Brisbane, Australia (GMT+10)
+					\item Works on almost everything
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{Gallium's nouveau maintainer}
+				Christoph Bumiller (calim) maintains the nv50-c0 gallium driver:
+				\begin{itemize}
+					\item Physics master student at the University of Vienna (Austria, GMT+1)
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Marcin Kościelnicki (mwk)}
+				\begin{itemize}
+					\item Polish master student at the university of Warsaw (GMT+1)
+					\item Implemented most of the GPGPU-oriented PSCNV nouveau fork
+					\item Reversed most of the Fermi's architecture and video decoding
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{Pekka Paalanen (pq)}
+				\begin{itemize}
+					\item Finnish (GMT+2)
+					\item Worked on mmiotraces, a register DB
+					\item Does some communication-related work
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Francisco Jerez (curro)}
+				\begin{itemize}
+					\item Spanish (GMT+1)
+					\item 
+					\item Does some communication-related work
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{Emil Velikov (xexaxo)}
+				\begin{itemize}
+					\item Bulgarian student at the University of Nottingham (England, GMT+0)
+					\item Reverse engineering of some PM-related vbios table
+					\item Other PM-related implementation work
+					\item Debugging/Testing
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Roy Spliet (RSpliet)}
+				\begin{itemize}
+					\item Dutch master student at the Delft University (GMT+1)
+					\item Memory timings reverse engineering
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{Martin Peres (mupuf)}
+				\begin{itemize}
+					\item Engineer, Ph.D. student at LaBRI (France, GMT+1)
+					\item Reclocking process
+					\item Thermal-zones \& thermal management
+					\item Minor reverse engineering
+				\end{itemize}
+			\end{block}
+
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{Maxim Levintsky (MaximLevintsky)}
+				\begin{itemize}
+					\item Student at the Technion University of Haifa (GMT+2)
+					\item Major reverse engineering work on reducing power consumption
+					\item Stability-related reverse engineering
+					\item New-comer
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Maarten Lankhorst (mlankhorst)}
+				\begin{itemize}
+					\item Netherlands (GMT+1)
+					\item Implemented XVMC support
+					\item Work on implementing more using the VPx engines
+					\item New-comer
+				\end{itemize}
+			\end{block}
+		\end{frame}
+\end{document}
