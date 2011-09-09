@@ -59,14 +59,14 @@
 	\end{frame}
 
 	\begin{frame}
-		\begin{block}{History: The open-source strickes back}
+		\begin{block}{History: The open-source strikes back}
 			\begin{itemize}
 				\item 2005: Stephane Marchesin improves nv and work on 3D
 				\begin{itemize}
 					\item Project named Nouveau after an unfortunate automatic spelling correction
 					\item Back-port nv updates to Nouveau
 				\end{itemize}
-				\item 2008: Open Arena runs on nv40, nvfx gallium driver
+				\item 2008: Open Arena runs on nv40, gallium driver
 				\item 2009: KMS driver based on TTM
 				\item 2010: Merged in Linux 2.6.33
 				\item 2010: Nv is deprecated by NVIDIA, say ``use VESA''.
@@ -75,7 +75,7 @@
 	\end{frame}
 
 	\begin{frame}
-		\begin{block}{History: The return of the jedi}
+		\begin{block}{History: The return of the Jedi}
 			``It's so hard to write a graphics driver that open-sourcing it
 			would not help [...] In addition, customers aren't asking for opensource drivers.''\\
 			Andrew Fear, NVIDIA software product manager
@@ -94,7 +94,7 @@
 					\item NV20: Geforce 3, Geforce 4 Ti
 					\item NV30: Geforce 5/FX
 					\item NV40: Geforce 6/7 (the first real family) 
-					\item NV50: Geforce 8/9/200/300 (the biggest family)
+					\item NV50: Geforce 8/9/100/200/300 (the biggest family)
 					\item NVC0: Geforce 400/500, AKA Fermi
 					\item NVD0: Kepler, nvd9 is the first partial version
 				\end{itemize}
@@ -120,9 +120,9 @@
 
 			\begin{block}{Mesa: 3D acceleration}
 				\begin{itemize}
-					\item Nouveau\_vieux: 3D for NV04-NV30 (mesa classic)
-					\item NVFX: 3D for the nv30/40 families (gallium)
-					\item Nouveau: 3D for NV50/C0 families (gallium)
+					\item Nouveau\_vieux: 3D for NV04,NV10,NV20 (mesa classic)
+					\item NVFX: 3D for the NV30,40 families (gallium)
+					\item Nouveau: 3D for NV50,C0 families (gallium)
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -138,7 +138,7 @@
 			\begin{block}{NV50 microcodes}
 				\begin{itemize}
 					\item CtxProgs: Context-switching microcode
-					\item HWSQ v2(formerly PMS): memory reclocking, no flow control
+					\item HWSQ v2 (formerly PMS): memory reclocking, no flow control
 					\item nv98+ Flexible MicroCode(F$\mu$c): a general-purpose microcode. Broad usage (PCrypt, PDaemon, Vdec, ...)
 				\end{itemize}
 			\end{block}
@@ -161,7 +161,7 @@
 					\item NV20: Geforce 3, Geforce 4 Ti
 					\item NV30: Geforce 5/FX
 					\item NV40: Geforce 6/7
-					\item NV50: Geforce 8/9/200/300 (the biggest family)
+					\item NV50: Geforce 8/9/100/200/300 (the biggest family)
 					\item NVC0: Geforce 400/500, AKA Fermi
 				\end{itemize}
 			\end{block}
@@ -177,9 +177,9 @@
 		\begin{frame}
 			\begin{block}{3D Drivers and support}
 				\begin{itemize}
-					\item nouveau\_vieux (nvXX-30): classic mesa driver. Unsupported.
-					\item nvfx (nv30-50): gallium driver. Works but no maintainer.
-					\item nouveau (nv50-d0): gallium driver. Supported! 
+					\item nouveau\_vieux (NV04,10,20): classic mesa driver. Unsupported.
+					\item nvfx (NV30,40): gallium driver. Works but no maintainer.
+					\item nouveau (NV50,C0): gallium driver. Supported! 
 				\end{itemize}
 			\end{block}
 	
@@ -314,7 +314,7 @@
 			\begin{block}{Marcin Slusarz (joi)}
 				\begin{itemize}
 					\item Polish SQL/C++/Java developer (GMT+1)
-					\item Fixes software bugs (mesa + kernel)
+					\item Fixes software bugs (mesa + kernel), maintains Valgrind-MMT
 				\end{itemize}
 			\end{block}
 		\end{frame}
