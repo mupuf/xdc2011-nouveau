@@ -54,6 +54,8 @@
 			offered by NVIDIA. We are considering to remove support for the later NVIDIA
 			chips in a future release, though.
 		\end{block}
+
+		 Xfree86, commit message from 11/18/98
 % http://cvsweb.xfree86.org/cvsweb/xc/programs/Xserver/hw/xfree86/vga256/drivers/nv/Attic/README.RIVATNT.diff?r1=1.1.2.2&r2=1.1.2.3&hideattic=0&only_with_tag=xf-3_3_3
 % http://cvsweb.xfree86.org/cvsweb/xc/programs/Xserver/hw/xfree86/vga256/drivers/nv/Attic/nv3driver.c.diff?r1=1.1.2.5&r2=1.1.2.6&hideattic=0&only_with_tag=xf-3_3_3
 	\end{frame}
@@ -61,7 +63,7 @@
 	\begin{frame}
 		\begin{block}{History: The open-source strikes back}
 			\begin{itemize}
-				\item 2005: Stephane Marchesin improves nv and work on 3D
+				\item 2005: Stephane Marchesin improves nv and works on 3D
 				\begin{itemize}
 					\item Project named Nouveau after an unfortunate automatic spelling correction
 					\item Back-port nv updates to Nouveau
@@ -78,8 +80,8 @@
 		\begin{block}{History: The return of the Jedi}
 			``It's so hard to write a graphics driver that open-sourcing it
 			would not help [...] In addition, customers aren't asking for opensource drivers.''\\
-			Andrew Fear, NVIDIA software product manager
-			%http://news.com.com/New+Linux+look+fuels+old+debate/2100­7344_3­6061491.html
+			Andrew Fear, NVIDIA software product manager, April 2006
+			%http://news.cnet.com/New-Linux-look-fuels-old-debate/2100-7344_3-6061491.html
 		\end{block}
 	\end{frame}
 
@@ -96,7 +98,7 @@
 					\item NV40: Geforce 6/7 (the first real family) 
 					\item NV50: Geforce 8/9/100/200/300 (the biggest family)
 					\item NVC0: Geforce 400/500, AKA Fermi
-					\item NVD0: Kepler, nvd9 is the first partial version
+					\item NVD9: Half-Kepler chipset
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -130,7 +132,7 @@
 		\begin{frame}
 			\begin{block}{NV30/40 microcodes}
 				\begin{itemize}
-					\item HWSQ: very limited use (LVDS)
+					\item HWSQ: very limited use (LVDS), no flow control
 					\item CtxProgs on nv40: Context switching
 				\end{itemize}
 			\end{block}
@@ -138,15 +140,15 @@
 			\begin{block}{NV50 microcodes}
 				\begin{itemize}
 					\item CtxProgs: Context-switching microcode
-					\item HWSQ v2 (formerly PMS): memory reclocking, no flow control
+					\item HWSQ v2 (formerly PMS): memory reclocking
 					\item nv98+ Flexible MicroCode(F$\mu$c): a general-purpose microcode. Broad usage (PCrypt, PDaemon, Vdec, ...)
 				\end{itemize}
 			\end{block}
 
-			\begin{block}{NVC0-D0}
+			\begin{block}{NVC0-D9}
 				\begin{itemize}
 					\item nvc0: PGRAPH (the rendering engine) is converted to F$\mu$c
-					\item nvd0: some remaining engines are converted to F$\mu$c
+					\item nvd9: some remaining engines are converted to F$\mu$c
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -187,7 +189,7 @@
 				\begin{itemize}
 					\item add nvc1 support
 					\item improve performance
-					\item crashes with Unigine Tropics \& Heaven
+					\item crashes with Unigine Tropics \& Heaven on some chipsets
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -205,7 +207,7 @@
 			\begin{block}{WIP}
 				\begin{itemize}
 					\item nvc0: setting clocks
-					\item nv40-c0: memory timings (almost ready)
+					\item nv40-d9: memory timings (almost ready)
 					\item nv30-c0: reliable clock changes (almost ready)
 					\item AGP/PCIE, clock gating: reverse engineering
 					\item performance counters, dynamic reclocking: WIP
@@ -217,7 +219,7 @@
 		\begin{frame}
 			\begin{block}{HW video decoding}
 				\begin{itemize}
-					\item MPEG1/2: kernel-side: done, mesa: mergeable
+					\item MPEG1/2: nv40-98
 				\end{itemize}
 			\end{block}
 
@@ -235,7 +237,8 @@
 		\begin{block}{MPEG1/2 video decoding}
 			\begin{itemize}
 				\item using MPlayer
-				\item soon to be merged into mesa
+				\item Kernel-side: done
+				\item Mesa: merged 3 days ago
 			\end{itemize}
 		\end{block}
 	\end{frame}
@@ -268,7 +271,7 @@
 			\begin{block}{The nouveau maintainer}
 				Nouveau is maintained by Ben Skeggs(darktama):
 				\begin{itemize}
-					\item Hired by Red Hat in 200X
+					\item Hired by Red Hat in 2009
 					\item Located in Brisbane, Australia (GMT+10)
 					\item Works on almost everything
 				\end{itemize}
@@ -280,8 +283,8 @@
 				Christoph Bumiller (calim) maintains the nv50-c0 gallium driver:
 				\begin{itemize}
 					\item Physics master student at the University of Vienna (Austria, GMT+1)
-					\item Main Gallium contributor
-					\item nvc0 3D support
+					\item Main Nouveau Gallium contributor
+					\item nv50/c0 3D support
 					\item performance improvements
 				\end{itemize}
 			\end{block}
