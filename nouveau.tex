@@ -9,9 +9,9 @@
 \usecolortheme{orchid}
 \usecolortheme{whale}
 \title{Nouveau}
-\subtitle{The community \& past, current and future developments}
-\author{Martin Peres, Ben Skeggs \& the Nouveau community}
-\institute{Ph.D. student at LaBRI, Red Hat}
+\subtitle{Recap, on-going and future work}
+\author{Martin Peres, Lucas Stach \& the Nouveau community}
+\institute{Ph.D. student at LaBRI, B.Eng. student at HfTL}
 %\logo{\includegraphics[width=1.5cm]{imgs/ensib.jpg}}
 
 \AtBeginSection[]{
@@ -30,7 +30,7 @@
 
 \section{History}
 	\begin{frame}
-		\begin{block}{History: NVIDIA, a new hope}
+		\begin{block}{History: NVIDIA -- a new hope}
 			\begin{itemize}
 				\item 1998(?): NVIDIA releases a Linux open-source 2D-only driver(nv)
 				\item 1998: Obfuscation commit (release only pre-processed source)
@@ -86,7 +86,7 @@
 	\end{frame}
 
 \section{Architecture}
-	\subsection{Chipset families}
+	\subsection{Short hardware introduction}
 		\begin{frame}
 			\begin{block}{Chipset families}
 				\begin{itemize}
@@ -94,7 +94,7 @@
 					\item NV04: RIVA TNT/TNT2
 					\item NV10: Geforce2/4 MX
 					\item NV20: Geforce 3, Geforce 4 Ti
-					\item NV30: Geforce 5/FX
+					\item NV30: Geforce FX
 					\item NV40: Geforce 6/7 (the first real family) 
 					\item NV50: Geforce 8/9/100/200/300 (the biggest family)
 					\item NVC0: Geforce 400/500, AKA Fermi
@@ -103,32 +103,7 @@
 			\end{block}
 		\end{frame}
 
-	\subsection{Components}
-		\begin{frame}
-			\begin{block}{Linux module Nouveau}
-				\begin{itemize}
-					\item Kernel Mode Setting
-					\item Command-submission
-					\item Resource allocation
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{Nouveau DDX}
-				\begin{itemize}
-					\item EXA (2D acceleration) 
-					\item X-Video
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{Mesa: 3D acceleration}
-				\begin{itemize}
-					\item Nouveau\_vieux: 3D for NV04,NV10,NV20 (mesa classic)
-					\item NVFX: 3D for the NV30,40 families (gallium)
-					\item Nouveau: 3D for NV50,C0 families (gallium)
-				\end{itemize}
-			\end{block}
-		\end{frame}
-
+		% XXX: give short overview over hw engines (microcode slide only here for reference)
 		\begin{frame}
 			\begin{block}{NV30/40 microcodes}
 				\begin{itemize}
@@ -153,48 +128,40 @@
 			\end{block}
 		\end{frame}
 
-\section{Past \& current work}
-	\subsection{Modesetting, 2D}
+	\subsection{Components}
 		\begin{frame}
-			\begin{block}{ModeSetting - Done}
+			\begin{block}{The 4 parts of Nouveau}
 				\begin{itemize}
-					\item NV04: TNT2
-					\item NV10: Geforce2/4 MX
-					\item NV20: Geforce 3, Geforce 4 Ti
-					\item NV30: Geforce 5/FX
-					\item NV40: Geforce 6/7
-					\item NV50: Geforce 8/9/100/200/300 (the biggest family)
-					\item NVC0: Geforce 400/500, AKA Fermi
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{ModeSetting - WIP}
-				\begin{itemize}
-					\item NVD9: Partially Kepler
+					\item Linux Kernelmodule
+					\item libdrm-nouveau
+					\item DDX: xf86-video-nouveau
+					\item Mesa3D drivers:
+						\begin{itemize}
+							\item nouveau-vieux
+							\item nvfx
+							\item nv50
+							\item nvc0
+						\end{itemize}
 				\end{itemize}
 			\end{block}
 		\end{frame}
 
-	\subsection{3D support}
 		\begin{frame}
-			\begin{block}{3D Drivers and support}
+			\begin{block}{Linux kernel module Nouveau}
 				\begin{itemize}
-					\item nouveau\_vieux (NV04,10,20): classic mesa driver. Unsupported.
-					\item nvfx (NV30,40): gallium driver. Works but no maintainer.
-					\item nouveau (NV50,C0): gallium driver. Supported! 
-				\end{itemize}
-			\end{block}
-	
-			\begin{block}{WIP}
-				\begin{itemize}
-					\item add nvc1 support
-					\item improve performance
-					\item crashes with Unigine Tropics \& Heaven on some chipsets
+					\item Resource management
+						\begin{itemize}
+							\item GPU Channels
+							\item Memory Management
+						\end{itemize}
+					\item Command-submission
+					\item Kernel Mode Setting
+					\item Power Management
 				\end{itemize}
 			\end{block}
 		\end{frame}
 
-	\subsection{Power management}
+		% some deeper insights about pm here XXX: please update
 		\begin{frame}
 			\begin{block}{Power management}
  				\begin{itemize}
@@ -215,22 +182,63 @@
 			\end{block}
 		\end{frame}
 
-	\subsection{HW video decoding}
 		\begin{frame}
-			\begin{block}{HW video decoding}
+			\begin{block}{libdrm-nouveau}
 				\begin{itemize}
-					\item MPEG1/2: nv40-98
+					\item buffer management
+						\begin{itemize}
+							\item everything is a buffer!
+						\end{itemize}
+					\item wraps around the IOCTL interface
 				\end{itemize}
 			\end{block}
-
-			\begin{block}{Why is MPEG4 hw decoding so hard?}
+			\begin{block}{work in progress}
 				\begin{itemize}
-					\item involves at least 4 engines
-					\item different ISAs (F$\mu$c, VPx)
-					\item codecs needs to be implemented
+					\item currently rewritten
+					\item designed with nv40 class hardware in mind
+					\item pushbuffer replay
 				\end{itemize}
 			\end{block}
 		\end{frame}
+
+		\begin{frame}
+			\begin{block}{DDX -- xf86-video-nouveau}
+				\begin{itemize}
+					\item EXA (2D acceleration) 
+					\item X-Video
+					\item supports full range of GPUs (NV03 - NVD9)
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{Mesa3D: drivers for 3D and more}
+				\begin{itemize}
+					\item nouveau-vieux: classic Mesa3D driver for NV04,NV1x,NV2x
+						\begin{itemize}
+							\item only supports fixed function OpenGL
+						\end{itemize}
+					\item nvfx: Gallium driver for NV3x,4x class GPUs
+						\begin{itemize}
+							\item will hopefully be soon replaced by rewritten driver
+						\end{itemize}
+					\item nv50: Gallium driver for NV50 class GPUs
+						\begin{itemize}
+							\item maybe first free software driver to allow hardware OpenCL
+						\end{itemize}
+					\item nvc0: Gallium driver for NVC0 class GPUs
+				\end{itemize}
+			\end{block}
+			\begin{block}{work in progress}
+				\begin{itemize}
+					\item rewrite of the nvfx driver (will be called nv30 after this)
+					\item merge reworked shader compiler for nv50
+					\item add new features to both nv50 and nvc0
+					\item hardware video decoding on nv40-nvc0
+				\end{itemize}
+			\end{block}
+		\end{frame}
+		% XXX: maybe get one slide for video decoding in here
 
 \section{The Nouveau community}
 	\subsection{Composition}
