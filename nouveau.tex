@@ -28,6 +28,24 @@
 	\titlepage
 \end{frame}
 
+\section{The Nouveau community at FOSDEM}
+	\begin{frame}
+			\begin{block}{Your host for the next hour}
+				\begin{itemize}
+					\item Martin Peres (mupuf)
+					\item Maarten Lankhorst (mlankhorst)
+					\item Lucas Stach (lynxeye)
+				\end{itemize}
+			\end{block}
+			\begin{block}{Also attending}
+				\begin{itemize}
+					\item Emil Velikov (xexaxo)
+					\item Francisco Jerez (curro)
+					\item Roy Spliet (rspliet)
+				\end{itemize}
+			\end{block}
+	\end{frame}
+
 \section{History}
 	\begin{frame}
 		\begin{block}{History: NVIDIA -- a new hope}
@@ -105,25 +123,21 @@
 
 		% XXX: give short overview over hw engines (microcode slide only here for reference)
 		\begin{frame}
-			\begin{block}{NV30/40 microcodes}
+			\begin{block}{Hardware Introduction}
 				\begin{itemize}
-					\item HWSQ: very limited use (LVDS), no flow control
-					\item CtxProgs on nv40: Context switching
+					\item NVIDIA GPUs consists of "objects"
+					\item command submission by DMA buffers
+					\item GPU can accesss system memory through the aperture
+					\item NV50 features a full blown virtual memory system
 				\end{itemize}
 			\end{block}
-
-			\begin{block}{NV50 microcodes}
+			\begin{block}{important engines}
 				\begin{itemize}
-					\item CtxProgs: Context-switching microcode
-					\item HWSQ v2 (formerly PMS): memory reclocking
-					\item nv98+ Flexible MicroCode(F$\mu$c): a general-purpose microcode. Broad usage (PCrypt, PDaemon, Vdec, ...)
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{NVC0-D9}
-				\begin{itemize}
-					\item nvc0: PGRAPH (the rendering engine) is converted to F$\mu$c
-					\item nvd9: some remaining engines are converted to F$\mu$c
+					\item PFIFO: main command fetching engine
+					\item PCRTC/PDISPLAY: display scanout engines
+					\item PGRAPH: main graphics object AKA OpenGL cast into silicon
+					\item PMPEG: video acceleration found on older cards (not much use today)
+					\item PVDEC/PPPP: modern video decoding engines %mlankhorst: please elaborate and remove comment
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -206,7 +220,8 @@
 				\begin{itemize}
 					\item EXA (2D acceleration) 
 					\item X-Video
-					\item supports full range of GPUs (NV03 - NVD9)
+					\item supports full range of GPUs (NV04 - NVD9)
+					\item makes use of all engines for acceleration (including 3D engine)
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -214,150 +229,67 @@
 		\begin{frame}
 			\begin{block}{Mesa3D: drivers for 3D and more}
 				\begin{itemize}
+					\item two different approaches here: Classic and Gallium3D
 					\item nouveau-vieux: classic Mesa3D driver for NV04,NV1x,NV2x
 						\begin{itemize}
 							\item only supports fixed function OpenGL
 						\end{itemize}
-					\item nvfx: Gallium driver for NV3x,4x class GPUs
+					\item Gallium pipe-driver
 						\begin{itemize}
-							\item will hopefully be soon replaced by rewritten driver
+							\item nvfx
+							\item nv50
+							\item nvc0
 						\end{itemize}
-					\item nv50: Gallium driver for NV50 class GPUs
-						\begin{itemize}
-							\item maybe first free software driver to allow hardware OpenCL
-						\end{itemize}
-					\item nvc0: Gallium driver for NVC0 class GPUs
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{nvfx}
+				\begin{itemize}
+					\item Gallium driver for NV3x,4x class GPUs
+					\item one of the first gallium drivers
+					\item created by merging separate nv30 and nv40 drivers
+					\item accumulated much old cruft
+					\item no maintainer for over one year
 				\end{itemize}
 			\end{block}
 			\begin{block}{work in progress}
 				\begin{itemize}
-					\item rewrite of the nvfx driver (will be called nv30 after this)
-					\item merge reworked shader compiler for nv50
-					\item add new features to both nv50 and nvc0
-					\item hardware video decoding on nv40-nvc0
+					\item will hopefully be soon replaced by rewritten driver
+				\end{itemize}
+			\end{block}
+		\end{frame}
+		\begin{frame}
+			\begin{block}{nv50}
+				\begin{itemize}
+					\item Gallium driver for NV50 class GPUs
+					\item current codebase was formed by adapting nvc0
+					\item maybe first free software driver to allow hardware OpenCL
+				\end{itemize}
+			\end{block}
+			\begin{block}{work in progress}
+				\begin{itemize}
+					\item merge reworked shader compiler
+					\item implement remaining OpenGL 3 features
+					\item merge OpenCL work
+				\end{itemize}
+			\end{block}
+		\end{frame}
+		\begin{frame}
+			\begin{block}{nvc0}
+				\begin{itemize}
+					\item nvc0: Gallium driver for NVC0 class GPUs
+					\item one of the first drivers to support OpenGL 3
+				\end{itemize}
+			\end{block}
+			\begin{block}{work in progress}
+				\begin{itemize}
+					\item working towards features in DX11 and OGL3+
 				\end{itemize}
 			\end{block}
 		\end{frame}
 		% XXX: maybe get one slide for video decoding in here
-
-\section{The Nouveau community}
-	\subsection{Composition}
-		\begin{frame}
-			\begin{block}{The nouveau community}
-				\begin{itemize}
-					\item The largest xorg-related IRC channel
-					\item Composed of:
-						\begin{itemize}
-							\item One paid developer
-							\item Former developers
-							\item Student developers
-							\item Enthusiasts
-						\end{itemize}
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{The nouveau maintainer}
-				Nouveau is maintained by Ben Skeggs(darktama):
-				\begin{itemize}
-					\item Hired by Red Hat in 2009
-					\item Located in Brisbane, Australia (GMT+10)
-					\item Works on almost everything
-				\end{itemize}
-			\end{block}
-		\end{frame}
-
-		\begin{frame}
-			\begin{block}{Gallium's nouveau maintainer}
-				Christoph Bumiller (calim) maintains the nv50-c0 gallium driver:
-				\begin{itemize}
-					\item Physics master student at the University of Vienna (Austria, GMT+1)
-					\item Main Nouveau Gallium contributor
-					\item nv50/c0 3D support
-					\item performance improvements
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{Marcin Kościelnicki (mwk)}
-				\begin{itemize}
-					\item Polish master student at the university of Warsaw (GMT+1)
-					\item Implemented most of the GPGPU-oriented PSCNV nouveau fork
-					\item Reversed most of the Fermi's architecture and video decoding
-				\end{itemize}
-			\end{block}
-		\end{frame}
-
-		\begin{frame}
-			\begin{block}{Pekka Paalanen (pq)}
-				\begin{itemize}
-					\item Finnish (GMT+2)
-					\item Worked on mmiotraces, a register DB
-					\item Does some communication-related work
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{Francisco Jerez (curro)}
-				\begin{itemize}
-					\item Spanish Physics student (GMT+1)
-					\item Worked on page-flipping and nouveau\_vieux
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{Marcin Slusarz (joi)}
-				\begin{itemize}
-					\item Polish SQL/C++/Java developer (GMT+1)
-					\item Fixes software bugs (mesa + kernel), maintains Valgrind-MMT
-				\end{itemize}
-			\end{block}
-		\end{frame}
-
-		\begin{frame}
-			\begin{block}{Emil Velikov (xexaxo)}
-				\begin{itemize}
-					\item Bulgarian student at the University of Nottingham (England, GMT+0)
-					\item Reverse engineering of some PM-related vbios table
-					\item Other PM-related implementation work
-					\item Debugging/Testing
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{Roy Spliet (RSpliet)}
-				\begin{itemize}
-					\item Dutch master student at the Delft University (GMT+1)
-					\item Memory timings reverse engineering
-				\end{itemize}
-			\end{block}
-		\end{frame}
-
-		\begin{frame}
-			\begin{block}{Martin Peres (mupuf)}
-				\begin{itemize}
-					\item Engineer, Ph.D. student at LaBRI (France, GMT+1)
-					\item Reclocking process
-					\item Thermal-zones \& thermal management
-					\item Minor reverse engineering
-				\end{itemize}
-			\end{block}
-
-			\begin{block}{Maxim Levitsky (MaximLevitsky)}
-				\begin{itemize}
-					\item Student at the Technion University of Haifa (GMT+2)
-					\item Important reverse engineering work on reducing power consumption
-					\item Stability-related reverse engineering
-					\item New-comer
-				\end{itemize}
-			\end{block}
-		\end{frame}
-
-		\begin{frame}
-			\begin{block}{Maarten Lankhorst (mlankhorst)}
-				\begin{itemize}
-					\item Netherlands (GMT+1)
-					\item Implemented XVMC support
-					\item Work towards an open VDPAU
-					\item New-comer
-				\end{itemize}
-			\end{block}
-		\end{frame}
 
 \section{Demos}
 	\begin{frame}
