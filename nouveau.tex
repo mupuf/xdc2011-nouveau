@@ -116,7 +116,7 @@
 					\item NV40: Geforce 6/7 (the first real family) 
 					\item NV50: Geforce 8/9/100/200/300 (the biggest family)
 					\item NVC0: Geforce 400/500, AKA Fermi
-					\item NVD9: Half-Kepler chipset
+					\item NVD9: Strange Fermi
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -125,7 +125,7 @@
 		\begin{frame}
 			\begin{block}{Hardware Introduction}
 				\begin{itemize}
-					\item NVIDIA GPUs consists of "objects"
+					\item NVIDIA GPUs are controlled by "objects"
 					\item command submission by DMA buffers
 					\item GPU can accesss system memory through the aperture
 					\item NV50 features a full blown virtual memory system
@@ -137,7 +137,7 @@
 					\item PCRTC/PDISPLAY: display scanout engines
 					\item PGRAPH: main graphics object AKA OpenGL cast into silicon
 					\item PMPEG: video acceleration found on older cards (not much use today)
-					\item PVDEC/PPPP: modern video decoding engines %mlankhorst: please elaborate and remove comment
+					\item PBSP/PVP/PPPP: modern video decoding engines %mlankhorst: please elaborate and remove comment
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -211,8 +211,12 @@
 			\end{block}
 
 			\begin{center}
-				\includegraphics[height=3cm]{imgs/gt220_openarena_bench.pdf}
+				\includegraphics[height=2.7cm]{imgs/gt220_openarena_bench.pdf}
 			\end{center}
+			\begin{center}
+				\url{http://www.phoronix.com/scan.php?page=article&item=nouveau_reclocking_one&num=5}
+			\end{center}
+
 		\end{frame}
 
 		\begin{frame}
@@ -317,10 +321,10 @@
 		\begin{frame}
 			\begin{block}{OpenCL}
 				\begin{itemize}
-					\item WIP by Francisco Jerez
+					\item developed by Francisco Jerez
 					\item sponsored by the X.org EVOC
 					\item very experimental
-					\item don't miss curro's presentation (18:00-19:00)
+					\item in-depth presentation here at 18:00
 				\end{itemize}
 			\end{block}
 
@@ -328,7 +332,7 @@
 				\begin{itemize}
 					\item Direct 3D 10/11 on Gallium
 					\item ``works'' only on nouveau, still a bit hackish
-					\item developped by nv50/c0's maintainer: Christoph Bumiller
+					\item developed by nv50/c0's maintainer: Christoph Bumiller
 					\item Unigine Heaven runs ont it when using a modified version of wine
 				\end{itemize}
 			\end{block}
@@ -344,15 +348,15 @@
 
 			\begin{block}{PMPEG}
 				\begin{itemize}
-					\item found by luck
-					\item does mpeg1/2 decoding
+					\item blob doesn't use this engine
+					\item decodes mpeg1/2
 				\end{itemize}
 			\end{block}
 
-			\begin{block}{VPx}
+			\begin{block}{PBSP/PVP/PPPP}
 				\begin{itemize}
 					\item used by nvidia
-					\item decode every kind of flux
+					\item decodes every kind of video stream
 				\end{itemize}
 			\end{block}
 		\end{frame}
