@@ -29,79 +29,81 @@
 \end{frame}
 
 \section{The Nouveau community at FOSDEM}
-	\begin{frame}
-			\begin{block}{Your host for the next hour}
-				\begin{itemize}
-					\item Martin Peres (mupuf)
-					\item Maarten Lankhorst (mlankhorst)
-					\item Lucas Stach (lynxeye)
-				\end{itemize}
-			\end{block}
-			\begin{block}{Also attending}
-				\begin{itemize}
-					\item Emil Velikov (xexaxo)
-					\item Francisco Jerez (curro)
-					\item Roy Spliet (rspliet)
-				\end{itemize}
-			\end{block}
-	\end{frame}
+	\subsection*{Hello world!}
+		\begin{frame}
+				\begin{block}{Your hosts for the next hour}
+					\begin{itemize}
+						\item Martin Peres (mupuf)
+						\item Maarten Lankhorst (mlankhorst)
+						\item Lucas Stach (lynxeye)
+					\end{itemize}
+				\end{block}
+				\begin{block}{Also attending}
+					\begin{itemize}
+						\item Emil Velikov (xexaxo)
+						\item Francisco Jerez (curro)
+						\item Roy Spliet (rspliet)
+					\end{itemize}
+				\end{block}
+		\end{frame}
 
 \section{History}
-	\begin{frame}
-		\begin{block}{History: NVIDIA -- a new hope}
-			\begin{itemize}
-				\item 1998(?): NVIDIA releases a Linux open-source 2D-only driver(nv)
-				\item 1998: Obfuscation commit (release only pre-processed source)
-			\end{itemize}
-		\end{block}
-	\end{frame}
-
-	\begin{frame}
-		\begin{block}{}
-			After we already finalized XFree86-3.3.3 NVIDIA forced The XFree86 Project
-			to replace the sources we had with sources that were partly run through the
-			C preprocessor in order to remove some of the names that NVIDIA thought
-			might give away IP from NVIDIA. This resulted in unreadable and unmaintainable
-			code.
-		\end{block}
-
-		\begin{block}{}
-			The XFree86 Project is strongly opposed to such obfuscated code. We do not
-			regard this as free software according to our standards. Due to the extremely
-			late date of this decision from NVIDIA we decided to include the code as
-			offered by NVIDIA. We are considering to remove support for the later NVIDIA
-			chips in a future release, though.
-		\end{block}
-
-		 Xfree86, commit message from 11/18/98
-% http://cvsweb.xfree86.org/cvsweb/xc/programs/Xserver/hw/xfree86/vga256/drivers/nv/Attic/README.RIVATNT.diff?r1=1.1.2.2&r2=1.1.2.3&hideattic=0&only_with_tag=xf-3_3_3
-% http://cvsweb.xfree86.org/cvsweb/xc/programs/Xserver/hw/xfree86/vga256/drivers/nv/Attic/nv3driver.c.diff?r1=1.1.2.5&r2=1.1.2.6&hideattic=0&only_with_tag=xf-3_3_3
-	\end{frame}
-
-	\begin{frame}
-		\begin{block}{History: The open-source strikes back}
-			\begin{itemize}
-				\item 2005: Stephane Marchesin improves nv and works on 3D
+	\subsection*{A brief recap of Nouveau \& Linux}
+		\begin{frame}
+			\begin{block}{History: NVIDIA -- a new hope}
 				\begin{itemize}
-					\item Project named Nouveau after an unfortunate automatic spelling correction
-					\item Back-port nv updates to Nouveau
+					\item 1998(?): NVIDIA releases a Linux open-source 2D-only driver(nv)
+					\item 1998: Obfuscation commit (release only pre-processed source)
 				\end{itemize}
-				\item 2008: Open Arena runs on nv40
-				\item 2009: KMS driver based on TTM
-				\item 2010: Merged in Linux 2.6.33
-				\item 2010: Nv is deprecated by NVIDIA, say ``use VESA''.
-			\end{itemize}
-		\end{block}
-	\end{frame}
+			\end{block}
+		\end{frame}
 
-	\begin{frame}
-		\begin{block}{History: The return of the Jedi}
-			``It's so hard to write a graphics driver that open-sourcing it
-			would not help [...] In addition, customers aren't asking for opensource drivers.''\\
-			Andrew Fear, NVIDIA software product manager, April 2006
-			%http://news.cnet.com/New-Linux-look-fuels-old-debate/2100-7344_3-6061491.html
-		\end{block}
-	\end{frame}
+		\begin{frame}
+			\begin{block}{}
+				After we already finalized XFree86-3.3.3 NVIDIA forced the XFree86 Project
+				to replace the sources we had with sources that were partly run through the
+				C preprocessor in order to remove some of the names that NVIDIA thought
+				might give away IP from NVIDIA. This resulted in unreadable and unmaintainable
+				code.
+			\end{block}
+
+			\begin{block}{}
+				The XFree86 Project is strongly opposed to such obfuscated code. We do not
+				regard this as free software according to our standards. Due to the extremely
+				late date of this decision from NVIDIA we decided to include the code as
+				offered by NVIDIA. We are considering to remove support for the later NVIDIA
+				chips in a future release, though.
+			\end{block}
+
+			Xfree86, commit message from 11/18/98
+	% http://cvsweb.xfree86.org/cvsweb/xc/programs/Xserver/hw/xfree86/vga256/drivers/nv/Attic/README.RIVATNT.diff?r1=1.1.2.2&r2=1.1.2.3&hideattic=0&only_with_tag=xf-3_3_3
+	% http://cvsweb.xfree86.org/cvsweb/xc/programs/Xserver/hw/xfree86/vga256/drivers/nv/Attic/nv3driver.c.diff?r1=1.1.2.5&r2=1.1.2.6&hideattic=0&only_with_tag=xf-3_3_3
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{History: The open-source strikes back}
+				\begin{itemize}
+					\item 2005: Stephane Marchesin improves nv and works on 3D
+					\begin{itemize}
+						\item Project named Nouveau after an unfortunate automatic spelling correction
+						\item Back-port nv updates to Nouveau
+					\end{itemize}
+					\item 2008: Open Arena runs on nv40
+					\item 2009: KMS driver based on TTM for memory management
+					\item 2010: Merged in Linux 2.6.33
+					\item 2010: Nv is deprecated by NVIDIA, ``use VESA''.
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{History: The return of the Jedi}
+				``It's so hard to write a graphics driver that open-sourcing it
+				would not help [...] In addition, customers aren't asking for opensource drivers.''\\
+				Andrew Fear, NVIDIA software product manager, April 2006
+				%http://news.cnet.com/New-Linux-look-fuels-old-debate/2100-7344_3-6061491.html
+			\end{block}
+		\end{frame}
 
 \section{Architecture}
 	\subsection{Short hardware introduction}
@@ -126,9 +128,9 @@
 			\begin{block}{Hardware Introduction}
 				\begin{itemize}
 					\item NVIDIA GPUs are controlled by "objects"
-					\item command submission by DMA buffers
-					\item GPU can accesss system memory through the aperture
-					\item NV50 features a full blown virtual memory system
+					\item command submission uses DMA buffers
+					\item the GPU can access the host's memory through the aperture
+					\item NV50 features a full-blown virtual memory system for its channels (GPU process)
 				\end{itemize}
 			\end{block}
 			\begin{block}{important engines}
@@ -136,7 +138,7 @@
 					\item PFIFO: main command fetching engine
 					\item PCRTC/PDISPLAY: display scanout engines
 					\item PGRAPH: main graphics object AKA OpenGL cast into silicon
-					\item PMPEG: video acceleration found on older cards (not much use today)
+					\item PMPEG: video acceleration found on older cards (MPEG1/2)
 					\item PBSP/PVP/PPPP: modern video decoding engines %mlankhorst: please elaborate and remove comment
 				\end{itemize}
 			\end{block}
@@ -146,7 +148,7 @@
 		\begin{frame}
 			\begin{block}{The 4 parts of Nouveau}
 				\begin{itemize}
-					\item Linux Kernelmodule
+					\item Linux kernel module
 					\item libdrm-nouveau
 					\item DDX: xf86-video-nouveau
 					\item Mesa3D drivers:
@@ -161,9 +163,9 @@
 		\end{frame}
 
 		\begin{frame}
-			\begin{block}{Linux kernel module Nouveau}
+			\begin{block}{Linux kernel module: Nouveau}
 				\begin{itemize}
-					\item Resource management
+					\item Resources management
 						\begin{itemize}
 							\item GPU Channels
 							\item Memory Management
@@ -175,12 +177,11 @@
 			\end{block}
 		\end{frame}
 
-		% some deeper insights about pm here XXX: please update
 		\begin{frame}
 			\begin{block}{Power management}
  				\begin{itemize}
-					\item Parsing power-management table from the vbios
-					\item Temperature management: thermal calibration + fan management
+					\item Parsing power-management-related vbios table
+					\item Temperature management: calibration + fan
 					\item Setting the clocks: changes the performance level
 					\item Other: clock gating, PCIE downclocking, DAC reclocking
 				\end{itemize}
@@ -189,9 +190,9 @@
 			\begin{block}{current state}
 				\begin{itemize}
 					\item nvc0: setting engines clocks (mostly)
-					\item nv40-d9: memory timings (almost ready)
 					\item nv30-c0: some kind of support to reclock (unreliable)
 					\item nv50-a3: reliable clock changes (almost)
+					\item nv40-d9: memory timings (almost ready)
 					\item fan management: toogle (todo), pwm (done), i2c (WIP)
 					\item performance counters (initial work on nv40-c0)
 				\end{itemize}
@@ -201,12 +202,11 @@
 		\begin{frame}
 			\begin{block}{WIP}
 				\begin{itemize}
-					\item nva3-d9: setting memory clocks
-					\item nv50-a3: fixing bugs
-					\item nv50-d9: getting stable reclocking
+					\item nva3-d9: setting memory clocks (using PDAEMON)
+					\item nv50-a3: ironing stability bugs 
 					\item AGP/PCIE, clock gating: reverse engineering
 					\item Fan: temperature-based management (toogle, pwm and i2c)
-					\item perform infrastructure, dynamic reclocking
+					\item perfmon infrastructure, dynamic reclocking
 				\end{itemize}
 			\end{block}
 
@@ -231,7 +231,7 @@
 			\end{block}
 			\begin{block}{work in progress}
 				\begin{itemize}
-					\item currently rewritten
+					\item a new implementation is being written
 					\item designed with nv40 class hardware in mind
 					\item pushbuffer replay
 				\end{itemize}
@@ -292,29 +292,30 @@
 		\begin{frame}
 			\begin{block}{nv50}
 				\begin{itemize}
-					\item Gallium driver for NV50 class GPUs
+					\item Gallium driver for the NV50 family
 					\item current codebase was formed by adapting nvc0
-					\item maybe first free software driver to allow hardware OpenCL
+					\item first open driver to run OpenCL on the hardware?
 				\end{itemize}
 			\end{block}
 			\begin{block}{work in progress}
 				\begin{itemize}
-					\item merge reworked shader compiler
-					\item implement remaining OpenGL 3 features
-					\item merge OpenCL work
+					\item merge the reworked shader compiler
+					\item implement remaining OpenGL 3.x features
+					\item merge the OpenCL work
 				\end{itemize}
 			\end{block}
 		\end{frame}
 		\begin{frame}
 			\begin{block}{nvc0}
 				\begin{itemize}
-					\item nvc0: Gallium driver for NVC0 class GPUs
+					\item Gallium driver for the NVC0 family
 					\item one of the first drivers to support OpenGL 3
 				\end{itemize}
 			\end{block}
 			\begin{block}{work in progress}
 				\begin{itemize}
-					\item working towards features in DX11 and OGL3+
+					\item DX11
+					\item OpenGL 4
 				\end{itemize}
 			\end{block}
 
@@ -373,11 +374,12 @@
 		\end{frame}
 
 \section{Conclusion}
+	\subsection*{Why Nouveau?}
 		\begin{frame}
 			\begin{block}{Why Nouveau?}
 				\begin{itemize}
 					\item support old cards unsupported by the blob ($<$ nv40)
-					\item support new features (KMS, Xrandr, wayland, d3d1x)
+					\item develop new features (KMS, Xrandr, wayland, d3d1x)
 					\item plug \& play support, no need to install and maintain the blob
 					\item for the fun!
 				\end{itemize}
@@ -385,21 +387,22 @@
 		\end{frame}
 
 \section{Demos}
-	\begin{frame}
-		\begin{block}{MPEG1/2 video decoding}
-			\begin{itemize}
-				\item using MPlayer
-				\item Kernel-side: done
-				\item Mesa: merged in 8.0
-			\end{itemize}
-		\end{block}
+	\subsection*{Some fun and experimentation}
+		\begin{frame}
+			\begin{block}{MPEG1/2 video decoding}
+				\begin{itemize}
+					\item using MPlayer
+					\item Kernel-side: done
+					\item Mesa: merged in 8.0
+				\end{itemize}
+			\end{block}
 
-		\begin{block}{reclocking and opengl}
-			\begin{itemize}
-				\item performance improvements in OpenArena/Nexuiz
-				\item performance improvements in xvmc
-				\item dynamic reclocking (load-based reclocking)!
-			\end{itemize}
-		\end{block}
-	\end{frame}
+			\begin{block}{reclocking and opengl}
+				\begin{itemize}
+					\item performance improvements in OpenArena/Nexuiz
+					\item performance improvements in xvmc
+					\item dynamic reclocking (load-based reclocking)!
+				\end{itemize}
+			\end{block}
+		\end{frame}
 \end{document}
