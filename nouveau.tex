@@ -179,21 +179,40 @@
 		\begin{frame}
 			\begin{block}{Power management}
  				\begin{itemize}
-					\item Readings: Temperature \& clocks
-					\item vbios parsing: mostly
-					\item setting clocks: unreliable, potentially dangerous
+					\item Parsing power-management table from the vbios
+					\item Temperature management: thermal calibration + fan management
+					\item Setting the clocks: changes the performance level
+					\item Other: clock gating, PCIE downclocking, DAC reclocking
 				\end{itemize}
 			\end{block}
 
-			\begin{block}{WIP}
+			\begin{block}{current state}
 				\begin{itemize}
-					\item nvc0: setting clocks
+					\item nvc0: setting engines clocks (mostly)
 					\item nv40-d9: memory timings (almost ready)
-					\item nv30-c0: reliable clock changes (almost ready)
-					\item AGP/PCIE, clock gating: reverse engineering
-					\item performance counters, dynamic reclocking: WIP
+					\item nv30-c0: some kind of support to reclock (unreliable)
+					\item nv50-a3: reliable clock changes (almost)
+					\item fan management: toogle (todo), pwm (done), i2c (WIP)
+					\item performance counters (initial work on nv40-c0)
 				\end{itemize}
 			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{WIP}
+				\begin{itemize}
+					\item nva3-d9: setting memory clocks
+					\item nv50-a3: fixing bugs
+					\item nv50-d9: getting stable reclocking
+					\item AGP/PCIE, clock gating: reverse engineering
+					\item Fan: temperature-based management (toogle, pwm and i2c)
+					\item perform infrastructure, dynamic reclocking
+				\end{itemize}
+			\end{block}
+
+			\begin{center}
+				\includegraphics[height=3cm]{imgs/gt220_openarena_bench.pdf}
+			\end{center}
 		\end{frame}
 
 		\begin{frame}
@@ -245,6 +264,12 @@
 		\end{frame}
 
 		\begin{frame}
+			\begin{center}
+				\includegraphics[height=7cm]{imgs/mesa.pdf}
+			\end{center}
+		\end{frame}
+
+		\begin{frame}
 			\begin{block}{nvfx}
 				\begin{itemize}
 					\item Gallium driver for NV3x,4x class GPUs
@@ -289,7 +314,66 @@
 				\end{itemize}
 			\end{block}
 		\end{frame}
+		\begin{frame}
+			\begin{block}{OpenCL}
+				\begin{itemize}
+					\item WIP by Francisco Jerez
+					\item sponsored by the X.org EVOC
+					\item very experimental
+					\item don't miss curro's presentation (18:00-19:00)
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{d3d1x}
+				\begin{itemize}
+					\item Direct 3D 10/11 on Gallium
+					\item ``works'' only on nouveau, still a bit hackish
+					\item developped by nv50/c0's maintainer: Christoph Bumiller
+					\item Unigine Heaven runs ont it when using a modified version of wine
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
 		% XXX: maybe get one slide for video decoding in here
+		\begin{frame}
+			\begin{block}{Video decoding}
+				\begin{itemize}
+					\item What's the point?
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{PMPEG}
+				\begin{itemize}
+					\item found by luck
+					\item does mpeg1/2 decoding
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{VPx}
+				\begin{itemize}
+					\item used by nvidia
+					\item decode every kind of flux
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{center}
+				\includegraphics[height=7cm]{imgs/h264_vp_decoded2.png}
+			\end{center}
+		\end{frame}
+
+\section{Conclusion}
+		\begin{frame}
+			\begin{block}{Why Nouveau?}
+				\begin{itemize}
+					\item support old cards unsupported by the blob ($<$ nv40)
+					\item support new features (KMS, Xrandr, wayland, d3d1x)
+					\item plug \& play support, no need to install and maintain the blob
+					\item for the fun!
+				\end{itemize}
+			\end{block}
+		\end{frame}
 
 \section{Demos}
 	\begin{frame}
@@ -297,17 +381,15 @@
 			\begin{itemize}
 				\item using MPlayer
 				\item Kernel-side: done
-				\item Mesa: merged 3 days ago
+				\item Mesa: merged in 8.0
 			\end{itemize}
 		\end{block}
-	\end{frame}
 
-	\begin{frame}
-		\begin{block}{Dynamic reclocking}
+		\begin{block}{reclocking and opengl}
 			\begin{itemize}
-				\item see clocks changing according to the load
-				\item performance improvements in OpenArena
+				\item performance improvements in OpenArena/Nexuiz
 				\item performance improvements in xvmc
+				\item dynamic reclocking (load-based reclocking)!
 			\end{itemize}
 		\end{block}
 	\end{frame}
