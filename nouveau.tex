@@ -193,7 +193,7 @@
 					\item nv30-c0: some kind of support to reclock (unreliable)
 					\item nv50-a3: reliable clock changes (almost)
 					\item nv40-d9: memory timings (almost ready)
-					\item fan management: toogle (todo), pwm (done), i2c (WIP)
+					\item fan management: toggle (todo), pwm (done), i2c (WIP)
 					\item performance counters (initial work on nv40-c0)
 				\end{itemize}
 			\end{block}
@@ -205,7 +205,7 @@
 					\item nva3-d9: setting memory clocks (using PDAEMON)
 					\item nv50-a3: ironing stability bugs 
 					\item AGP/PCIE, clock gating: reverse engineering
-					\item Fan: temperature-based management (toogle, pwm and i2c)
+					\item Fan: temperature-based management (toggle, pwm and i2c)
 					\item perfmon infrastructure, dynamic reclocking
 				\end{itemize}
 			\end{block}
@@ -315,7 +315,7 @@
 			\begin{block}{work in progress}
 				\begin{itemize}
 					\item DX11
-					\item OpenGL 4
+					\item OpenGL 3.1+
 				\end{itemize}
 			\end{block}
 
@@ -339,7 +339,7 @@
 					\item ``works'' only on nouveau, still a bit hackish
 					\item started by Luca Barbieri
 					\item currently developed by nv50/c0's maintainer: Christoph Bumiller
-					\item Unigine Heaven runs on it when using a modified version of wine
+					\item Unigine Heaven runs on it when you replace the wine d3d10/11 dlls
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -348,7 +348,8 @@
 		\begin{frame}
 			\begin{block}{Video decoding}
 				\begin{itemize}
-					\item What's the point?
+					\item HD video decoding on atoms
+					\item lower power consumption
 				\end{itemize}
 			\end{block}
 
@@ -362,7 +363,7 @@
 			\begin{block}{PBSP/PVP/PPPP}
 				\begin{itemize}
 					\item used by nvidia
-					\item decodes every kind of video stream
+					\item decodes most video streams
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -370,6 +371,9 @@
 		\begin{frame}
 			\begin{center}
 				\includegraphics[height=7cm]{imgs/h264_vp_decoded2.png}
+			\end{center}
+			\begin{center}
+				VDPAU running on Nouveau with the proprietary microcodes
 			\end{center}
 		\end{frame}
 
