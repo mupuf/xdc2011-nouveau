@@ -50,7 +50,7 @@
 						\item Ben Skeggs (darktama)
 						\item Marcin Koscielnicki (mwk)
 						\item Christoph Bumiller (calim)
-						\item many more!
+						\item ... and many more!
 					\end{itemize}
 				\end{block}
 		\end{frame}
@@ -60,8 +60,8 @@
 		\begin{frame}
 			\begin{block}{History: NVIDIA -- a new hope}
 				\begin{itemize}
-					\item 1998(?): NVIDIA releases a Linux open-source 2D-only driver(nv)
-					\item 1998: Obfuscation commit (release only pre-processed source)
+					\item 1998(?): NVIDIA releases ``nv'', a Linux open-source 2D-only driver
+					\item 1998: Obfuscation commit, release only pre-processed source
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -133,15 +133,15 @@
 
 		% XXX: give short overview over hw engines (microcode slide only here for reference)
 		\begin{frame}
-			\begin{block}{Hardware Introduction}
+			\begin{block}{Hardware introduction}
 				\begin{itemize}
 					\item NVIDIA GPUs are controlled by "objects"
-					\item command submission uses DMA buffers
-					\item the GPU can access the host's memory through the aperture
+					\item Command submission uses DMA buffers
+					\item GPU can access the host's memory through the aperture
 					\item NV50 features a full-blown virtual memory system for its channels (GPU process)
 				\end{itemize}
 			\end{block}
-			\begin{block}{important engines}
+			\begin{block}{Important engines}
 				\begin{itemize}
 					\item PFIFO: main command fetching engine
 					\item PCRTC/PDISPLAY: display scanout engines
@@ -195,14 +195,14 @@
 				\end{itemize}
 			\end{block}
 
-			\begin{block}{current state}
+			\begin{block}{Current state}
 				\begin{itemize}
-					\item nvc0: setting engines clocks (mostly)
-					\item nv30-c0: some kind of support to reclock (unreliable)
-					\item nv50-a3: reliable clock changes (almost)
-					\item nv40-d9: memory timings (almost ready)
-					\item fan management: toggle (todo), pwm (done), i2c (WIP)
-					\item performance counters (initial work on nv40-c0)
+					\item nvc0: Setting engine clocks (mostly)
+					\item nv30-c0: Preliminary support to reclock (unreliable)
+					\item nv50-a3: Reliable clock changes (almost)
+					\item nv40-d9: RAM configuration (mostly functional)
+					\item Fan management: toggle (todo), pwm (done), i2c (WIP)
+					\item Performance counters: initial work on nv40-c0
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -210,11 +210,11 @@
 		\begin{frame}
 			\begin{block}{WIP}
 				\begin{itemize}
-					\item nva3-d9: setting memory clocks (using PDAEMON)
-					\item nv50-a3: ironing stability bugs 
-					\item AGP/PCIE, clock gating: reverse engineering
-					\item Fan: temperature-based management (toggle, pwm and i2c)
-					\item perfmon infrastructure, dynamic reclocking
+					\item nva3-d9: Setting memory clocks (using PDAEMON)
+					\item nv50-a3: Ironing out stability bugs 
+					\item AGP/PCIE, Clock gating: reverse engineering
+					\item Fan: Temperature-based management (toggle, pwm and i2c)
+					\item Perfmon infrastructure, dynamic reclocking
 				\end{itemize}
 			\end{block}
 
@@ -230,18 +230,18 @@
 		\begin{frame}
 			\begin{block}{libdrm-nouveau}
 				\begin{itemize}
-					\item buffer management
+					\item Buffer management
 						\begin{itemize}
 							\item everything is a buffer!
 						\end{itemize}
-					\item wraps around the IOCTL interface
+					\item Wraps around the IOCTL interface
 				\end{itemize}
 			\end{block}
-			\begin{block}{work in progress}
+			\begin{block}{Work in progress}
 				\begin{itemize}
-					\item a new implementation is being written
-					\item designed with nv40 class hardware in mind
-					\item pushbuffer replay
+					\item A new implementation is being written
+					\item Designed with nv40 class hardware in mind
+					\item Pushbuffer replay
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -285,15 +285,15 @@
 			\begin{block}{nvfx}
 				\begin{itemize}
 					\item Gallium driver for NV3x,4x class GPUs
-					\item one of the first gallium drivers
-					\item created by merging separate nv30 and nv40 drivers
-					\item accumulated much old cruft
-					\item no maintainer for over one year
+					\item One of the first gallium drivers
+					\item Created by merging separate nv30 and nv40 drivers
+					\item Accumulated much old cruft
+					\item No maintainer for over one year
 				\end{itemize}
 			\end{block}
-			\begin{block}{work in progress}
+			\begin{block}{Work in progress}
 				\begin{itemize}
-					\item will hopefully be soon replaced by rewritten driver
+					\item Will hopefully be soon replaced by rewritten driver
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -301,15 +301,15 @@
 			\begin{block}{nv50}
 				\begin{itemize}
 					\item Gallium driver for the NV50 family
-					\item current codebase was formed by adapting nvc0
-					\item first open driver to run OpenCL on the hardware?
+					\item Current codebase was formed by adapting nvc0
+					\item First open driver to run OpenCL on the hardware?
 				\end{itemize}
 			\end{block}
-			\begin{block}{work in progress}
+			\begin{block}{Work in progress}
 				\begin{itemize}
-					\item merge the reworked shader compiler
-					\item implement remaining OpenGL 3.x features
-					\item merge the OpenCL work
+					\item Merge the reworked shader compiler
+					\item Implement remaining OpenGL 3.x features
+					\item Merge the OpenCL work
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -317,10 +317,10 @@
 			\begin{block}{nvc0}
 				\begin{itemize}
 					\item Gallium driver for the NVC0 family
-					\item one of the first drivers to support OpenGL 3
+					\item One of the first drivers to support OpenGL 3
 				\end{itemize}
 			\end{block}
-			\begin{block}{work in progress}
+			\begin{block}{Work in progress}
 				\begin{itemize}
 					\item DX11
 					\item OpenGL 3.1+
@@ -334,19 +334,19 @@
 		\begin{frame}
 			\begin{block}{OpenCL}
 				\begin{itemize}
-					\item developed by Francisco Jerez
-					\item sponsored by the X.org EVOC
-					\item very experimental
-					\item in-depth presentation here at 18:00
+					\item Developed by Francisco Jerez
+					\item Sponsored by the X.org EVOC
+					\item Very experimental
+					\item In-depth presentation here at 18:00
 				\end{itemize}
 			\end{block}
 
 			\begin{block}{d3d1x}
 				\begin{itemize}
 					\item Direct 3D 10/11 on Gallium
-					\item ``works'' only on nouveau, still a bit hackish
-					\item started by Luca Barbieri
-					\item currently developed by nv50/c0's maintainer: Christoph Bumiller
+					\item ``Works'' only on nouveau, still a bit hackish
+					\item Started by Luca Barbieri
+					\item Currently developed by nv50/c0's maintainer: Christoph Bumiller
 					\item Unigine Heaven runs on it when you replace the wine d3d10/11 dlls
 				\end{itemize}
 			\end{block}
@@ -357,21 +357,21 @@
 			\begin{block}{Video decoding}
 				\begin{itemize}
 					\item HD video decoding on atoms
-					\item lower power consumption
+					\item Lower power consumption
 				\end{itemize}
 			\end{block}
 
 			\begin{block}{PMPEG}
 				\begin{itemize}
-					\item blob doesn't use this engine
-					\item decodes mpeg1/2
+					\item Blob doesn't use this engine
+					\item Decodes mpeg1/2
 				\end{itemize}
 			\end{block}
 
 			\begin{block}{PBSP/PVP/PPPP}
 				\begin{itemize}
-					\item used by nvidia
-					\item decodes most video streams
+					\item Used by nvidia
+					\item Decodes most video streams
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -390,10 +390,10 @@
 		\begin{frame}
 			\begin{block}{Why Nouveau?}
 				\begin{itemize}
-					\item support old cards unsupported by the blob ($<$ nv40)
-					\item develop new features (KMS, Xrandr, wayland, d3d1x)
-					\item plug \& play support, no need to install and maintain the blob
-					\item for the fun!
+					\item Support old cards unsupported by the blob ($<$ nv40)
+					\item Develop new features (KMS, Xrandr, wayland, d3d1x)
+					\item Plug \& play support, no need to install and maintain the blob
+					\item For the fun!
 				\end{itemize}
 			\end{block}
 		\end{frame}
@@ -403,7 +403,7 @@
 		\begin{frame}
 			\begin{block}{MPEG1/2 video decoding}
 				\begin{itemize}
-					\item using MPlayer
+					\item Using MPlayer
 					\item Kernel-side: done
 					\item Mesa: merged in 8.0
 				\end{itemize}
@@ -411,9 +411,9 @@
 
 			\begin{block}{reclocking and opengl}
 				\begin{itemize}
-					\item performance improvements in OpenArena/Nexuiz
-					\item performance improvements in xvmc
-					\item dynamic reclocking (load-based reclocking)!
+					\item Performance improvements in OpenArena/Nexuiz
+					\item Performance improvements in xvmc
+					\item Dynamic reclocking (load-based reclocking)!
 				\end{itemize}
 			\end{block}
 		\end{frame}
