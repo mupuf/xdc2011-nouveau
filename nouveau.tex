@@ -10,9 +10,8 @@
 \usecolortheme{whale}
 \title{Nouveau}
 \subtitle{Recap, on-going and future work}
-\author{Martin Peres, Lucas Stach \& the Nouveau community}
-\institute{Ph.D. student at LaBRI, B.Eng. student at HfTL}
-%\logo{\includegraphics[width=1.5cm]{imgs/ensib.jpg}}
+\author{Martin Peres \& the Nouveau community}
+\institute{Ph.D. student at LaBRI}
 
 \AtBeginSection[]{
   \begin{frame}{Summary}
@@ -28,393 +27,307 @@
 	\titlepage
 \end{frame}
 
-\section{The Nouveau community at FOSDEM}
-	\subsection*{Hello world!}
-		\begin{frame}
-				\begin{block}{Your hosts for the next hour}
-					\begin{itemize}
-						\item Martin Peres (mupuf)
-						\item Maarten Lankhorst (mlankhorst)
-						\item Lucas Stach (lynxeye)
-					\end{itemize}
-				\end{block}
-				\begin{block}{Also attending}
-					\begin{itemize}
-						\item Emil Velikov (xexaxo)
-						\item Francisco Jerez (curro)
-						\item Roy Spliet (rspliet)
-					\end{itemize}
-				\end{block}
-				\begin{block}{Not attending}
-					\begin{itemize}
-						\item Ben Skeggs (darktama)
-						\item Marcin Koscielnicki (mwk)
-						\item Christoph Bumiller (calim)
-						\item ... and many more!
-					\end{itemize}
-				\end{block}
-		\end{frame}
+\section{Introduction}
+\subsection*{Introduction}
+\begin{frame}
+	\frametitle{Introduction}
 
-\section{History}
-	\subsection*{A brief recap of Nouveau \& Linux}
-		\begin{frame}
-			\begin{block}{History: NVIDIA -- a new hope}
-				\begin{itemize}
-					\item 1998(?): NVIDIA releases ``nv'', a Linux open-source 2D-only driver
-					\item 1998: Obfuscation commit, release only pre-processed source
-				\end{itemize}
-			\end{block}
-		\end{frame}
+	\begin{block}{Introduction}
+		\begin{itemize}
+			\item Last nouveau update was at FOSDEM 2012;
+			\item Many improvements since then :).
+		\end{itemize}
+	\end{block}
+\end{frame}
 
-		\begin{frame}
-			\begin{block}{}
-				After we already finalized XFree86-3.3.3 NVIDIA forced the XFree86 Project
-				to replace the sources we had with sources that were partly run through the
-				C preprocessor in order to remove some of the names that NVIDIA thought
-				might give away IP from NVIDIA. This resulted in unreadable and unmaintainable
-				code.
-			\end{block}
+\section{Kepler support}
+\subsection*{Kepler support}
+\begin{frame}
+	\frametitle{Kepler support}
 
-			\begin{block}{}
-				The XFree86 Project is strongly opposed to such obfuscated code. We do not
-				regard this as free software according to our standards. Due to the extremely
-				late date of this decision from NVIDIA we decided to include the code as
-				offered by NVIDIA. We are considering to remove support for the later NVIDIA
-				chips in a future release, though.
-			\end{block}
+	\begin{block}{Kepler}
+		\begin{itemize}
+			\item New NVIDIA card family released in March 2012;
+			\item Modesetting support released on the same day;
+			\item Un-released 3D support happened a few days later;
+			\item 2D/3D accel support released less than a month after (after libdrm2).
+		\end{itemize}
+	\end{block}
+\end{frame}
 
-			Xfree86, commit message from 11/18/98
-	% http://cvsweb.xfree86.org/cvsweb/xc/programs/Xserver/hw/xfree86/vga256/drivers/nv/Attic/README.RIVATNT.diff?r1=1.1.2.2&r2=1.1.2.3&hideattic=0&only_with_tag=xf-3_3_3
-	% http://cvsweb.xfree86.org/cvsweb/xc/programs/Xserver/hw/xfree86/vga256/drivers/nv/Attic/nv3driver.c.diff?r1=1.1.2.5&r2=1.1.2.6&hideattic=0&only_with_tag=xf-3_3_3
-		\end{frame}
+\section{Kernel}
+\subsection*{Kernel updates}
+\begin{frame}
+	\frametitle{Kernel updates}
 
-		\begin{frame}
-			\begin{block}{History: The open-source strikes back}
-				\begin{itemize}
-					\item 2005: Stephane Marchesin improves nv and works on 3D
-					\begin{itemize}
-						\item Project named Nouveau after an unfortunate automatic spelling correction
-						\item Back-port nv updates to Nouveau
-					\end{itemize}
-					\item 2008: Open Arena runs on nv40
-					\item 2009: KMS driver based on TTM for memory management
-					\item 2010: Merged in Linux 2.6.33
-					\item 2010: Nv is deprecated by NVIDIA, ``use VESA''.
-				\end{itemize}
-			\end{block}
-		\end{frame}
+	\begin{block}{Kernel updates}
+		\begin{itemize}
+			\item Nouveau left stagging (Linux 3.4);
+			\item Major internal re-architecturing, called core (Linux 3.7);
+		\end{itemize}
+	\end{block}
 
-		\begin{frame}
-			\begin{block}{History: The return of the Jedi}
-				``It's so hard to write a graphics driver that open-sourcing it
-				would not help [...] In addition, customers aren't asking for opensource drivers.''\\
-				Andrew Fear, NVIDIA software product manager, April 2006
-				%http://news.cnet.com/New-Linux-look-fuels-old-debate/2100-7344_3-6061491.html
-			\end{block}
-		\end{frame}
+	\begin{block}{The core architecture}
+		\begin{itemize}
+			\item Separate code per-chipset;
+			\item Kind of object-oriented (ctor, dtor, init \& fini);
+			\item Should limit regressions when adding support to new cards;
+			\item Contribution by Ben Skeggs.
+		\end{itemize}
+	\end{block}
+\end{frame}
 
-\section{Architecture}
-	\subsection{Short hardware introduction}
-		\begin{frame}
-			\begin{block}{Chipset families}
-				\begin{itemize}
-					\item NV03: RIVA 128
-					\item NV04: RIVA TNT/TNT2
-					\item NV10: Geforce2/4 MX
-					\item NV20: Geforce 3, Geforce 4 Ti
-					\item NV30: Geforce FX
-					\item NV40: Geforce 6/7 (the first real family) 
-					\item NV50: Geforce 8/9/100/200/300 (the biggest family)
-					\item NVC0: Geforce 400/500, AKA Fermi
-					\item NVD9: Strange Fermi
-				\end{itemize}
-			\end{block}
-		\end{frame}
+\subsection{Optimus/prime}
 
-		% XXX: give short overview over hw engines (microcode slide only here for reference)
-		\begin{frame}
-			\begin{block}{Hardware introduction}
-				\begin{itemize}
-					\item NVIDIA GPUs are controlled by "objects"
-					\item Command submission uses DMA buffers
-					\item GPU can access the host's memory through the aperture
-					\item NV50 features a full-blown virtual memory system for its channels (GPU process)
-				\end{itemize}
-			\end{block}
-			\begin{block}{Important engines}
-				\begin{itemize}
-					\item PFIFO: main command fetching engine
-					\item PCRTC/PDISPLAY: display scanout engines
-					\item PGRAPH: main graphics object AKA OpenGL cast into silicon
-					\item PMPEG: video acceleration found on older cards (MPEG1/2)
-					\item PBSP/PVP/PPPP: modern video decoding engines %mlankhorst: please elaborate and remove comment
-				\end{itemize}
-			\end{block}
-		\end{frame}
+\begin{frame}
+	\frametitle{Optimus/prime}
 
-	\subsection{Components}
-		\begin{frame}
-			\begin{block}{The 4 parts of Nouveau}
-				\begin{itemize}
-					\item Linux kernel module
-					\item libdrm-nouveau
-					\item DDX: xf86-video-nouveau
-					\item Mesa3D drivers:
-						\begin{itemize}
-							\item nouveau-vieux
-							\item nvfx
-							\item nv50
-							\item nvc0
-						\end{itemize}
-				\end{itemize}
-			\end{block}
-		\end{frame}
+	\begin{block}{Optimus/Prime support}
+		\begin{itemize}
+			\item Offloading support added by Dave Airlie in Linux 3.9;
+			\item Synchronisation between drivers, worked on by mlankhorst;
+		\end{itemize}
+	\end{block}
 
-		\begin{frame}
-			\begin{block}{Linux kernel module: Nouveau}
-				\begin{itemize}
-					\item Resources management
-						\begin{itemize}
-							\item GPU Channels
-							\item Memory Management
-						\end{itemize}
-					\item Command-submission
-					\item Kernel Mode Setting
-					\item Power Management
-				\end{itemize}
-			\end{block}
-		\end{frame}
+	\begin{block}{More information + how to}
+		\url{http://nouveau.freedesktop.org/wiki/Optimus/}
+	\end{block}
+\end{frame}
 
-		\begin{frame}
-			\begin{block}{Power management}
- 				\begin{itemize}
-					\item Parsing power-management-related vbios table
-					\item Temperature management: calibration + fan
-					\item Setting the clocks: changes the performance level
-					\item Other: clock gating, PCIE downclocking, DAC reclocking
-				\end{itemize}
-			\end{block}
+\subsection{Power Management}
 
-			\begin{block}{Current state}
-				\begin{itemize}
-					\item nvc0: Setting engine clocks (mostly)
-					\item nv30-c0: Preliminary support to reclock (unreliable)
-					\item nv50-a3: Reliable clock changes (almost)
-					\item nv40-d9: RAM configuration (mostly functional)
-					\item Fan management: toggle (todo), pwm (done), i2c (WIP)
-					\item Performance counters: initial work on nv40-c0
-				\end{itemize}
-			\end{block}
-		\end{frame}
+\begin{frame}
+	\frametitle{Power Management}
 
-		\begin{frame}
-			\begin{block}{WIP}
-				\begin{itemize}
-					\item nva3-d9: Setting memory clocks (using PDAEMON)
-					\item nv50-a3: Ironing out stability bugs 
-					\item AGP/PCIE, Clock gating: reverse engineering
-					\item Fan: Temperature-based management (toggle, pwm and i2c)
-					\item Perfmon infrastructure, dynamic reclocking
-				\end{itemize}
-			\end{block}
+	\begin{block}{Thermal management}
+		\begin{itemize}
+			\item Temperature monitoring support added for most cards;
+			\item Except for the i2c-only temperature probes.
+		\end{itemize}
+	\end{block}
 
-			\begin{center}
-				\includegraphics[height=2.7cm]{imgs/gt220_openarena_bench.pdf}
-			\end{center}
-			\begin{center}
-				\url{http://www.phoronix.com/scan.php?page=article&item=nouveau_reclocking_one&num=5}
-			\end{center}
+	\begin{block}{Fan management}
+		\begin{itemize}
+			\item Static fan management added in Linux 3.7;
+			\item Experimental automatic fan management added in Linux 3.9;
+			\item Enabled by default in Linux 3.??.
+		\end{itemize}
+	\end{block}
+\end{frame}
 
-		\end{frame}
+\section{Userspace}
 
-		\begin{frame}
-			\begin{block}{libdrm-nouveau}
-				\begin{itemize}
-					\item Buffer management
-						\begin{itemize}
-							\item everything is a buffer!
-						\end{itemize}
-					\item Wraps around the IOCTL interface
-				\end{itemize}
-			\end{block}
-			\begin{block}{Work in progress}
-				\begin{itemize}
-					\item A new implementation is being written
-					\item Designed with nv40 class hardware in mind
-					\item Pushbuffer replay
-				\end{itemize}
-			\end{block}
-		\end{frame}
+\subsection{Libdrm\_nouveau2}
+\begin{frame}
+	\frametitle{Userspace updates - Libdrm\_nouveau2}
 
-		\begin{frame}
-			\begin{block}{DDX -- xf86-video-nouveau}
-				\begin{itemize}
-					\item EXA (2D acceleration) 
-					\item X-Video
-					\item supports full range of GPUs (NV04 - NVD9)
-					\item makes use of all engines for acceleration (including 3D engine)
-				\end{itemize}
-			\end{block}
-		\end{frame}
+	\begin{block}{Libdrm\_nouveau2}
+		\begin{itemize}
+			\item Expose BOs' VM addresses;
+			\item Support multiple threads per channel;
+			\item Rework the rellocation mechanism;
+			\item Reduce the occurences of -ENOSPC;
+			\item Released in April 2012 by Ben Skeggs.
+		\end{itemize}
+	\end{block}
 
-		\begin{frame}
-			\begin{block}{Mesa3D: drivers for 3D and more}
-				\begin{itemize}
-					\item two different approaches here: Classic and Gallium3D
-					\item nouveau-vieux: classic Mesa3D driver for NV04,NV1x,NV2x
-						\begin{itemize}
-							\item only supports fixed function OpenGL
-						\end{itemize}
-					\item Gallium pipe-driver
-						\begin{itemize}
-							\item nvfx
-							\item nv50
-							\item nvc0
-						\end{itemize}
-				\end{itemize}
-			\end{block}
-		\end{frame}
+	\begin{block}{Libdrm\_nouveau2 : Mesa updates}
+		\begin{itemize}
+			\item Mesa drivers updated to use Libdrm\_nouveau2;
+			\item Nvfx rewritten and renamed nv30;
+			\item Various fixes to the other drivers.
+		\end{itemize}
+	\end{block}
+\end{frame}
 
-		\begin{frame}
-			\begin{center}
-				\includegraphics[height=7cm]{imgs/mesa.pdf}
-			\end{center}
-		\end{frame}
+\subsection{Video decoding}
+\begin{frame}
+	\frametitle{Userspace updates - Video decoding}
 
-		\begin{frame}
-			\begin{block}{nvfx}
-				\begin{itemize}
-					\item Gallium driver for NV3x,4x class GPUs
-					\item One of the first gallium drivers
-					\item Created by merging separate nv30 and nv40 drivers
-					\item Accumulated much old cruft
-					\item No maintainer for over one year
-				\end{itemize}
-			\end{block}
-			\begin{block}{Work in progress}
-				\begin{itemize}
-					\item Will hopefully be soon replaced by rewritten driver
-				\end{itemize}
-			\end{block}
-		\end{frame}
-		\begin{frame}
-			\begin{block}{nv50}
-				\begin{itemize}
-					\item Gallium driver for the NV50 family
-					\item Current codebase was formed by adapting nvc0
-					\item First open driver to run OpenCL on the hardware?
-				\end{itemize}
-			\end{block}
-			\begin{block}{Work in progress}
-				\begin{itemize}
-					\item Merge the reworked shader compiler
-					\item Implement remaining OpenGL 3.x features
-					\item Merge the OpenCL work
-				\end{itemize}
-			\end{block}
-		\end{frame}
-		\begin{frame}
-			\begin{block}{nvc0}
-				\begin{itemize}
-					\item Gallium driver for the NVC0 family
-					\item One of the first drivers to support OpenGL 3
-				\end{itemize}
-			\end{block}
-			\begin{block}{Work in progress}
-				\begin{itemize}
-					\item DX11
-					\item OpenGL 3.1+
-				\end{itemize}
-			\end{block}
+	\begin{block}{Video decoding : Maarten Lankhorst}
+		\begin{itemize}
+			\item Fermi+ support added by Maarten Lankhorst;
+			\item Rely on user-extracted firmwares (mmiotrace).
+		\end{itemize}
+	\end{block}
 
-			\begin{center}
-				\includegraphics[height=2.5cm]{imgs/opengl3.png}
-			\end{center}
-		\end{frame}
-		\begin{frame}
-			\begin{block}{OpenCL}
-				\begin{itemize}
-					\item Developed by Francisco Jerez
-					\item Sponsored by the X.org EVOC
-					\item Very experimental
-					\item In-depth presentation here at 18:00
-				\end{itemize}
-			\end{block}
+	\begin{block}{Video decoding : Ilia Mirkin}
+		\begin{itemize}
+			\item VP2/3/4 support added by Ilia Mirkin;
+			\item Wrote a script to extract firmwares from the blob;
+			\item Work on video planes on older generations.
+		\end{itemize}
+	\end{block}
 
-			\begin{block}{d3d1x}
-				\begin{itemize}
-					\item Direct 3D 10/11 on Gallium
-					\item ``Works'' only on nouveau, still a bit hackish
-					\item Started by Luca Barbieri
-					\item Currently developed by nv50/c0's maintainer: Christoph Bumiller
-					\item Unigine Heaven runs on it when you replace the wine d3d10/11 dlls
-				\end{itemize}
-			\end{block}
-		\end{frame}
+	\begin{block}{More information}
+		\url{http://nouveau.freedesktop.org/wiki/VideoAcceleration}
+	\end{block}
+\end{frame}
 
-		% XXX: maybe get one slide for video decoding in here
-		\begin{frame}
-			\begin{block}{Video decoding}
-				\begin{itemize}
-					\item HD video decoding on atoms
-					\item Lower power consumption
-				\end{itemize}
-			\end{block}
+\subsection{Direct 3D}
 
-			\begin{block}{PMPEG}
-				\begin{itemize}
-					\item Blob doesn't use this engine
-					\item Decodes MPEG1/2
-				\end{itemize}
-			\end{block}
+\begin{frame}
+	\frametitle{Nine: a d3d9 state tracker}
 
-			\begin{block}{PBSP/PVP/PPPP}
-				\begin{itemize}
-					\item Used by NVIDIA
-					\item Decodes most video streams
-				\end{itemize}
-			\end{block}
-		\end{frame}
+	\begin{block}{Nine: a d3d9 state tracker}
+		\begin{itemize}
+			\item Started by Joakim Sindholt;
+			\item Completed by Christoph Bumiller
+			\item Runs Skyrim, Civilization 5, Anno 1404 and StarCraft 2;
+			\item Up to 2 times faster than Wine's d3d implementation.
+		\end{itemize}
+	\end{block}
 
-		\begin{frame}
-			\begin{center}
-				\includegraphics[height=7cm]{imgs/h264_vp_decoded2.png}
-			\end{center}
-			\begin{center}
-				VDPAU running on Nouveau with the proprietary microcodes
-			\end{center}
-		\end{frame}
+	\begin{block}{Announcement}
+		\url{http://lists.freedesktop.org/archives/mesa-dev/2013-July/041900.html}
+	\end{block}
 
-\section{Conclusion}
-	\subsection*{Why Nouveau?}
-		\begin{frame}
-			\begin{block}{Why Nouveau?}
-				\begin{itemize}
-					\item Support old cards unsupported by the blob ($<$ nv40)
-					\item Develop new features (KMS, Xrandr, wayland, d3d1x)
-					\item Plug \& play support, no need to install and maintain the blob
-					\item For the fun!
-				\end{itemize}
-			\end{block}
-		\end{frame}
+	\begin{block}{Source tree}
+		\url{https://github.com/chrisbmr/Mesa-3D/tree/gallium-nine}
+	\end{block}
+\end{frame}
 
-\section{Demos}
-	\subsection*{Some fun and experimentation}
-		\begin{frame}
-			\begin{block}{MPEG1/2 video decoding}
-				\begin{itemize}
-					\item Using MPlayer
-					\item Kernel-side: done
-					\item Mesa: merged in 8.0
-				\end{itemize}
-			\end{block}
+\subsection{Performance counters}
 
-			\begin{block}{reclocking and opengl}
-				\begin{itemize}
-					\item Performance improvements in OpenArena/Nexuiz
-					\item Performance improvements in xvmc
-					\item Dynamic reclocking (load-based reclocking)!
-				\end{itemize}
-			\end{block}
-		\end{frame}
+\begin{frame}
+	\frametitle{Performance counters}
+
+	\begin{block}{Performance counters}
+		\begin{itemize}
+			\item MP-counters support for Fermi+;
+			\item Exposed through Gallium-HUD;
+			\item Kepler support by Christoph Bumiller;
+			\item Fermi support by Samuel Pitoise (GSOC 2013).
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\section{Tools}
+
+\subsection{Envytools repo moved}
+\begin{frame}
+	\frametitle{Envytools}
+
+	\begin{block}{Envytools}
+		\begin{itemize}
+			\item is a collection of nvidia-related tools and docs;
+			\item was primarily hosted by Pathscale;
+			\item but was also hosted by mwk \& sourceforge;
+			\item moved to one repo with every dev as admins.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{More information}
+		\url{http://lists.freedesktop.org/archives/nouveau/2013-July/013089.html}
+	\end{block}
+\end{frame}
+
+\subsection{RESTification of the documentation}
+\begin{frame}
+	\frametitle{Envytools : documentation}
+
+	\begin{block}{hwdocs before}
+		\begin{itemize}
+			\item text-based documentation of NVIDIA hw;
+			\item links written as plain text.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{hwdocs after}
+		\begin{itemize}
+			\item text-based documentation of NVIDIA hw;
+			\item can generate pretty html documentations.
+			\item Example: \url{http://envytools.github.io/envytools/}.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Falcon C Compiler}
+\begin{frame}
+	\frametitle{Falcon C compiler}
+
+	\begin{block}{Falcon C compiler}
+		\begin{itemize}
+			\item Started by Shinpei Kato;
+			\item work for PGRAPH firmwares;
+			\item can be extended to support PDAEMON.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Links}
+		\begin{itemize}
+			\item Source: https://github.com/CS005/guc
+			\item Paper: http://hgpu.org/?p=10251
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Falcon \& other NVIDIA ISAs Decompiler!}
+\begin{frame}
+	\frametitle{NVIDIA ISAs decompiler}
+
+	\begin{block}{decompiler}
+		\begin{itemize}
+			\item Decompiler project started by Marcin Kościelnicki;
+			\item works on falcon \& vp2macro;
+			\item will support xtensa \& possibly vuc;
+			\item will be released after Marcin's master thesis (soon);
+			\item Example: \url{http://ng.0x04.net/~mwk/deco.txt}.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\section{Community}
+
+\subsection{Bugzilla cleaning}
+\begin{frame}
+	\frametitle{Community}
+
+	\begin{block}{Bugzilla cleaning}
+		\begin{itemize}
+			\item Started by Ilia Mirkin;
+			\item closed all bugs not updated since 2011;
+			\item asking people to reproduce on current Nouveau;
+			\item Reduced bug reports from ~410 to 167;
+			\item Helped fixing some actual bugs along the way.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Wiki portage \& rewrite}
+\begin{frame}
+	\frametitle{Community}
+
+	\begin{block}{Wiki portage}
+		\begin{itemize}
+			\item Freedesktop moved to ikiwiki;
+			\item killed a lot of spam along the way;
+			\item but it is now harder to add content.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Wiki clean up \& rewrite}
+		\begin{itemize}
+			\item Started by Ilia Mirkin \& Martin Peres;
+			\item closed all bugs not updated since 2011;
+			\item asking people to reproduce on current Nouveau;
+			\item Reduced bug reports from ~410 to 167;
+			\item Helped fixing some actual bugs along the way.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{New member!}
+\begin{frame}
+	\frametitle{Community - Welcome NVIDIA!}
+
+	\begin{block}{Flash news}
+		\begin{itemize}
+			\item NVIDIA released NDA-free documentation today!;
+			\item Documentation on the DCB vbios table;
+			\item Welcome to the Nouveau community, NVIDIA!
+		\end{itemize}
+	\end{block}
+\end{frame}
+
 \end{document}
