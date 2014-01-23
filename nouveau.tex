@@ -70,6 +70,7 @@
 	\begin{block}{The core architecture}
 		\begin{itemize}
 			\item Separate code per-chipset;
+			\item Can partially be used from the userspace;
 			\item Kind of object-oriented (ctor, dtor, init \& fini);
 			\item Should limit regressions when adding support to new cards;
 			\item Contribution by Ben Skeggs.
@@ -109,13 +110,43 @@
 	\begin{block}{Fan management}
 		\begin{itemize}
 			\item Static fan management added in Linux 3.7;
-			\item Experimental automatic fan management added in Linux 3.9;
-			\item Enabled by default in Linux 3.??.
+			\item Experimental automatic fan management added in
+Linux 3.9;
+			\item Enabled by default in Linux 3.13;
+			\item Doesn't work on all Keplers...
 		\end{itemize}
 	\end{block}
 
 	\begin{block}{}
 		Contact Martin Peres (mupuf) if you have problems!
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Power Management}
+
+	\begin{block}{Reclocking}
+		\begin{itemize}
+			\item Still a work in progress...;
+			\item Will provide much better performance!
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Power and clock gating}
+		\begin{itemize}
+			\item Will lower the power consumption (good for
+laptops);
+			\item Should be released soon for Fermi/Kepler.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Performance and power monitoring}
+		\begin{itemize}
+			\item Some Kepler have i2c power sensors!
+			\item Rough engine-usage indicators (Memory, Graph,
+Video);
+			\item Will be exposed ASAP.
+		\end{itemize}
 	\end{block}
 \end{frame}
 
@@ -157,14 +188,28 @@
 
 	\begin{block}{Video decoding : Ilia Mirkin}
 		\begin{itemize}
-			\item VP2/3/4 support added by Ilia Mirkin;
+			\item Full VP2/3/4 support added by Ilia Mirkin;
 			\item Wrote a script to extract firmwares from the blob;
-			\item Work on video planes on older generations.
+			\item Added back support for video planes on (nv04-40).
 		\end{itemize}
 	\end{block}
 
 	\begin{block}{More information}
 		\url{http://nouveau.freedesktop.org/wiki/VideoAcceleration}
+	\end{block}
+\end{frame}
+
+\subsection{OpenGL}
+
+\begin{frame}
+	\frametitle{OpenGL}
+
+	\begin{block}{}
+		\begin{itemize}
+			\item OpenGL 3.0 in Mesa 8.0 (nvc0);
+			\item OpenGL 3.1 in Mesa 9 (nvc0);
+			\item OpenGL 3.3 support in Mesa 10.1 for nv50/nvc0.
+		\end{itemize}
 	\end{block}
 \end{frame}
 
@@ -196,14 +241,24 @@
 \begin{frame}
 	\frametitle{Performance counters}
 
-	\begin{block}{Performance counters}
+	\begin{block}{DONE}
 		\begin{itemize}
 			\item MP-counters support for Fermi+;
 			\item Exposed through Gallium-HUD;
 			\item Kepler support by Christoph Bumiller;
-			\item Fermi support by Samuel Pitoise (GSOC 2013).
+			\item Fermi support by Samuel Pitoiset (GSOC 2013).
 		\end{itemize}
 	\end{block}
+
+	\begin{block}{WIP}
+		\begin{itemize}
+			\item Performance monitoring from PDAEMON(Mem, VDec,
+GR);
+			\item Reverse engineering graphics-related signals on
+W7 (Samuel);
+		\end{itemize}
+	\end{block}
+
 \end{frame}
 
 \section{Tools}
@@ -273,9 +328,10 @@
 	\begin{block}{decompiler}
 		\begin{itemize}
 			\item Decompiler project started by Marcin Kościelnicki;
-			\item works on falcon \& vp2macro;
-			\item will support xtensa \& possibly vuc;
-			\item will be released after Marcin's master thesis (soon);
+			\item Works on vp2macro and partial support of Falcon;
+			\item Will support xtensa \& possibly vuc;
+			\item Will be released after Marcin's master thesis
+(soon);
 			\item Example: \url{http://ng.0x04.net/~mwk/deco.txt}.
 		\end{itemize}
 	\end{block}
@@ -319,19 +375,31 @@
 	\end{block}
 \end{frame}
 
-\subsection{New member!}
+\subsection{New member!?}
 \begin{frame}
 	\frametitle{Community - Welcome NVIDIA!}
 
 	\begin{block}{Flash news}
 		\begin{itemize}
-			\item NVIDIA released NDA-free documentation today!;
-			\item documentation on the DCB-related vbios tables;
-			\item offered us a contact email to answer questions;
-			\item are willing to improve the out-of-the-box experience of users;
+			\item NVIDIA released NDA-free documentation during
+XDC2013!;
+			\item Offered us a contact email to answer questions;
+			\item Are willing to improve the out-of-the-box
+experience of users;
+			\item Provided documentation on the DCB-related vbios
+tables;
+			\item Helped us get MSI IRQs and video decoding working;
+			\item Released a GPL Tegra K1 driver with extensive reg
+dumps;
 			\item Welcome to the Nouveau community, NVIDIA!
 		\end{itemize}
 	\end{block}
 \end{frame}
+
+% DEMOS:
+% - prime
+% - video decoding
+% - OpenGL 3.3
+%
 
 \end{document}
