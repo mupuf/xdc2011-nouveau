@@ -10,7 +10,7 @@
 \usecolortheme{whale}
 \title{Nouveau}
 \subtitle{Recap, on-going and future work}
-\author{Marcin Kościelnicki, Maarten Lankhorst, Roy Spliet \& Martin Peres}
+\author{Marcin Kościelnicki, Maarten Lankhorst, Martin Peres \& Emil Velikov}
 \institute{Nouveau developers (or related)}
 
 \AtBeginSection[]{
@@ -27,6 +27,7 @@
 	\titlepage
 \end{frame}
 
+% mupuf
 \section{Introduction}
 \subsection*{Introduction}
 \begin{frame}
@@ -152,6 +153,32 @@ Video);
 
 \section{Userspace}
 
+\subsection{Performance counters}
+
+\begin{frame}
+	\frametitle{Performance counters}
+
+	\begin{block}{DONE}
+		\begin{itemize}
+			\item MP-counters support for Fermi+;
+			\item Exposed through Gallium-HUD;
+			\item Kepler support by Christoph Bumiller;
+			\item Fermi support by Samuel Pitoiset (GSOC 2013).
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{WIP}
+		\begin{itemize}
+			\item Performance monitoring from PDAEMON(Mem, VDec,
+GR);
+			\item Reverse engineering graphics-related signals on
+W7 (Samuel);
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+
+% Maarten
 \subsection{Libdrm\_nouveau2}
 \begin{frame}
 	\frametitle{Userspace updates - Libdrm\_nouveau2}
@@ -190,7 +217,8 @@ Video);
 		\begin{itemize}
 			\item Nv50: Full VP2/3/4 support added by Ilia Mirkin;
 			\item Wrote a script to extract firmwares from the blob;
-			\item Added back support for video planes on (nv04-40).
+			\item Added back support for video planes on (nv04-40);
+			\item PMPEG support for MPEG1/2 on nv40-96.
 		\end{itemize}
 	\end{block}
 
@@ -204,11 +232,18 @@ Video);
 \begin{frame}
 	\frametitle{OpenGL}
 
-	\begin{block}{}
+	\begin{block}{History: GL version support}
 		\begin{itemize}
 			\item OpenGL 3.0 in Mesa 8.0 (nvc0);
 			\item OpenGL 3.1 in Mesa 9 (nvc0);
 			\item OpenGL 3.3 support in Mesa 10.1 for nv50/nvc0.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Limited support}
+		\begin{itemize}
+			\item GK110;
+			\item GK208.
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -236,31 +271,7 @@ Video);
 	\end{block}
 \end{frame}
 
-\subsection{Performance counters}
-
-\begin{frame}
-	\frametitle{Performance counters}
-
-	\begin{block}{DONE}
-		\begin{itemize}
-			\item MP-counters support for Fermi+;
-			\item Exposed through Gallium-HUD;
-			\item Kepler support by Christoph Bumiller;
-			\item Fermi support by Samuel Pitoiset (GSOC 2013).
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{WIP}
-		\begin{itemize}
-			\item Performance monitoring from PDAEMON(Mem, VDec,
-GR);
-			\item Reverse engineering graphics-related signals on
-W7 (Samuel);
-		\end{itemize}
-	\end{block}
-
-\end{frame}
-
+% Marcin
 \section{Tools}
 
 \subsection{Envytools repo moved}
@@ -337,6 +348,7 @@ W7 (Samuel);
 	\end{block}
 \end{frame}
 
+% Xexaxo
 \section{Community}
 
 \subsection{Bugzilla cleaning}
@@ -388,7 +400,8 @@ XDC2013!;
 experience of users;
 			\item Provided documentation on the DCB-related vbios
 tables;
-			\item Helped us get MSI IRQs and video decoding working;
+			\item Helped us get MSI IRQs working and fix video
+decoding;
 			\item Released a GPL Tegra K1 driver with extensive reg
 dumps;
 			\item Welcome to the Nouveau community, NVIDIA!
