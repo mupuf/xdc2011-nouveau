@@ -1,0 +1,149 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usetheme{Antibes}
+
+% À chaque nouvelle section, on dit où on est
+\AtBeginSection[ ]
+{
+ \begin{frame}<beamer>
+   \frametitle{Summary}
+   \tableofcontents[currentsection]
+  \end{frame}
+} 
+
+\title{State of the X.Org Foundation}
+\subtitle{FOSDEM 2014}
+\author{Martin~Peres}
+\institute{\includegraphics[height=1.0cm]{figures/logo.png}}
+
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\logo{\includegraphics[height=1.0cm]{figures/logo_small_200px.png}}
+
+	\section{Introduction}
+		\subsection{Role of the Foundation}
+		\begin{frame}
+			\begin{block}{}
+				The X.Org Foundation is a company chartered to
+develop and execute effective strategies that provide worldwide stewardship and
+encouragement of the X Window System and related projects (Mesa, DRI, Wayland,
+etc.).
+			\end{block}
+
+			\begin{block}{}
+				\url{http://www.x.org/wiki/XorgFoundation/}
+			\end{block}
+		\end{frame}
+
+		\subsection{Actions of the Foundation}
+		\begin{frame}
+			\begin{block}{X.Org Developer's Conference (XDC/XDS)}
+				\begin{itemize}
+					\item Organized once a year, in
+October/September;
+					\item Alternates between the US and
+Europe (in Europe this year!);
+					\item Lasts 3 days;
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Travel sponsorship}
+				The board of directors can cover the travel and
+accomodation expenses to the developers who couldn't attend an X.org-related
+conference (X.org or FOSDEM?).
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{Google Summer of Code (GSoC)}
+				\begin{itemize}
+					\item The X.org Foundation is an
+approved org. of the GSoC;
+					\item Allows students to participate to
+X.org-related projects over the summer and get paid to flip bits, not burgers.
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{GSoC projects of 2013}
+				\begin{itemize}
+					\item David Hermann (Dave Airlie):
+Render Nodes and security fixes
+					\item Samuel Pitoiset (Martin Peres):
+Reverse engineering performance counters on NVIDIA cards and exposing Fermi MP
+counters in Mesa;
+					\item Dylan Noblesmith (Ian Romanick):
+Implementing GL\_EXT\_direct\_state\_access.
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		% Communication: G+ / Twitter
+
+	\section{Current situation}
+		\subsection{Membership}
+		\begin{frame}
+			\begin{block}{Roles of the members}
+				\begin{itemize}
+					\item Elect the members of the board of
+directors;
+					\item More?
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Current situation}
+				\begin{itemize}
+					\item 79 members!
+					\item Join us:
+\url{http://www.x.org/wiki/Membership}!
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\subsection{Members of the board of direction}
+		\begin{frame}
+			\begin{block}{Elected in 2012, for 2 years}
+				\begin{itemize}
+					\item Alan Coopersmith;
+					\item Alex Deucher;
+					\item Matt Dew;
+					\item Matthias Hopf.
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Elected in 2013, for 2 years}
+				\begin{itemize}
+					\item Peter Hutterer (Secretary);
+					\item Stuart Kreitmann (Treasurer);
+					\item Keith Packard;
+					\item Martin Peres.
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+		\subsection{501(c)(3)}
+
+		\subsection{Banks}
+
+		% problems with transfering funds (~100€ per person got lost):
+% HSBC -> Bank Of America
+		%  $29/month and up (depending on activity) "analysis fee"
+% 		HSBC closed the checking account unilateraly
+
+	\section{Current projects}
+		\subsection{SPI merge}
+		\subsection{Updating the ByLaws}
+
+
+% 		great. So, I'll be speaking to FOSDEM about the state of the
+% foundation, what we are doing to it (SPI, change the scope in the bylaws) and
+% asking people to become members, present themselves as candidate for the board
+% and vote
+% I'll start with basically what you said at XDC, whot
+% I'll try to write the slides soon so as I can get them approved
+% just to make sure we are all on the same page
+
+\end{document}

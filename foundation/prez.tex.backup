@@ -1,0 +1,115 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usetheme{Antibes}
+
+% À chaque nouvelle section, on dit où on est
+\AtBeginSection[ ]
+{
+ \begin{frame}<beamer>
+   \frametitle{Summary}
+   \tableofcontents[currentsection]
+  \end{frame}
+} 
+
+\title{State of the X.Org Foundation}
+\subtitle{FOSDEM 2014}
+\author{Martin~Peres}
+\institute{\includegraphics[height=1.0cm]{figures/logo.png}}
+
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\logo{\includegraphics[height=1.0cm]{figures/logo_small_200px.png}}
+
+	\section{Introduction}
+		\subsection{Role of the Foundation}
+		\begin{frame}
+			\begin{block}{}
+				The X.Org Foundation is a company chartered to
+develop and execute effective strategies that provide worldwide stewardship and
+encouragement of the X Window System and related projects (Mesa, DRI, Wayland,
+etc.).
+			\end{block}
+
+			\begin{block}{}
+				\url{http://www.x.org/wiki/XorgFoundation/}
+			\end{block}
+		\end{frame}
+
+		\subsection{Actions of the Foundation}
+		\begin{frame}
+			\begin{block}{X.Org Developer's Conference (XDC/XDS)}
+				\begin{itemize}
+					\item Organized once a year, in
+October/September;
+					\item Alternates between the US and
+Europe (in Europe this year!);
+					\item Lasts 3 days;
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Travel sponsorship}
+				The board of directors can cover the travel and
+accomodation expenses to the developers who couldn't attend an X.org-related
+conference (X.org or FOSDEM?).
+			\end{block}
+		\end{frame}
+
+		\begin{frame}
+			\begin{block}{Google Summer of Code (GSoC)}
+				\begin{itemize}
+					\item The X.org Foundation is an
+approved org. of the GSoC;
+					\item Allows students to participate to
+X.org-related projects over the summer and get paid;
+					\item Allowed us to get Render Nodes in
+Linux (David Hermann), reverse engineer performance counters on NVIDIA cards
+(Samuel Pitoiset), and get an initial implementation of
+GL\_EXT\_direct\_state\_access (Dylan Noblesmith). At least the first two are
+still
+active!
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{GSoC projects of 2013}
+				\begin{itemize}
+					\item The X.org Foundation is an
+approved org. of the GSoC;
+					\item Allows students to participate to
+X.org-related projects over the summer and get paid;
+					\item Allowed us to get Render Nodes in
+Linux (David Hermann), reverse engineer performance counters on NVIDIA cards
+(Samuel Pitoiset), and get an initial implementation of
+GL\_EXT\_direct\_state\_access (Dylan Noblesmith). At least the first two are
+still
+active!
+				\end{itemize}
+			\end{block}
+		\end{frame}
+
+	\section{Current situation}
+		\subsection{Membership}
+
+		79 membres!
+
+		\subsection{Members of the board of direction}
+
+		\subsection{Members of the board of direction}
+
+	\section{Current projects}
+		\subsection{SPI merge}
+		\subsection{Updating the ByLaws}
+
+
+% 		great. So, I'll be speaking to FOSDEM about the state of the
+% foundation, what we are doing to it (SPI, change the scope in the bylaws) and
+% asking people to become members, present themselves as candidate for the board
+% and vote
+% I'll start with basically what you said at XDC, whot
+% I'll try to write the slides soon so as I can get them approved
+% just to make sure we are all on the same page
+
+\end{document}

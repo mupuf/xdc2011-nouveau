@@ -10,7 +10,7 @@
 \usecolortheme{whale}
 \title{Nouveau}
 \subtitle{Recap, on-going and future work}
-\author{Marcin Kościelnicki, Maarten Lankhorst, Martin Peres \& Emil Velikov}
+\author{Marcin Kościelnicki, Maarten Lankhorst, Martin Peres \& Emil Velikov/}
 \institute{Nouveau developers (or related)}
 
 \AtBeginSection[]{
@@ -173,6 +173,7 @@ Video);
 GR);
 			\item Reverse engineering graphics-related signals on
 W7 (Samuel);
+			\item Export the kernels
 		\end{itemize}
 	\end{block}
 
@@ -306,8 +307,15 @@ W7 (Samuel);
 	\begin{block}{hwdocs after}
 		\begin{itemize}
 			\item text-based documentation of NVIDIA hw;
-			\item can generate pretty html documentations.
+			\item can generate pretty html documentations;
 			\item Example: \url{http://envytools.readthedocs.org}.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{hwdocs future}
+		\begin{itemize}
+			\item rnndb generated from the ReST documentation;
+			\item cross referencement of registers and bitfields.
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -413,6 +421,6 @@ dumps;
 % - prime
 % - video decoding
 % - OpenGL 3.3
-%
+% - Perf counters
 
 \end{document}
