@@ -1,0 +1,104 @@
+# X.Org Conceptual Diagram
+# Matt Dew
+
+digraph Xorg {
+
+  subgraph cluster_client {
+    subgraph clusterLibraries {
+      lable = "Client Libraries";
+      color=black 
+      Cairo;
+      Pango;
+      OpenGL;
+      "Xlib or xcb";
+      Cairo -> "Xlib or xcb";
+      Cairo -> OpenGL;
+      Pango -> "Xlib or xcb";
+      Toolkit -> "Xlib or xcb";
+    }
+                
+    label = "Client";
+    color=green
+  }
+
+  subgraph cluster_server {
+    Event_Queue;
+    label = "Server";
+    color=blue
+
+    subgraph cluster_ddx {
+      "Input Drivers";
+      "Video Drivers";
+      label = "DDX";
+      color=purple
+
+      subgraph clusterAcceleration {
+      	label = "Acceleration Architectures";
+      	Acceleration_2D;
+	Acceleration_Video;
+	Pixman;
+      }
+      Acceleration_2D -> Pixman;
+      Acceleration_2D -> "Video Drivers" -> Acceleration_2D;
+      Acceleration_Video -> "Video Drivers" -> Acceleration_Video;
+    }
+
+    subgraph cluster_dix {
+      Dispatch;
+      Event_Queue;
+      label = "DIX";
+      color=purple
+    }
+    subgraph cluster_extensions {
+      Render;
+      RandR;
+      Xinput;
+      GLX;
+      label = "Extensions";
+      color=purple
+    }
+    Dispatch -> RandR [color=green];
+    Dispatch -> Xinput [color=blue,style=dotted];
+    Dispatch -> Render [color=red,style=dotted];
+    Dispatch -> GLX;
+    Dispatch -> "Video Drivers";
+    RandR -> "Video Drivers";
+  }
+
+  subgraph cluster_hw {
+    Display;
+    Keyboard;
+    Mouse;
+    label = "Hardware devices";
+    color=grey
+  }
+
+  "Xlib or xcb" -> Dispatch;
+
+  Keyboard -> "Input Drivers" [style=dashed];
+  Mouse    -> "Input Drivers" [color=blue];
+  "Input Drivers" -> Xinput;
+  "Input Drivers" -> Event_Queue;
+
+  Xinput -> Event_Queue;
+  Event_Queue -> "Xlib or xcb";
+
+  OpenGL -> Mesa;
+  GLX -> Mesa;
+  Mesa -> Gallium;
+  Gallium -> Display [color=purple,style=dotted];
+
+  "Video Drivers" -> Display [color=purple,style=dashed];
+
+  "Video Drivers" [shape=Msquare,color=red];
+  "Input Drivers" [shape=Msquare,color=red];
+  Xinput [shape=Mdiamond];
+
+  Gallium;
+  Mesa;
+  FrameBuffer;
+
+}
+
+
+

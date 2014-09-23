@@ -1,17 +1,29 @@
 \documentclass[11pt,english,compress]{beamer}
+
 \usepackage[utf8]{inputenc}
 \usepackage{verbatim}
 \usepackage{eurosym}
-\usepackage{ stmaryrd }
+\usepackage{stmaryrd}
 
-\useoutertheme{smoothbars}
+\usepackage[compatibility=false]{caption}
+\usepackage{subcaption}
+\usepackage{pgfplots}
+
+\useoutertheme[subsection=true]{smoothbars}
 \useinnertheme[shadow=true]{rounded}
+
 \usecolortheme{orchid}
 \usecolortheme{whale}
-\title{Nouveau}
-\subtitle{Recap, on-going and future work}
-\author{Marcin Kościelnicki, Maarten Lankhorst, Martin Peres \& Emil Velikov}
-\institute{Nouveau developers (or related)}
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{0}
+
+\setbeamertemplate{footline}[frame number]
+
+\title{The Linux graphics stack, Optimus and the Nouveau driver}
+\subtitle{Cooperative rendering across GPUs on Linux}
+\author{Martin Peres}
+\institute{Nouveau developer\\PhD student at LaBRI\\X.Org Foundation board member}
 
 \AtBeginSection[]{
   \begin{frame}{Summary}
@@ -22,27 +34,102 @@
 \begin{document}
 
 \setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
 
-\begin{frame}
+\begin{frame}[plain,noframenumbering]
 	\titlepage
 \end{frame}
 
-% mupuf
-\section{Introduction}
-\subsection*{Introduction}
+\section{Introduction to the Linux graphics stack}
+\subsection{General overview}
 \begin{frame}
-	\frametitle{Introduction}
+	\frametitle{General overview of the Linux Graphics stack}
 
-	\begin{block}{Introduction}
+	\begin{block}{The graphics stack before 2005}
 		\begin{itemize}
-			\item Last nouveau update was at FOSDEM 2012;
-			\item Many improvements since then :).
+			\item The X-Server provided everything:
+			\begin{itemize}
+				\item Modesetting (CRTC \& plane management);
+				\item 2D/3D acceleration;
+				\item Video rendering acceleration;
+				\item Input management.
+			\end{itemize}
+			\item The X-Server talked to the GPU directly, as root.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{The current graphics stack}
+		\begin{itemize}
+			\item The X-Server got split into more than 200 components:
+			\begin{itemize}
+				\item Privileged operations in the kernel;
+				\item 2D drivers got put into different shared objects;
+				\item 3D acceleration got put in mesa;
+				\item The list is too long ;)
+			\end{itemize}
 		\end{itemize}
 	\end{block}
 \end{frame}
 
-\section{Kepler support}
-\subsection*{Kepler support}
+\begin{frame}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1.02\linewidth]{imgs/Linux_Graphics_Stack_2013.pdf}
+		\caption{General overview of the Linux graphics stack}
+	\end{figure}
+\end{frame}
+
+\subsection{Kernel space}
+
+\begin{frame}
+	\frametitle{The kernel space}
+
+	\begin{block}{Direct Rendering Manager (DRM) : The common code}
+		\begin{itemize}
+			\item This common code provides:
+			\begin{itemize}
+				\item Kernel ModeSetting (KMS): CRTC \& plane management;
+				\item Video memory management via GEM (with a TTM backend?);
+				\item Nodes with different capabilities (master or render nodes).
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{DRM open source drivers}
+		\begin{itemize}
+			\item i810/i915: Intel;
+			\item nouveau: NVIDIA;
+			\item radeon: AMD/ATI;
+			\item vmwgfx: VMware;
+			\item many SoC GPUs (armada, exynos, msm, omap, tegra, ...).
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{User space}
+
+\begin{frame}
+	\frametitle{Architecture of the X-Server}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\linewidth]{imgs/xorg.pdf}
+		\caption{General overview of the X-Server's internal architecture}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Architecture of Mesa}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\linewidth]{imgs/mesa.pdf}
+		\caption{General overview of Mesa's internal architecture}
+	\end{figure}
+\end{frame}
+
+\section{Optimus}
+\subsection{Introduction}
 \begin{frame}
 	\frametitle{Kepler support}
 
@@ -55,6 +142,8 @@
 		\end{itemize}
 	\end{block}
 \end{frame}
+
+\subsection{Introduction}
 
 \section{Kernel}
 \subsection*{Kernel updates}
