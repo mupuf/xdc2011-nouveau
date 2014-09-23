@@ -1,0 +1,104 @@
+# dot -Tsvg -omesa.svg mesa.dot
+# This file is the functional graph of MESA
+# Courtesy of Martin Peres
+
+digraph MesaTop {
+  node [shape=rectangle,style=filled,color=lightblue];
+
+  subgraph clusterApplication {
+    label = "Applications";
+    Weston;
+    "x-server";
+    mplayer;
+    xonotic;
+    Qt;
+  }
+
+  subgraph clusterMesa {
+    label = "Mesa";
+    libgl;
+    subgraph clusterGallium {
+      label = "";
+      subgraph "clusterStatetrackers" {
+        label = "State Trackers";
+        egl;
+        xorg;
+        VDPAU;
+        OpenGL;
+      }
+      Gallium;
+
+      subgraph "clusterDrivers" {
+        label = "pipe drivers";
+        softpipe;
+        llvmpipe;
+        r600g;
+        r300g;
+        nvc0;
+        nv50;
+        "...";
+        nv30;
+      }
+     
+    }
+ 
+    subgraph clusterClassics {
+      label = "Mesa Classics";
+      intel;
+      radeon;
+      nouveau_vieux;
+      swrast;
+    }
+  }
+  LLVM;
+  "GPU (through libdrm)" [label="GPU\n(through libdrm)"];
+  CPU;
+  
+
+Weston   -> egl;
+"x-server" -> xorg;
+mplayer  -> VDPAU [style=dotted];
+xonotic  -> libgl;
+Qt       -> libgl;
+
+libgl    -> OpenGL;
+libgl    -> intel;
+libgl    -> radeon;
+libgl    -> nouveau_vieux;
+libgl    -> swrast;
+
+egl      -> Gallium;
+xorg     -> Gallium;
+VDPAU    -> Gallium;
+OpenGL   -> Gallium;
+
+Gallium  -> softpipe;
+Gallium  -> llvmpipe;
+Gallium  -> r600g;
+Gallium  -> r300g;
+Gallium  -> nvc0;
+Gallium  -> nv50;
+Gallium  -> "...";
+Gallium  -> nv30;
+
+
+softpipe -> CPU;
+llvmpipe -> LLVM -> CPU;
+
+r600g -> "GPU (through libdrm)";
+r300g -> "GPU (through libdrm)";
+nvc0  -> "GPU (through libdrm)";
+nv50  -> "GPU (through libdrm)";
+"..."  -> "GPU (through libdrm)";
+nv30  -> "GPU (through libdrm)";
+
+intel  -> "GPU (through libdrm)";
+radeon  -> "GPU (through libdrm)";
+nouveau_vieux  -> "GPU (through libdrm)";
+swrast  -> CPU;
+
+}
+
+
+
+
