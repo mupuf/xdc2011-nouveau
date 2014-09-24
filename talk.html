@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+<link rel="shortcut icon" href="https://kernel-recipes.org/fr/2014/wp-content/themes/pagelines/favicon.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- Site Crafted Using PageLines v1.4.5 - WordPress - HTML5 ( dev ) - www.PageLines.com -->
+
+<!-- Title -->
+<title>Kernel Recipes 2014 | La pile graphique Linux et étude du cas &laquo;&nbsp;Nouveau&nbsp;&raquo;, pilote Open Source pour les cartes graphiques NVIDIA</title>
+<!-- Facebook Open Graph -->
+<meta property='og:title' content='La pile graphique Linux et étude du cas &laquo;&nbsp;Nouveau&nbsp;&raquo;, pilote Open Source pour les cartes graphiques NVIDIA' />
+<meta property='og:url' content='https://kernel-recipes.org/fr/2014/la-pile-graphique-linux-et-etude-du-cas-nouveau-pilote-open-source-pour-les-cartes-graphiques-nvidia/' />
+<meta property='og:site_name' content='Kernel Recipes 2014' />
+<meta property='og:type' content='article' />
+
+<!-- Start >> Meta Tags and Inline Scripts -->
+<link rel="alternate" type="application/rss+xml" title="Kernel Recipes 2014 &raquo; Flux" href="https://kernel-recipes.org/fr/2014/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Kernel Recipes 2014 &raquo; Flux des commentaires" href="https://kernel-recipes.org/fr/2014/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Kernel Recipes 2014 &raquo; La pile graphique Linux et étude du cas &laquo;&nbsp;Nouveau&nbsp;&raquo;, pilote Open Source pour les cartes graphiques NVIDIA Flux des commentaires" href="https://kernel-recipes.org/fr/2014/la-pile-graphique-linux-et-etude-du-cas-nouveau-pilote-open-source-pour-les-cartes-graphiques-nvidia/feed/" />
+
+<!-- Styles -->
+<link rel='stylesheet' id='jetpack-subscriptions-css'  href='https://kernel-recipes.org/fr/2014/wp-content/plugins/jetpack/modules/subscriptions/subscriptions.css?ver=3.9.2' type='text/css' media='all' />
+<link rel='stylesheet' id='espresso_themeroller_base-css'  href='https://kernel-recipes.org/fr/2014/wp-content/plugins/event-espresso-free/templates/css/themeroller/themeroller-base.css?ver=3.1.36.4.L' type='text/css' media='all' />
+<link rel='stylesheet' id='espresso_themeroller-css'  href='https://kernel-recipes.org/fr/2014/wp-content/plugins/event-espresso-free/templates/css/themeroller/smoothness/style.css?ver=3.1.36.4.L' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-widgets-css'  href='https://kernel-recipes.org/fr/2014/wp-content/plugins/jetpack/modules/widgets/widgets.css?ver=20121003' type='text/css' media='all' />
+<link rel='stylesheet' id='pagelines-less-css'  href='https://kernel-recipes.org/fr/2014/wp-content/uploads/pagelines/compiled-css-1405281198.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wpgmaps-style-css'  href='https://kernel-recipes.org/fr/2014/wp-content/plugins/wp-google-maps/css/wpgmza_style.css?ver=3.9.2' type='text/css' media='all' />
+
+<!-- Scripts -->
+<script type='text/javascript' src='https://kernel-recipes.org/fr/2014/wp-includes/js/jquery/jquery.js?ver=1.11.0'></script>
+<script type='text/javascript' src='https://kernel-recipes.org/fr/2014/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='https://kernel-recipes.org/fr/2014/wp-content/themes/pagelines/sections/navbar/navbar.js?ver=3.9.2'></script>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://kernel-recipes.org/fr/2014/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://kernel-recipes.org/fr/2014/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.9.2" />
+<link rel='canonical' href='https://kernel-recipes.org/fr/2014/la-pile-graphique-linux-et-etude-du-cas-nouveau-pilote-open-source-pour-les-cartes-graphiques-nvidia/' />
+<link rel='shortlink' href='http://wp.me/P4O4ci-2o' />
+<meta name='generator' content='Event Espresso Version 3.1.36.4.L' />
+<!-- On Ready -->
+<script> /* <![CDATA[ */
+!function ($) {
+jQuery(document).ready(function() {
+})
+}(window.jQuery);
+/* ]]> */
+</script>
+
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="La pile graphique Linux et étude du cas &quot;Nouveau&quot;, pilote Open Source pour les cartes graphiques NVIDIA" />
+<meta property="og:url" content="https://kernel-recipes.org/fr/2014/la-pile-graphique-linux-et-etude-du-cas-nouveau-pilote-open-source-pour-les-cartes-graphiques-nvidia/" />
+<meta property="og:description" content="La pile graphique Linux est en perpétuelle évolution afin d&#039;ajouter la gestion de nouveau matériel. Cette évolution matérielle ainsi que les nouvelles spécifications logicielles ont forcés le serve..." />
+<meta property="article:published_time" content="2014-07-11T15:23:51+02:00" />
+<meta property="article:modified_time" content="2014-07-11T15:23:51+02:00" />
+<meta property="article:author" content="https://kernel-recipes.org/fr/2014/author/ennael/" />
+<meta property="og:site_name" content="Kernel Recipes 2014" />
+<meta property="og:image" content="https://kernel-recipes.org/fr/2014/wp-content/uploads/2014/07/peres.jpg" />
+<meta name="twitter:site" content="@jetpack" />
+<meta name="twitter:image" content="https://kernel-recipes.org/fr/2014/wp-content/uploads/2014/07/peres.jpg?w=240" />
+<meta name="twitter:card" content="summary" />
+
+<!-- NavBar | Section Head -->
+			<!--[if IE 8]>
+				<style>
+					.nav-collapse.collapse {
+						height: auto;
+						overflow: visible;
+					}
+				</style>
+			<![endif]-->
+				<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://kernel-recipes.org/fr/2014/?custom-css=1&#038;csblog=1&#038;cscache=6&#038;csrev=1" />
+		
+<style type="text/css" id="pagelines-custom">
+ .table {
+  vertical-align: text-top;
+  border-spacing: 3;
+  border: 0;
+  text-align: left;
+}
+.titre {
+  color: #2b388f;
+  font-weight: bold;
+  text-align: left;
+}
+.navbar.pl-color-transparent {
+  color: #000000;
+}
+.navbar.pl-color-transparent .navline > li > a {
+  color: #000000;
+}
+.navbar.pl-color-transparent .navline > li > a:hover {
+  color: #000000;
+}
+.navbar.pl-color-transparent .navline > li.current-menu-item > a {
+  color: #000000;
+}
+.navbar.pl-color-transparent .navline > li.active > a:hover {
+  color: #000000;
+}
+.navbar.pl-color-transparent .navline > li.dropdown.open > a {
+  color: #000000;
+}
+.pl-hero-wrap {
+  max-width: 100%;
+  padding: 5%;
+  background-color: #f5f5f5;
+  background-image: url('https://kernel-recipes.org/en/2014/wp-content/uploads/2014/07/kr_2014.png');
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+  border: 1px solid #ffffff;
+}
+.pl-hero-wrap .pl-hero h1 {
+  font-size: 45px;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 0 4px #404040;
+  letter-spacing: -1px;
+}
+.pl-hero-wrap .pl-hero h1 small {
+  display: block;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.pl-hero-wrap .pl-hero p {
+  margin: 5.25px 0 21px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 1.5em;
+  color: #ffffff;
+  text-shadow: 0 0 4px #404040;
+}
+.pl-hero-wrap .pl-hero-image {
+  margin-bottom: 0;
+} 
+</style>
+
+</head>
+
+<!-- Start >> HTML Body -->
+<body class="page page-id-148 page-template-default custom responsive pagelines default full_width ">
+<div id="site" class="one-sidebar-right">
+	<div id="page" class="thepage">
+				<div class="page-canvas">
+						<header id="header" class="container-group">
+				<div class="outline">
+					
+
+<!-- NavBar | Section Template -->
+<section id="navbar" class="container clone_1 section-navbar fix"><div class="content"><div class="content-pad">	<div class="navbar fix navbar-content-width  pl-color-transparent plnav_hover">
+	  <div class="navbar-inner ">
+	    <div class="navbar-content-pad fix">
+	    		      <a href="javascript:void(0)" class="nav-btn nav-btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </a>
+				      		<div class="nav-collapse collapse">
+	       <form method="get" class="searchform" onsubmit="this.submit();return false;" action="https://kernel-recipes.org/fr/2014/" ><fieldset><input type="text" value="" name="s" class="searchfield" placeholder="Search" /></fieldset></form><ul id="menu-kr2014" class="font-sub navline pldrop pull-left"><li id="menu-item-17" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17"><a href="https://kernel-recipes.org/fr/2014/"><img src="https://kernel-recipes.org/fr/2014/wp-content/uploads/2014/07/home.png" /></a></li>
+<li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="https://kernel-recipes.org/fr/2014/programme/">Programme</a></li>
+<li id="menu-item-118" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-118"><a href="https://kernel-recipes.org/fr/2014/conferences/">Conférences</a>
+<ul class="sub-menu">
+	<li id="menu-item-134" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-134"><a href="https://kernel-recipes.org/fr/2014/quoi-de-neuf-sur-nftables/">Quoi de neuf sur Nftables ?</a></li>
+	<li id="menu-item-135" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-135"><a href="https://kernel-recipes.org/fr/2014/allwinner-un-etat-des-lieux-du-support-et-du-developpement/">Allwinner, un état des lieux du support et du développement</a></li>
+	<li id="menu-item-136" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-136"><a href="https://kernel-recipes.org/fr/2014/quilt-un-outil-de-gestion-de-patches/">Quilt, un outil de gestion de patches</a></li>
+	<li id="menu-item-185" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-185"><a href="https://kernel-recipes.org/fr/2014/le-developpement-du-kernel/">Le développement du kernel</a></li>
+	<li id="menu-item-140" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-140"><a href="https://kernel-recipes.org/fr/2014/ndiv-interception-de-trafic-reseau-a-faible-cout/">NDIV: interception de trafic réseau à faible coût</a></li>
+	<li id="menu-item-150" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-148 current_page_item menu-item-150"><a href="https://kernel-recipes.org/fr/2014/la-pile-graphique-linux-et-etude-du-cas-nouveau-pilote-open-source-pour-les-cartes-graphiques-nvidia/">La pile graphique Linux et étude du cas &laquo;&nbsp;Nouveau&nbsp;&raquo;, pilote Open Source pour les cartes graphiques NVIDIA</a></li>
+	<li id="menu-item-159" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-159"><a href="https://kernel-recipes.org/fr/2014/encodage-des-instructions-x86-et-hacks-kernel/">Encodage des instructions x86 et hacks kernel</a></li>
+	<li id="menu-item-184" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-184"><a href="https://kernel-recipes.org/fr/2014/enseigner-le-noyau-linux-un-exercice-a-la-fois/">Enseigner le noyau Linux, un exercice à la fois</a></li>
+	<li id="menu-item-176" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-176"><a href="https://kernel-recipes.org/fr/2014/xen-piece-maitresse-dune-infrastructure-cloud/">Xen, pièce maîtresse d&rsquo;une infrastructure cloud</a></li>
+	<li id="menu-item-214" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-214"><a href="https://kernel-recipes.org/fr/2014/tester-les-applications-et-pilotes-video4linux/">Tester les applications et pilotes Video4Linux</a></li>
+	<li id="menu-item-278" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-278"><a href="https://kernel-recipes.org/fr/2014/patcher-le-noyau-en-temps-reel/">kGraft : patcher le noyau en temps réel</a></li>
+	<li id="menu-item-292" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-292"><a href="https://kernel-recipes.org/fr/2014/linux-security-modules-tracer-decider-agir/">Linux Security Modules : tracer, décider, agir</a></li>
+</ul>
+</li>
+<li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44"><a href="https://kernel-recipes.org/fr/2014/intervenants/">Intervenants</a></li>
+<li id="menu-item-52" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-52"><a href="https://kernel-recipes.org/fr/2014/liste-des-participants/">Liste des participants</a></li>
+<li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="https://kernel-recipes.org/fr/2014/pratique/">Pratique</a></li>
+<li id="menu-item-53" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-53"><a href="https://kernel-recipes.org/fr/2014/contact/">Contact</a></li>
+<li id="menu-item-153" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-153"><a href="https://kernel-recipes.org/en/2014"><img src="https://kernel-recipes.org/fr/2014/wp-content/uploads/2014/07/en.png" /></a></li>
+</ul>				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div></div></section>				</div>
+			</header>
+						<div id="page-main" class="container-group">
+				<div id="dynamic-content" class="outline">
+
+
+<!-- Content | Section Template -->
+<section id="content" class="container clone_1 section-content-area fix"><div class="texture"><div class="content"><div class="content-pad">		<div id="pagelines_content" class="one-sidebar-right fix">
+
+						<div id="column-wrap" class="fix">
+
+								<div id="column-main" class="mcolumn fix">
+					<div class="mcolumn-pad" >
+						
+
+<!-- PostLoop | Section Template -->
+<section id="postloop" class="copy clone_1 section-postloop"><div class="copy-pad"><article class="post-148 page type-page status-publish hentry fpost post-number-1" id="post-148"><div class="hentry-pad"><section class="post-meta fix post-nothumb  media"><section class="bd post-header fix" ><section class="bd post-title-section fix"><hgroup class="post-title fix"><h1 class="entry-title pagetitle">La pile graphique Linux et étude du cas &laquo;&nbsp;Nouveau&nbsp;&raquo;, pilote Open Source pour les cartes graphiques NVIDIA</h1>
+</hgroup></section> </section></section><div class="entry_wrap fix"><div class="entry_content"><p style="text-align: justify;"><a href="https://kernel-recipes.org/fr/2014/wp-content/uploads/2014/07/peres.jpg"><img class="alignright size-full wp-image-97" src="https://kernel-recipes.org/fr/2014/wp-content/uploads/2014/07/peres.jpg" alt="peres" width="117" height="130" /></a>La pile graphique Linux est en perpétuelle évolution afin d&rsquo;ajouter la gestion de nouveau matériel. Cette évolution matérielle ainsi que les nouvelles spécifications logicielles ont forcés le serveur graphique X à se découper en plusieurs composants dont un tourne maintenant dans le noyau Linux, le Direct Rendering Manager (DRM). Une présentation rapide de ces différents composants et leur rôle sera effectuée avant de s&rsquo;intéresser au nouveau changement majeur dans le code commun, la technologie Optimus d&rsquo;NVIDIA.</p>
+<p>Un ordinateur portable équipé de la technologie Optimus contient deux processeurs graphiques (GPUs), un de chez Intel et un de chez NVIDIA. Cette technologie permet d&rsquo;allier la faible consommation du GPU Intel quand la machine est peu utilisée aux performances du GPU NVIDIA lorsque l&rsquo;utilisateur joue. Cette technologie est cependant un cauchemar à gérer coté noyau bien que les dernières briques nécessaires à sa gestion complète soient en cours de finalisation. Une explication plus approfondie de ce problème sera faite et nous verrons en quoi cette nouvelle architecture logicielle a permis d&rsquo;ajouter une accélération graphique sur les processeurs embarqués SoCs tels que Tegra.</p>
+<p>Le cas du pilote Open Source NVIDIA, appelé &laquo;&nbsp;Nouveau&nbsp;&raquo; sera ensuite étudié. C&rsquo;est le pilote graphique le plus communautaire car il est développé sans l&rsquo;aide d&rsquo;NVIDIA et a su attirer plusieurs contributeurs réguliers, dont moi même! Nous ferons un rapide historique du projet avant de parler des développements actuels et les problèmes liés à l&rsquo;absence de documentation.</p>
+<p>La fin de cette présentation sera ensuite laissée aux participants afin qu&rsquo;ils puissent poser des questions plus générales sur la pile graphique, si ils le souhaitent.</p>
+<p style="text-align: justify;"><em>Martin Peres, Laboratoire Bordelais de Recherche en Informatique</em></p>
+</div></div></div></article><div class="clear"></div></div></section>					</div>
+				</div>
+
+							</div>
+			
+		<div id="sidebar-wrap" class="">
+					<div id="sidebar1" class="scolumn" >
+					<div class="scolumn-pad">
+						
+
+<!-- Primary Sidebar | Section Template -->
+<section id="sb_primary" class="copy clone_1 section-sb_primary"><div class="copy-pad"><ul id="list_sb_primary" class="sidebar_widgets fix"><li id="image-2" class="widget_image widget fix"><div class="widget-pad"><div class="jetpack-image-container"><a href="https://kernel-recipes.org/fr/2014"><img src="https://kernel-recipes.org/fr/2014/wp-content/uploads/2014/07/kr_carre-e1404938416938.png" class="aligncenter" width="150" height="150" /></a></div>
+</div></li><li id="twitter_timeline-2" class="widget_twitter_timeline widget fix"><div class="widget-pad"><a class="twitter-timeline" data-widget-id="486980392386191360" data-theme="light" data-link-color="#f96e5b" data-border-color="#e8e8e8" data-tweet-limit="3" width="300" height="400" lang="FR">Mes Tweets</a></div></li></ul><div class="clear"></div></div></section>					</div>
+				</div>
+					</div>
+			</div>
+</div></div></div></section>				</div>
+								<div id="morefoot_area" class="container-group">
+									</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+
+	<footer id="footer" class="container-group">
+		<div class="outline fix">
+		
+
+<!-- Footer Columns Sidebar | Section Template -->
+<section id="sb_footcols" class="container clone_1 section-sb_footcols fix"><div class="texture"><div class="content"><div class="content-pad"><div class="fcolumns ppfull pprow"><div class="fcolumns-pad fix"><div class="pp3 footcol"><div class="footcol-pad"><h3 class="site-title"><a class="home" href="https://kernel-recipes.org/fr/2014" title="Home">Kernel Recipes 2014</a></h3></div></div><div class="pp3 footcol"><div class="footcol-pad"><h3 class="widget-title">Pages</h3><div class="footer-links list-links"><ul><li class="page_item page-item-124"><a href="https://kernel-recipes.org/fr/2014/allwinner-un-etat-des-lieux-du-support-et-du-developpement/">Allwinner, un état des lieux du support et du développement</a></li><li class="page_item page-item-116"><a href="https://kernel-recipes.org/fr/2014/conferences/">Conférences</a></li><li class="page_item page-item-45"><a href="https://kernel-recipes.org/fr/2014/contact/">Contact</a></li><li class="page_item page-item-155"><a href="https://kernel-recipes.org/fr/2014/encodage-des-instructions-x86-et-hacks-kernel/">Encodage des instructions x86 et hacks kernel</a></li><li class="page_item page-item-182"><a href="https://kernel-recipes.org/fr/2014/enseigner-le-noyau-linux-un-exercice-a-la-fois/">Enseigner le noyau Linux, un exercice à la fois</a></li><li class="page_item page-item-13"><a href="https://kernel-recipes.org/fr/2014/">Home</a></li><li class="page_item page-item-160"><a href="https://kernel-recipes.org/fr/2014/event-registration/">Inscription</a></li><li class="page_item page-item-39"><a href="https://kernel-recipes.org/fr/2014/intervenants/">Intervenants</a></li><li class="page_item page-item-310"><a href="https://kernel-recipes.org/fr/2014/kernel-diner-menu/">Kernel Diner Menu</a></li><li class="page_item page-item-276"><a href="https://kernel-recipes.org/fr/2014/patcher-le-noyau-en-temps-reel/">kGraft : patcher le noyau en temps réel</a></li><li class="page_item page-item-148 current_page_item"><a href="https://kernel-recipes.org/fr/2014/la-pile-graphique-linux-et-etude-du-cas-nouveau-pilote-open-source-pour-les-cartes-graphiques-nvidia/">La pile graphique Linux et étude du cas &laquo;&nbsp;Nouveau&nbsp;&raquo;, pilote Open Source pour les cartes graphiques NVIDIA</a></li><li class="page_item page-item-180"><a href="https://kernel-recipes.org/fr/2014/le-developpement-du-kernel/">Le développement du kernel</a></li><li class="page_item page-item-395"><a href="https://kernel-recipes.org/fr/2014/lightnings/">Lightning Talks</a></li><li class="page_item page-item-290"><a href="https://kernel-recipes.org/fr/2014/linux-security-modules-tracer-decider-agir/">Linux Security Modules : tracer, décider, agir</a></li><li class="page_item page-item-47"><a href="https://kernel-recipes.org/fr/2014/liste-des-participants/">Liste des participants</a></li><li class="page_item page-item-138"><a href="https://kernel-recipes.org/fr/2014/ndiv-interception-de-trafic-reseau-a-faible-cout/">NDIV: interception de trafic réseau à faible coût</a></li><li class="page_item page-item-49"><a href="https://kernel-recipes.org/fr/2014/pratique/">Pratique</a></li><li class="page_item page-item-25"><a href="https://kernel-recipes.org/fr/2014/programme/">Programme</a></li><li class="page_item page-item-119"><a href="https://kernel-recipes.org/fr/2014/quilt-un-outil-de-gestion-de-patches/">Quilt, un outil de gestion de patches</a></li><li class="page_item page-item-131"><a href="https://kernel-recipes.org/fr/2014/quoi-de-neuf-sur-nftables/">Quoi de neuf sur Nftables ?</a></li><li class="page_item page-item-162"><a href="https://kernel-recipes.org/fr/2014/registration-cancelled/">Registration Cancelled</a></li><li class="page_item page-item-188"><a href="https://kernel-recipes.org/fr/2014/tester-les-applications-et-pilotes-video4linux/">Tester les applications et pilotes Video4Linux</a></li><li class="page_item page-item-161"><a href="https://kernel-recipes.org/fr/2014/thank-you/">Thank You</a></li><li class="page_item page-item-163"><a href="https://kernel-recipes.org/fr/2014/transactions/">Transactions</a></li><li class="page_item page-item-174"><a href="https://kernel-recipes.org/fr/2014/xen-piece-maitresse-dune-infrastructure-cloud/">Xen, pièce maîtresse d&rsquo;une infrastructure cloud</a></li></ul></div>
+</div></div><div class="pp3 footcol"><div class="footcol-pad"><h3 class="widget-title">The Latest</h3><ul class="latest_posts"><li class="list-item fix"><div class="list_item_text"><h5><a class="list_text_link" href="https://kernel-recipes.org/fr/2014/lightning-talks/"><span class="list-title">Lightning Talks</span></a></h5><div class="list-excerpt">Performance Does Matter
+
+Le déploiement des plateforme de type "cloud" est le sujet populaire&nbsp;<span class="hellip">[&hellip;]</span></div></div></li></ul></div></div><div class="pp3 footcol"><div class="footcol-pad"><h3 class="widget-title">More</h3><div class="findent footer-more"></div></div></div><div class="pp3 footcol"><div class="footcol-pad"><div class="findent terms">&copy; 2014 hupstream</div></div></div></div></div><div class="clear"></div></div></div></div></section><div id="cred" class="pagelines" style="display: block; visibility: visible;"><img src="https://kernel-recipes.org/fr/2014/wp-content/themes/pagelines/images/pagelines.png" alt="" /></div><div class="clear"></div>		</div>
+	</footer>
+</div>
+<script>console.log('kr2014');</script>	<div style="display:none">
+	</div>
+                <script type="text/javascript">
+                        !function(d,s,id){
+                                var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                                if(!d.getElementById(id)){
+                                        js=d.createElement(s);
+                                        js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+                                        fjs.parentNode.insertBefore(js,fjs);
+                                }
+                        }
+                        (document,"script","twitter-wjs");
+                </script>
+        
+<!-- Footer Scripts -->
+<script type='text/javascript' src='https://kernel-recipes.org/fr/2014/wp-content/plugins/event-espresso-free/scripts/jquery.pajinate.min.js?ver=3.1.36.4.L'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ee_pagination = {"ajaxurl":"https:\/\/kernel-recipes.org\/fr\/2014\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://kernel-recipes.org/fr/2014/wp-content/plugins/event-espresso-free/scripts/pagination.js?ver=3.1.36.4.L'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201439'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2014Sepaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://kernel-recipes.org/fr/2014/wp-content/plugins/jetpack/modules/wpgroho.js?ver=3.9.2'></script>
+<script type='text/javascript' src='https://kernel-recipes.org/fr/2014/wp-content/themes/pagelines/js/script.bootstrap.min.js?ver=2.3.1'></script>
+<script type='text/javascript' src='https://kernel-recipes.org/fr/2014/wp-content/themes/pagelines/js/script.blocks.js?ver=1.0.1'></script>
+<!-- 68 queries in 0.000 seconds, using 32.98MB memory -->
+
+<!--Event Espresso Template Files:
+
+
+-->
+
+	<script src="https://stats.wp.com/e-201439.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:3.1.1',blog:'71037882',post:'148',tz:'2'});
+	var load_cmc = function(){linktracker_init(71037882,148,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script></body>
+</html>
