@@ -65,7 +65,7 @@
 				\item Privileged operations moved to the kernel;
 				\item 2D drivers got put into different shared objects;
 				\item 3D acceleration got put in mesa;
-				\item The list is too long ;)
+				\item The list is too long (and boring) ;)
 			\end{itemize}
 		\end{itemize}
 	\end{block}
@@ -80,7 +80,6 @@
 \end{frame}
 
 \subsection{Kernel space}
-
 \begin{frame}
 	\frametitle{The kernel space}
 
@@ -146,7 +145,7 @@
 		\begin{itemize}
 			\item When/How the dGPU should be turned on/off?
 			\item Who drives the outputs?
-			\item How to copy buffers from a driver to another?
+			\item How to copy buffers from one driver to another?
 			\item How should we handle the HDMI ``sound card''?
 		\end{itemize}
 	\end{block}
@@ -162,7 +161,7 @@
 			\item Two ways of calling them:
 			\begin{itemize}
 				\item bbswitch: Old kernel module for manual management;
-				\item vgaswitcheroo: Manual or automatic state management.
+				\item vgaswitcheroo: Manual or automatic power management.
 			\end{itemize}
 		\end{itemize}
 	\end{block}
@@ -218,8 +217,7 @@
 \begin{frame}
 	\frametitle{Sharing buffers across drivers}
 
-	\begin{block}{Challenges}
-		
+	\begin{block}{Cross-driver BO sharing : Challenges}
 		\begin{itemize}
 			% \item can't remember what I wanted to write here!
 			\item The memory representation for buffers is different from hardware to hardware:
@@ -229,42 +227,256 @@
 			\end{itemize}
 			\item Synchronising rendering across drivers.
 		\end{itemize}
-		
 	\end{block}
 
-	% bumblebee; Virtual GL or primus
-
-	\begin{block}{DMA-Buf allows}
+	\begin{block}{Solutions}
 		\begin{itemize}
-			\item TODO
-			\item TODO
+			\item VirtualGL: Remote rendering solution that redirects rendering commands to a distant GPU and read back to rendered frame;
+			\item Primus: Same solution as VirtualGL except in a more lightweight fashion!
+			\item DMA-Buf: A Linux-only solution that allows sharing buffers between different GPUs without copies.
 		\end{itemize}
 	\end{block}
 \end{frame}
 
+% TODO: Ajoute une image pour montrer le fonctionnement de virtualGL / Primus
+
+\begin{frame}
+	\frametitle{Sharing buffers across drivers : VirtualGL/Primus}
+
+	TODO
+\end{frame}
+
+\begin{frame}
+	\frametitle{Sharing buffers across drivers : DMA-Buf}
+
+	\begin{block}{Roles}
+		\item Exporter: 
+		\item User:
+	\end{block}
+
+	\begin{block}{Operations}
+		\begin{itemize}
+			% \item can't remember what I wanted to write here!
+			\item The memory representation for buffers is different from hardware to hardware:
+			\begin{itemize}
+				\item pitch: number of pixels per row;
+				\item tiling: technique that increases the spatial locality.
+			\end{itemize}
+			\item Synchronising rendering across drivers.
+		\end{itemize}
+	\end{block}
+\end{frame}
 
 \section{Prime}
-\subsection{Requirements}
+\subsection{Introduction}
 \begin{frame}
 	\frametitle{Prime}
 
 	\begin{block}{Prime}
-		Prime is the name for all the open source technologies that make
-		hybrid graphics possible:
+		Prime is the name for all the ustream open source technologies
+		that make hybrid graphics possible:
 		\begin{itemize}
-			\item vgaswitcheroo: switching graphics ;
-			\item running the nouveau ddx;
+			\item vgaswitcheroo: switching graphics (Linux 2.6.34); % TODO: Check
+			\item DMA-Buf: sharing buffers across drivers (Linux 3.XX); % TODO: Find out!
+			\item Cross-device fence mechanism: make a driver wait on another driver to complete a task (Linux 3.17); % TODO: Check
+			\item DMA-Buf synchronisation: Wait for rendering completion of a DMA-Buf before compositing to avoid tearing (Linux 3.19?).
 		\end{itemize}
 	\end{block}
 
 	\begin{block}{List of requirements}
 		\begin{itemize}
 			\item running nouveau/radeon drm;
-			\item running the nouveau ddx;
+			\item running the nouveau/radeon ddx;
 		\end{itemize}
 	\end{block}
 \end{frame}
 
+\subsection{How to}
+\begin{frame}
+	\frametitle{Prime: Simplified how-to for Nouveau}
+
+	% TODO: Inline verbatim
+
+	\begin{block}{vgaswitcheroo}
+		\begin{itemize}
+			\item \# cd /sys/kernel/debug/vgaswitcheroo/
+			\item \# cat switch
+			\item \# echo (DIGD$|$DDIS) $>$ switch
+			\item (Re)start your desktop environment.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{XRandr}
+		\begin{itemize}
+			\item \$ xrandr --listproviders
+			\item \$ xrandr --setprovideroffloadsink nouveau Intel
+			\item This sets the order: Nouveau == offload, Intel == default
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Prime: Simplified how-to for Nouveau}
+
+	% TODO: Inline verbatim
+
+	\begin{block}{Usage}
+		\begin{itemize}
+			\item DRI\_PRIME=1 glxgears \# Use the NVIDIA GPU
+			\item DRI\_PRIME=0 glxgears \# Use the Intel GPU
+			\item glxgears \# Use the Intel GPU
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Longer How-to for Nouveau}
+		\url{http://nouveau.freedesktop.org/wiki/Optimus} % TODO: Check the URL
+	\end{block}
+\end{frame}
+
+% TODO: Auto-mount debugfs
+
+\subsection{Demos}
+\begin{frame}
+	\frametitle{Prime: Demos}
+
+	\begin{block}{Current setup}
+		\begin{itemize}
+			\item This is an Optimus laptop (Sandy Bridge + NVIDIA NVD9);
+			\item All the outputs are connected to the Intel IGP.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{List of demos}
+		\begin{itemize}
+			\item Selecting the GPU and checking with glxinfo;
+			\item Performance difference in glxgears;
+			\item Video decoding with VDPAU on the NVIDIA GPU.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\section{Nouveau}
+\subsection{Introduction}
+\begin{frame}
+	\frametitle{Nouveau: Introduction}
+
+	\vspace{-0.3cm}
+	\begin{center}
+		\includegraphics[height=3cm]{imgs/nouveau_logo.jpg}
+	\end{center}
+	\vspace{-0.3cm}
+
+	\begin{block}{Nouveau: An Open Source Linux driver for NVIDIA GPUs}
+		\begin{itemize}
+			\item Merged in Linux 2.6.33; % TODO: Check
+			\item Mostly developed by Red Hat and students.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Current features}
+		\begin{itemize}
+			\item Modesetting support for almost all NVIDIA GPUs;
+			\item 2D, 3D and video-rendering accel on NV04-;
+			\item Video decoding accel on NV40-NV117 (non-free).
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Current work}
+\begin{frame}
+	\frametitle{Nouveau: Current developments}
+
+	\begin{block}{Current work}
+		\begin{itemize}
+			\item Maxwell support:
+			\begin{itemize}
+				\item Released in two times (April then September); % TODO: Find the release dates
+				\item Modesetting: DONE;
+				\item 2D/3D support: MOSTLY DONE;
+				\item Video decoding: TODO
+				\item Open source firmware: WIP
+			\end{itemize}
+			\item Manual reclocking support:
+			\begin{itemize}
+				\item nv40-a3: crude support, disabled by default;
+				\item nva3-ac: good chances of working;
+				\item Fermi: crude support, disabled by default;
+				\item Kepler: WIP, good chances of partial support;
+				\item Maxwell: TODO
+			\end{itemize}
+			\item Adding new OpenGL extensions:
+			\begin{itemize}
+				\item Everything is done up to Fermi;
+				\item OpenGL 4 for the other GPUs.
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Involvement from NVIDIA}
+\begin{frame}
+	\frametitle{Involvement from NVIDIA}
+
+	\begin{block}{NV}
+		\begin{itemize}
+			\item 1998(?): NVIDIA releases ``nv'', a Linux OSS 2D driver;
+			\item 1998: Obfuscation commit, release only pre-processed source.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Little hope of NVIDIA ever working again on an OSS driver}
+		``It's so hard to write a graphics driver that open-sourcing it
+		would not help [...] In addition, customers aren't asking for opensource drivers.''\\
+		Andrew Fear, NVIDIA software product manager, April 2006
+		%http://news.cnet.com/New-Linux-look-fuels-old-debate/2100-7344_3-6061491.html
+	\end{block}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Short history of Nouveau}
+
+	\begin{block}{Nouveau}
+		\begin{itemize}
+			\item 2005: Stephane Marchesin improves nv and works on 3D
+			\item 2008: Open Arena runs on nv40
+			\item 2009: KMS driver based on TTM for memory management
+			\item 2010: Merged in Linux 2.6.33
+			\item 2010: Nv is deprecated by NVIDIA, ``use VESA''.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{A new hope from NVIDIA}
+		\begin{itemize}
+			\item September 2013: NVIDIA releases some vbios documentation;
+			\item January 2014: NVIDIA starts adding support for their Tegra K1 in Nouveau, as requested by its clients;
+			\item Full support for the Tegra K1 expected by the end of 2014.
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+
+\section{Q\&A}
+\subsection*{Q\&A}
+\begin{frame}
+	\frametitle{Questions?}
+	\begin{block}{}
+		\begin{center}
+			\bigskip
+			\huge Thank you for listening! Questions?
+			\bigskip
+		\end{center}
+	\end{block}
+	\vspace{20pt}
+	\begin{block}{}
+		\begin{center}
+			\bigskip
+			\large Martin Peres: martin.peres@free.fr
+			\bigskip
+		\end{center}
+	\end{block}
+\end{frame}
 
 % DEMOS:
 % - prime
