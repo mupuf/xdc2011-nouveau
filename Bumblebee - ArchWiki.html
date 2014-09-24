@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="UTF-8" /><title>Bumblebee - ArchWiki</title>
+<meta name="generator" content="MediaWiki 1.22.10" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="ArchWiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://wiki.archlinux.org/api.php?action=rsd" />
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html" />
+<link rel="alternate" type="application/atom+xml" title="ArchWiki Atom feed" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://wiki.archlinux.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.archlinux&amp;only=styles&amp;skin=archlinux&amp;*" />
+<!--[if IE 6]><link rel="stylesheet" href="/skins/archlinux/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/archlinux/IE70Fixes.css?303" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+
+<script src="https://wiki.archlinux.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=archlinux&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Bumblebee","wgTitle":"Bumblebee","wgCurRevisionId":336481,"wgRevisionId":336481,"wgArticleId":11683,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Graphics","X Server"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Bumblebee","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[]});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"archlinux","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"vector-simplesearch":1,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":
+0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: archwiki:resourceloader:filter:minify-js:7:85c90aa16eaeef41f8c16fb94950cfbf */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script>
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Bumblebee skin-archlinux action-view">
+
+<div id="archnavbar"><!-- Arch Linux global navigation bar -->
+	<div id="archnavbarlogo">
+		<p><a id="logo" href="http://www.archlinux.org/"></a></p>
+	</div>
+	<div id="archnavbarmenu">
+		<ul id="archnavbarlist">
+			<li id="anb-home"><a href="http://www.archlinux.org/">Home</a></li><li id="anb-packages"><a href="http://www.archlinux.org/packages/">Packages</a></li><li id="anb-forums"><a href="https://bbs.archlinux.org/">Forums</a></li><li id="anb-wiki" class="anb-selected"><a href="https://wiki.archlinux.org/">Wiki</a></li><li id="anb-bugs"><a href="https://bugs.archlinux.org/">Bugs</a></li><li id="anb-aur"><a href="https://aur.archlinux.org/">AUR</a></li><li id="anb-download"><a href="http://www.archlinux.org/download/">Download</a></li>		</ul>
+	</div>
+</div><!-- #archnavbar -->
+
+<div id="globalWrapper">
+<div id="column-content"><div id="content" class="mw-body-primary" role="main">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">Bumblebee</span></h1>
+	<div id="bodyContent" class="mw-body">
+		<div id="siteSub">From ArchWiki</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+		<!-- start content -->
+<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="float:right; clear:right; width:25%; margin: 0 0 0.5em 0.5em;"><p style="background:#333; color:white; padding:0.2em; border-bottom:5px #08c solid; margin:0; text-align:center; font-weight:bold;">Related articles</p><ul style="list-style-type:none; margin:0; padding:0.3em;">
+<li style="padding:0.4em 0; line-height:1;"><a href="/index.php/NVIDIA_Optimus" title="NVIDIA Optimus">NVIDIA Optimus</a></li>
+<li style="padding:0.4em 0; line-height:1;"><a href="/index.php/Nouveau" title="Nouveau">Nouveau</a></li>
+<li style="padding:0.4em 0; line-height:1;"><a href="/index.php/NVIDIA" title="NVIDIA">NVIDIA</a></li>
+<li style="padding:0.4em 0; line-height:1;"><a href="/index.php/Intel_graphics" title="Intel graphics">Intel graphics</a></li>
+</ul></div>
+<p>From Bumblebee's <a rel="nofollow" class="external text" href="https://github.com/Bumblebee-Project/Bumblebee/wiki/FAQ">FAQ</a>:
+</p><p>"<i>Bumblebee is an effort to make NVIDIA Optimus enabled laptops work in GNU/Linux systems. Such feature involves two graphics cards with two different power consumption profiles plugged in a layered way sharing a single framebuffer.</i>"
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Bumblebee:_Optimus_for_Linux"><span class="tocnumber">1</span> <span class="toctext">Bumblebee: Optimus for Linux</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Installation"><span class="tocnumber">2</span> <span class="toctext">Installation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Installing_Bumblebee_with_Intel.2FNVIDIA"><span class="tocnumber">2.1</span> <span class="toctext">Installing Bumblebee with Intel/NVIDIA</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Installing_Bumblebee_with_Intel.2FNouveau"><span class="tocnumber">2.2</span> <span class="toctext">Installing Bumblebee with Intel/Nouveau</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Start_Bumblebee"><span class="tocnumber">3</span> <span class="toctext">Start Bumblebee</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Usage"><span class="tocnumber">4</span> <span class="toctext">Usage</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Configuration"><span class="tocnumber">5</span> <span class="toctext">Configuration</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Optimizing_speed_when_using_VirtualGL_as_bridge"><span class="tocnumber">5.1</span> <span class="toctext">Optimizing speed when using VirtualGL as bridge</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Power_management"><span class="tocnumber">5.2</span> <span class="toctext">Power management</span></a>
+<ul>
+<li class="toclevel-3 tocsection-10"><a href="#Default_power_state_of_NVIDIA_card_using_bbswitch"><span class="tocnumber">5.2.1</span> <span class="toctext">Default power state of NVIDIA card using bbswitch</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Enable_NVIDIA_card_during_shutdown"><span class="tocnumber">5.2.2</span> <span class="toctext">Enable NVIDIA card during shutdown</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Multiple_monitors"><span class="tocnumber">5.3</span> <span class="toctext">Multiple monitors</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Outputs_wired_to_the_Intel_chip"><span class="tocnumber">5.3.1</span> <span class="toctext">Outputs wired to the Intel chip</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Output_wired_to_the_NVIDIA_chip"><span class="tocnumber">5.3.2</span> <span class="toctext">Output wired to the NVIDIA chip</span></a>
+<ul>
+<li class="toclevel-4 tocsection-15"><a href="#xf86-video-intel-virtual-crtc_and_hybrid-screenclone"><span class="tocnumber">5.3.2.1</span> <span class="toctext">xf86-video-intel-virtual-crtc and hybrid-screenclone</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#Switch_between_discrete_and_integrated_like_Windows"><span class="tocnumber">6</span> <span class="toctext">Switch between discrete and integrated like Windows</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#CUDA_without_Bumblebee"><span class="tocnumber">7</span> <span class="toctext">CUDA without Bumblebee</span></a></li>
+<li class="toclevel-1 tocsection-18"><a href="#Troubleshooting"><span class="tocnumber">8</span> <span class="toctext">Troubleshooting</span></a>
+<ul>
+<li class="toclevel-2 tocsection-19"><a href="#.5BVGL.5D_ERROR:_Could_not_open_display_:8"><span class="tocnumber">8.1</span> <span class="toctext">[VGL] ERROR: Could not open display&#160;:8</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#.5BERROR.5DCannot_access_secondary_GPU:_No_devices_detected"><span class="tocnumber">8.2</span> <span class="toctext">[ERROR]Cannot access secondary GPU: No devices detected</span></a>
+<ul>
+<li class="toclevel-3 tocsection-21"><a href="#NVIDIA.280.29:_Failed_to_assign_any_connected_display_devices_to_X_screen_0"><span class="tocnumber">8.2.1</span> <span class="toctext">NVIDIA(0): Failed to assign any connected display devices to X screen 0</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#systemd-logind:_failed_to_get_session:_PID_XXX_does_not_belong_to_any_known_session"><span class="tocnumber">8.2.2</span> <span class="toctext">systemd-logind: failed to get session: PID XXX does not belong to any known session</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="#Could_not_load_GPU_driver"><span class="tocnumber">8.2.3</span> <span class="toctext">Could not load GPU driver</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#Failed_to_initialize_the_NVIDIA_GPU_at_PCI:1:0:0_.28GPU_fallen_off_the_bus_.2F_RmInitAdapter_failed.21.29"><span class="tocnumber">8.2.4</span> <span class="toctext">Failed to initialize the NVIDIA GPU at PCI:1:0:0 (GPU fallen off the bus / RmInitAdapter failed!)</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#NOUVEAU.280.29:_.5Bdrm.5D_failed_to_set_drm_interface_version"><span class="tocnumber">8.2.5</span> <span class="toctext">NOUVEAU(0): [drm] failed to set drm interface version</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-26"><a href="#.2Fdev.2Fdri.2Fcard0:_failed_to_set_DRM_interface_version_1.4:_Permission_denied"><span class="tocnumber">8.3</span> <span class="toctext">/dev/dri/card0: failed to set DRM interface version 1.4: Permission denied</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="#ERROR:_ld.so:_object_.27libdlfaker.so.27_from_LD_PRELOAD_cannot_be_preloaded:_ignored"><span class="tocnumber">8.4</span> <span class="toctext">ERROR: ld.so: object 'libdlfaker.so' from LD_PRELOAD cannot be preloaded: ignored</span></a></li>
+<li class="toclevel-2 tocsection-28"><a href="#Fatal_IO_error_11_.28Resource_temporarily_unavailable.29_on_X_server"><span class="tocnumber">8.5</span> <span class="toctext">Fatal IO error 11 (Resource temporarily unavailable) on X server</span></a></li>
+<li class="toclevel-2 tocsection-29"><a href="#Video_tearing"><span class="tocnumber">8.6</span> <span class="toctext">Video tearing</span></a></li>
+<li class="toclevel-2 tocsection-30"><a href="#Bumblebee_cannot_connect_to_socket"><span class="tocnumber">8.7</span> <span class="toctext">Bumblebee cannot connect to socket</span></a></li>
+<li class="toclevel-2 tocsection-31"><a href="#Running_X.org_from_console_after_login_.28rootless_X.org.29"><span class="tocnumber">8.8</span> <span class="toctext">Running X.org from console after login (rootless X.org)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-32"><a href="#See_also"><span class="tocnumber">9</span> <span class="toctext">See also</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Bumblebee:_Optimus_for_Linux">Bumblebee: Optimus for Linux</span></h2>
+<p><a rel="nofollow" class="external text" href="http://www.nvidia.com/object/optimus_technology.html">Optimus Technology</a> is an <i><a rel="nofollow" class="external text" href="http://hybrid-graphics-linux.tuxfamily.org/index.php?title=Hybrid_graphics">hybrid graphics</a></i> implementation without a hardware multiplexer. The integrated GPU manages the display while the dedicated GPU manages the most demanding rendering and ships the work to the integrated GPU to be displayed. When the laptop is running on battery supply, the dedicated GPU is turned off to save power and prolong the battery life. It has also been tested successfully with desktop machines with Intel integrated graphics and an nVidia dedicated graphics card. 
+</p><p>Bumblebee is a software implementation comprising of two parts:
+</p>
+<ul>
+<li> Render programs off-screen on the dedicated video card and display it on the screen using the integrated video card. This bridge is provided by VirtualGL or primus (read further) and connects to a X server started for the discrete video card.
+</li>
+<li> Disable the dedicated video card when it is not in use (see the <a href="#Power_Management">Power management</a> section)
+</li>
+</ul>
+<p>It tries to mimic the Optimus technology behavior; using the dedicated GPU for rendering when needed and power it down when not in use. The present releases only support rendering on-demand, automatically starting a program with the discrete video card based on workload is not implemented.
+</p>
+<h2><span class="mw-headline" id="Installation">Installation</span></h2>
+<p>Before installing Bumblebee check your BIOS and activate Optimus (older laptops call it "switchable graphics") if possible (BIOS doesn't have to provide this option), and install the <a href="/index.php/Intel_graphics" title="Intel graphics">Intel driver</a> for the secondary on board graphics card.
+</p><p>Several packages are available for a complete setup:
+</p>
+<ul>
+<li> <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=bumblebee">bumblebee</a></span> - The main package providing the daemon and client programs.
+</li>
+<li> (optional) <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=bbswitch">bbswitch</a></span> (or <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://aur.archlinux.org/packages/bbswitch-dkms/">bbswitch-dkms</a></span>) - Recommended for saving power by disable the NVIDIA card.
+</li>
+<li> (optional) If you want more than just saving power, that is rendering programs on the discrete NVDIA card you also need:
+<ul>
+<li> a driver for the NVIDIA card. The open-source <a href="/index.php/Nouveau" title="Nouveau">nouveau</a> driver or the more closed-source <a href="/index.php/NVIDIA" title="NVIDIA">NVIDIA</a> driver. See the subsection.
+</li>
+<li> a render/display bridge. Two packages are currently available for that, <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=primus">primus</a></span> (or <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://aur.archlinux.org/packages/primus-git/">primus-git</a></span>) and <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=virtualgl">virtualgl</a></span>. Only one of them is necessary, but installing them side-by-side does not hurt.
+</li>
+</ul>
+</li>
+</ul>
+<div style="padding: 5px; margin: 0.50em 0; background-color: #DDDDFF; border: thin solid #BBBBDD; overflow: hidden;"><strong> Note: </strong>If you want to run a 32-bit application on a 64-bit system you must install the proper lib32-* libraries for the program. In addition to this, you also need to install <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=lib32-virtualgl">lib32-virtualgl</a></span> or <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=lib32-primus">lib32-primus</a></span>, depending on your choice for the render bridge. Just make sure you run <code style="display:inline-block; padding: 0.1em 0.3em;">primusrun</code> instead of <code style="display:inline-block; padding: 0.1em 0.3em;">optirun</code> if you decide to use Primus render bridge.</div>
+<h3><span class="mw-headline" id="Installing_Bumblebee_with_Intel.2FNVIDIA">Installing Bumblebee with Intel/NVIDIA</span></h3>
+<p>Install <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=intel-dri">intel-dri</a></span>, <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=xf86-video-intel">xf86-video-intel</a></span>, <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=bumblebee">bumblebee</a></span> and <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=nvidia">nvidia</a></span>. If you have <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=intel-dri">intel-dri</a></span> and <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=xf86-video-intel">xf86-video-intel</a></span> installed, you will have to reinstall them together with the rest to avoid a dependency conflict between <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=intel-dri">intel-dri</a></span> and <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=nvidia">nvidia</a></span>. 
+</p><p>If you want to run 32-bit applications (like games with wine) on a 64-bit system you need the <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=lib32-nvidia-utils">lib32-nvidia-utils</a></span> (and <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=lib32-intel-dri">lib32-intel-dri</a></span> if you intend to use <code style="display:inline-block; padding: 0.1em 0.3em;">primusrun</code>) package too.
+</p>
+<div style="padding: 5px; margin: 0.50em 0; background-color: #FFDDDD; border: thin solid #DDBBBB; overflow: hidden;"><strong> Warning: </strong>Do not install <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=lib32-nvidia-libgl">lib32-nvidia-libgl</a></span>. Bumblebee will find the correct lib32 NVIDIA libraries without it.</div>
+<h3><span class="mw-headline" id="Installing_Bumblebee_with_Intel.2FNouveau">Installing Bumblebee with Intel/Nouveau</span></h3>
+<p>Install:
+</p>
+<ul>
+<li> <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=xf86-video-nouveau">xf86-video-nouveau</a></span> - experimental 3D acceleration driver.
+</li>
+<li> <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=nouveau-dri">nouveau-dri</a></span> - Mesa classic DRI + Gallium3D drivers.
+</li>
+<li> <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=mesa">mesa</a></span> - Mesa 3D graphics libraries.
+</li>
+</ul>
+<h2><span class="mw-headline" id="Start_Bumblebee">Start Bumblebee</span></h2>
+<p>In order to use Bumblebee it is necessary add yourself (and other users) to the bumblebee group:
+</p>
+<pre># gpasswd -a $USER bumblebee
+</pre>
+<p>where <code style="display:inline-block; padding: 0.1em 0.3em;">$USER</code> is the login name of the user to be added. Then log off and on again to apply the group changes.
+</p>
+<div style="padding: 5px; margin: 0.50em 0; background-color: #DDFFDD; border: thin solid #BBDDBB; overflow: hidden;"><strong> Tip: </strong>If you wish <b>bumblebee</b> to start at boot, you have to enable <a href="/index.php/Systemd" title="Systemd">systemd</a> service <b>bumblebeed</b>.</div>
+<p>Finished. Reboot system and use the shell program <code style="display:inline-block; padding: 0.1em 0.3em;"><a href="#Usage">optirun</a></code> for Optimus NVIDIA rendering!
+</p><p>If you simply wish to disable your NVIDIA card, this should be all that is needed, apart from having <code style="display:inline-block; padding: 0.1em 0.3em;">bbswitch</code> installed. The bumblebeed daemon will, by default, instruct bbswitch to turn off the card when it starts. See also the <a href="#Power_management">power management</a> section below.
+</p>
+<h2><span class="mw-headline" id="Usage">Usage</span></h2>
+<p>The command line program <code style="display:inline-block; padding: 0.1em 0.3em;">optirun</code> shipped with Bumblebee is your best friend
+for running applications on your Optimus NVIDIA card.
+</p><p>Test Bumblebee if it works with your Optimus system:
+</p>
+<pre>$ optirun glxgears -info
+</pre>
+<p>If it succeeds and the terminal you are running from mentions something about your NVIDIA - Optimus with Bumblebee is working!
+</p><p>If it fails, try:
+</p>
+<pre>$ optirun glxspheres64 -info
+</pre>
+<p>General usage:
+</p>
+<pre>$ optirun [options] <i>application</i> [application-parameters]
+</pre>
+<p>Some Examples:
+</p><p>Start Windows applications with Optimus:
+</p>
+<pre>$ optirun wine <i>windows application</i>.exe
+</pre>
+<p>Use NVIDIA Settings with Optimus:
+</p>
+<pre>$ optirun -b none nvidia-settings -c&#160;:8
+</pre>
+<p>For a list of options for <code style="display:inline-block; padding: 0.1em 0.3em;">optirun</code> view its manual page.
+</p><p>A new program is soon becoming the default choice because of better performance, namely
+primus. Currently you need to run this program separately (it does not accept options
+unlike <code style="display:inline-block; padding: 0.1em 0.3em;">optirun</code>), but in the future it will be started by optirun. Usage:
+</p>
+<pre>$ primusrun glxgears
+</pre>
+<h2><span class="mw-headline" id="Configuration">Configuration</span></h2>
+<p>You can configure the behaviour of Bumblebee to fit your needs. Fine tuning like speed optimization, power management and other stuff can be configured in <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/bumblebee/bumblebee.conf</code>
+</p>
+<h3><span class="mw-headline" id="Optimizing_speed_when_using_VirtualGL_as_bridge">Optimizing speed when using VirtualGL as bridge</span></h3>
+<p>Bumblebee renders frames for your Optimus NVIDIA card in an invisible X Server with VirtualGL and transports them back to your visible X Server.
+</p><p>Frames will be compressed before they are transported - this saves bandwidth and can be used for speed-up optimization of bumblebee:
+</p><p>To use an other compression method for a single application:
+</p>
+<pre>$ optirun -c <i>compress-method</i> application
+</pre>
+<p>The method of compres will affect performance in the GPU/GPU usage. Compressed methods (such as <code style="display:inline-block; padding: 0.1em 0.3em;">jpeg</code>) will load the CPU the most but will load GPU the minimum necessary; uncompressed methods loads the most on GPU and the CPU will have the minimum load possible.
+</p><p>Compressed methods are: <code style="display:inline-block; padding: 0.1em 0.3em;">jpeg</code>, <code style="display:inline-block; padding: 0.1em 0.3em;">rgb</code>, <code style="display:inline-block; padding: 0.1em 0.3em;">yuv</code>.
+</p><p>Uncompressed methods are: <code style="display:inline-block; padding: 0.1em 0.3em;">proxy</code>, <code style="display:inline-block; padding: 0.1em 0.3em;">xv</code>.
+</p><p>To use a standard compression for all applications set the <code style="display:inline-block; padding: 0.1em 0.3em;">VGLTransport</code> to <code style="display:inline-block; padding: 0.1em 0.3em;"><i>compress-method</i></code> in <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/bumblebee/bumblebee.conf</code>:
+</p>
+<pre style="margin-bottom: 0; border-bottom:none; padding-bottom:0.8em;">/etc/bumblebee/bumblebee.conf</pre>
+<pre style="margin-top: 0; border-top-style:dashed; padding-top: 0.8em;">[...]
+[optirun]
+VGLTransport=proxy
+[...]</pre>
+<p>You can also play with the way VirtualGL reads back the pixels from your graphic card. Setting <code style="display:inline-block; padding: 0.1em 0.3em;">VGL_READBACK</code> environment variable to <code style="display:inline-block; padding: 0.1em 0.3em;">pbo</code> should increase the performance. Compare these two:
+</p>
+<pre># PBO should be faster.
+VGL_READBACK=pbo optirun glxspheres
+# The default value is sync.
+VGL_READBACK=sync optirun glxspheres
+</pre>
+<div style="padding: 5px; margin: 0.50em 0; background-color: #DDDDFF; border: thin solid #BBBBDD; overflow: hidden;"><strong> Note: </strong>CPU frequency scaling will affect directly on render performance</div>
+<h3><span class="mw-headline" id="Power_management">Power management</span></h3>
+<p>The goal of power management feature is to turn off the NVIDIA card when it is not used by bumblebee any more.
+If bbswitch is installed, it will be detected automatically when the Bumblebee daemon starts. No additional
+configuration is necessary.
+</p>
+<h4><span class="mw-headline" id="Default_power_state_of_NVIDIA_card_using_bbswitch">Default power state of NVIDIA card using bbswitch</span></h4>
+<p>The default behavior of bbswitch is to leave the card power state unchanged. <code style="display:inline-block; padding: 0.1em 0.3em;">bumblebeed</code> does disable
+the card when started, so the following is only necessary if you use bbswitch without bumblebeed.
+</p><p>Set <code style="display:inline-block; padding: 0.1em 0.3em;">load_state</code> and <code style="display:inline-block; padding: 0.1em 0.3em;">unload_state</code> module options according to your needs (see <a rel="nofollow" class="external text" href="https://github.com/Bumblebee-Project/bbswitch">bbswitch documentation</a>).
+</p>
+<pre style="margin-bottom: 0; border-bottom:none; padding-bottom:0.8em;">/etc/modprobe.d/bbswitch.conf</pre>
+<pre style="margin-top: 0; border-top-style:dashed; padding-top: 0.8em;">options bbswitch load_state=0 unload_state=1</pre>
+<h4><span class="mw-headline" id="Enable_NVIDIA_card_during_shutdown">Enable NVIDIA card during shutdown</span></h4>
+<p>The NVIDIA card may not correctly initialize during boot if the card was powered off when the system was last shutdown.  One option is to set <code style="display:inline-block; padding: 0.1em 0.3em;">TurnCardOffAtExit&#61;false</code> in <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/bumblebee/bumblebee.conf</code>, however this will enable the card everytime you stop the Bumblebee daemon, even if done manually.  To ensure that the NVIDIA card is always powered on during shutdown, add the following <a href="/index.php/Systemd" title="Systemd">systemd</a> service (if using <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=bbswitch">bbswitch</a></span>):
+</p>
+<pre style="margin-bottom: 0; border-bottom:none; padding-bottom:0.8em;">/etc/systemd/system/nvidia-enable.service</pre>
+<pre style="margin-top: 0; border-top-style:dashed; padding-top: 0.8em;">[Unit]
+Description=Enable NVIDIA card
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo ON &gt; /proc/acpi/bbswitch'
+
+[Install]
+WantedBy=shutdown.target</pre>
+<p>Then enable the service by running <code style="display:inline-block; padding: 0.1em 0.3em;">systemctl enable nvidia-enable.service</code> at the root prompt.
+</p>
+<h3><span class="mw-headline" id="Multiple_monitors">Multiple monitors</span></h3>
+<h4><span class="mw-headline" id="Outputs_wired_to_the_Intel_chip">Outputs wired to the Intel chip</span></h4>
+<p>If the port (DisplayPort/HDMI/VGA) is wired to the Intel chip, you can set up multiple monitors with xorg.conf. Set them to use the Intel card, but Bumblebee can still use the NVIDIA card. One example configuration is below for two identical screens with 1080p resolution and using the HDMI out.
+</p>
+<pre style="margin-bottom: 0; border-bottom:none; padding-bottom:0.8em;">/etc/X11/xorg.conf</pre>
+<pre style="margin-top: 0; border-top-style:dashed; padding-top: 0.8em;">Section "Screen"
+    Identifier     "Screen0"
+    Device         "intelgpu0"
+    Monitor        "Monitor0"
+    DefaultDepth    24
+    Option         "TwinView" "0"
+    SubSection "Display"
+        Depth          24
+        Modes          "1980x1080_60.00"
+    EndSubSection
+EndSection
+
+Section "Screen"
+    Identifier     "Screen1"
+    Device         "intelgpu1"
+    Monitor        "Monitor1"
+    DefaultDepth   24
+    Option         "TwinView" "0"
+    SubSection "Display"
+        Depth          24
+        Modes          "1980x1080_60.00"
+    EndSubSection
+EndSection
+
+Section "Monitor"
+    Identifier     "Monitor0"
+    Option         "Enable" "true"
+EndSection
+
+Section "Monitor"
+    Identifier     "Monitor1"
+    Option         "Enable" "true"
+EndSection
+
+Section "Device"
+    Identifier     "intelgpu0"
+    Driver         "intel"
+    Option         "XvMC" "true"
+    Option         "UseEvents" "true"
+    Option         "AccelMethod" "UXA"
+    BusID          "PCI:0:2:0"
+EndSection
+
+Section "Device"
+    Identifier     "intelgpu1"
+    Driver         "intel"
+    Option         "XvMC" "true"
+    Option         "UseEvents" "true"
+    Option         "AccelMethod" "UXA"
+    BusID          "PCI:0:2:0"
+EndSection
+
+Section "Device"
+    Identifier "nvidiagpu1"
+    Driver "nvidia"
+    BusID "PCI:0:1:0"
+EndSection</pre>
+<p>You need to probably change the BusID for both the Intel and the NVIDIA card.
+</p>
+<pre style="margin-bottom: 0; border-bottom:none; padding-bottom:0.8em;">$ lspci | grep VGA</pre>
+<pre style="margin-top: 0; border-top-style:dashed; padding-top: 0.8em;">
+00:02.0 VGA compatible controller: Intel Corporation 2nd Generation Core Processor Family Integrated Graphics Controller (rev 09)
+</pre>
+<p>The BusID is 0:2:0
+</p>
+<h4><span class="mw-headline" id="Output_wired_to_the_NVIDIA_chip">Output wired to the NVIDIA chip</span></h4>
+<p>On some notebooks, the digital Video Output (HDMI or DisplayPort) is hardwired to the NVIDIA chip. If you want to use all the displays on such a system simultaniously, you have to run 2 X Servers. The first will be using the Intel driver for the notebooks panel and a display connected on VGA. The second will be started through optirun on the NVIDIA card, and drives the digital display.
+</p><p>There are currently several instructions on the web how such a setup can be made to work. One can be found on the bumblebee <a rel="nofollow" class="external text" href="https://github.com/Bumblebee-Project/Bumblebee/wiki/Multi-monitor-setup">wiki page</a>. Another approach is described below.
+</p>
+<h5><span class="mw-headline" id="xf86-video-intel-virtual-crtc_and_hybrid-screenclone">xf86-video-intel-virtual-crtc and hybrid-screenclone</span></h5>
+<p>This method uses a patched Intel driver, which is extended to have a VIRTUAL Display, and the program hybrid-screenclone which is used to copy the display over from the virtual display to a second X Server which is running on the NVIDIA card using Optirun. Credit goes to <a rel="nofollow" class="external text" href="http://judsonsnotes.com/notes/index.php?option=com_content&amp;view=article&amp;id=673:triple-head-monitors-on-thinkpad-t520&amp;catid=37:tech-notes&amp;Itemid=59">Triple-head monitors on a Thinkpad T520</a> which has a detailed explanation on how this is done on a Ubuntu system.
+</p><p>For simplicity, DP is used below to refer to the Digital Output (DisplayPort). The instructions should be the same if the notebook has a HDMI port instead.
+</p>
+<ul>
+<li> Set system to use NVIDIA card exclusively, test DP/Monitor combination and generate xorg.nvidia.conf. This step is not required, but recommended if your system Bios has an option to switch the graphics into NVIDIA-only mode. To do this, first uninstall the bumblebee package and install just the NVIDIA driver. Then reboot, enter the Bios and switch the Graphics to NVIDIA-only. When back in Arch, connect you Monitor on DP and use startx to test if it is working in principle. Use Xorg -configure to generate an xorg.conf file for your NVIDIA card. This will come in handy further down below.
+</li>
+</ul>
+<ul>
+<li> Reinstall bumlbebee and bbswitch, reboot and set the system Gfx back to Hybrid in the BIOS. 
+</li>
+<li> Install <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://aur.archlinux.org/packages/xf86-video-intel-virtual-crtc/">xf86-video-intel-virtual-crtc</a></span>, and replace your xf86-video-intel package with it.
+</li>
+<li> Install <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://aur.archlinux.org/packages/screenclone-git/">screenclone-git</a></span>
+</li>
+<li> Change these bumblebee.conf settings:
+</li>
+</ul>
+<pre style="margin-bottom: 0; border-bottom:none; padding-bottom:0.8em;">/etc/bumblebee/bumblebee.conf</pre>
+<pre style="margin-top: 0; border-top-style:dashed; padding-top: 0.8em;">KeepUnusedXServer=true
+Driver=nvidia</pre>
+<div style="padding: 5px; margin: 0.50em 0; background-color: #DDDDFF; border: thin solid #BBBBDD; overflow: hidden;"><strong> Note: </strong>Leave the PMMethod set to "bumblebee". This is contrary to the instructions linked in the article above, but on arch this options needs to be left alone so that bbswitch module is automatically loaded</div>
+<ul>
+<li> Copy the xorg.conf generated in Step 1 to <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/X11</code> (e.g. <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/X11/xorg.nvidia.conf</code>). In the [driver-nvidia] section of <code style="display:inline-block; padding: 0.1em 0.3em;">bumblebee.conf</code>, change <code style="display:inline-block; padding: 0.1em 0.3em;">XorgConfFile</code> to point to it.
+</li>
+<li> Test if your <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/X11/xorg.nvidia.conf</code> is working with <code style="display:inline-block; padding: 0.1em 0.3em;">startx -- -config /etc/X11/xorg.nvidia.conf</code>
+</li>
+<li> In order for your DP Monitor to show up with the correct resolution in your VIRTUAL Display you might have to edit the Monitor section in your <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/X11/xorg.nvidia.conf</code>. Since this is extra work, you could try to continue with your auto-generated file. Come back to this step in the instructions if you find that the resolution of the VIRTUAL Display as shown by xrandr is not correct.
+<ul>
+<li> First you have to generate a Modeline. You can use the tool <a rel="nofollow" class="external text" href="http://amlc.berlios.de/">amlc</a>, which will genearte a Modeline if you input a few basic parameters. 
+</li>
+</ul>
+</li>
+</ul>
+<dl>
+<dd><dl>
+<dd>Example:  24" 1920x1080 Monitor
+</dd>
+<dd>start the tool with <code style="display:inline-block; padding: 0.1em 0.3em;">amlc -c</code>
+</dd>
+</dl>
+</dd>
+</dl>
+<pre>Monitor Identifier: Samsung 2494
+Aspect Ratio: 2
+physical size[cm]: 60
+Ideal refresh rate, in Hz: 60
+min HSync, kHz: 40
+max HSync, kHz: 90
+min VSync, Hz: 50
+max VSync, Hz: 70
+max pixel Clock, MHz: 400</pre>
+<p>This is the Monitor section which <code style="display:inline-block; padding: 0.1em 0.3em;">amlc</code> generated for this input:
+</p>
+<pre>Section "Monitor"
+    Identifier     "Samsung 2494"
+    ModelName      "Generated by Another Modeline Calculator"
+    HorizSync      40-90
+    VertRefresh    50-70
+    DisplaySize    532 299  # Aspect ratio 1.778:1
+    # Custom modes
+    Modeline "1920x1080" 174.83 1920 2056 2248 2536 1080 1081 1084 1149             # 174.83 MHz,  68.94 kHz,  60.00 Hz
+EndSection  # Samsung 2494</pre>
+<p>Change your <code style="display:inline-block; padding: 0.1em 0.3em;">xorg.nvidia.conf</code> to include this Monitor section. You can also trim down your file so that it only contains ServerLayout, Monitor, Device and Screen sections. For reference, here is mine:
+</p>
+<pre style="margin-bottom: 0; border-bottom:none; padding-bottom:0.8em;">/etc/X11/xorg.nvidia.conf</pre>
+<pre style="margin-top: 0; border-top-style:dashed; padding-top: 0.8em;">
+Section "ServerLayout"
+        Identifier     "X.org Nvidia DP"
+        Screen      0  "Screen0" 0 0
+        InputDevice    "Mouse0" "CorePointer"
+        InputDevice    "Keyboard0" "CoreKeyboard"
+EndSection
+
+Section "Monitor"
+    Identifier     "Samsung 2494"
+    ModelName      "Generated by Another Modeline Calculator"
+    HorizSync      40-90
+    VertRefresh    50-70
+    DisplaySize    532 299  # Aspect ratio 1.778:1
+    # Custom modes
+    Modeline "1920x1080" 174.83 1920 2056 2248 2536 1080 1081 1084 1149             # 174.83 MHz,  68.94 kHz,  60.00 Hz
+EndSection  # Samsung 2494
+
+Section "Device"
+        Identifier  "DiscreteNvidia"
+        Driver      "nvidia"
+        BusID       "PCI:1:0:0"
+EndSection
+
+Section "Screen"
+        Identifier "Screen0"
+        Device     "DiscreteNvidia"
+        Monitor    "Samsung 2494"
+        SubSection "Display"
+                Viewport   0 0
+                Depth     24
+        EndSubSection
+EndSection
+</pre>
+<ul>
+<li> Plug in both external monitors and startx. Look at your <code style="display:inline-block; padding: 0.1em 0.3em;">/var/log/Xorg.0.log</code>. Check that your VGA Monitor is detected with the correct Modes there. You should also see a VIRTUAL output with modes show up.
+</li>
+<li> Run <code style="display:inline-block; padding: 0.1em 0.3em;">xrandr</code> and three displays should be listed there, along with the supported modes.
+</li>
+<li> If the listed Modelines for your VIRTUAL display doesn't have your Monitors native resolution, make note of the exact output name. For me that is <code style="display:inline-block; padding: 0.1em 0.3em;">VIRTUAL1</code>. Then have a look again in the Xorg.0.log file. You should see a message: "Output VIRTUAL1 has no monitor section" there. We will change this by putting a file with the needed Monitor section into <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/X11/xorg.conf.d</code>. Exit and Restart X afterward.
+</li>
+</ul>
+<pre style="margin-bottom: 0; border-bottom:none; padding-bottom:0.8em;">/etc/X11/xorg.conf.d/20-monitor_samsung.conf</pre>
+<pre style="margin-top: 0; border-top-style:dashed; padding-top: 0.8em;">
+Section "Monitor"
+    Identifier     "VIRTUAL1"
+    ModelName      "Generated by Another Modeline Calculator"
+    HorizSync      40-90
+    VertRefresh    50-70
+    DisplaySize    532 299  # Aspect ratio 1.778:1
+    # Custom modes
+    Modeline "1920x1080" 174.83 1920 2056 2248 2536 1080 1081 1084 1149             # 174.83 MHz,  68.94 kHz,  60.00 Hz
+EndSection  # Samsung 2494
+</pre>
+<ul>
+<li> Turn the NVIDIA card on by running: <code style="display:inline-block; padding: 0.1em 0.3em;">sudo tee /proc/acpi/bbswitch &lt;&lt;&lt; ON</code>
+</li>
+<li> Start another X server for the DisplayPort monitor: <code style="display:inline-block; padding: 0.1em 0.3em;">sudo optirun true</code>
+</li>
+<li> Check the log of the second X server in <code style="display:inline-block; padding: 0.1em 0.3em;">/var/log/Xorg.8.log</code>
+</li>
+<li> Run xrandr to set up the VIRTUAL display to be the right size and placement, eg.: <code style="display:inline-block; padding: 0.1em 0.3em;">xrandr --output VGA1 --auto --rotate normal --pos 0x0 --output VIRTUAL1 --mode 1920x1080 --right-of VGA1 --output LVDS1 --auto --rotate normal --right-of VIRTUAL1</code>
+</li>
+<li> Take note of the position of the VIRTUAL display in the list of Outputs as shown by xrandr. The counting starts from zero, i.e. if it is the third display shown, you would specify <code style="display:inline-block; padding: 0.1em 0.3em;">-x 2</code> as parameter to <code style="display:inline-block; padding: 0.1em 0.3em;">screenclone</code> (Note: This might not always be correct. If you see your internal laptop display cloned on the monitor, try <code style="display:inline-block; padding: 0.1em 0.3em;">-x 2</code> anyway.)
+</li>
+<li> Clone the contents of the VIRTUAL display onto the X server created by bumblebee, which is connected to the DisplayPort monitor via the NVIDIA chip:
+</li>
+</ul>
+<dl>
+<dd> <code style="display:inline-block; padding: 0.1em 0.3em;">screenclone -d&#160;:8 -x 2</code>
+</dd>
+</dl>
+<p>Thats it, all three displays should be up and running now.
+</p>
+<h2><span class="mw-headline" id="Switch_between_discrete_and_integrated_like_Windows">Switch between discrete and integrated like Windows</span></h2>
+<p>In Windows, the way that Optimus works is NVIDIA has a whitelist of applications that require Optimus for, and you can add applications to this whitelist as needed. When you launch the application, it automatically decides which card to use.
+</p><p>To mimic this behavior in Linux, you can use <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://aur.archlinux.org/packages/libgl-switcheroo-git/">libgl-switcheroo-git</a></span>. After installing, you can add the below in your .xprofile.
+</p>
+<pre style="margin-bottom: 0; border-bottom:none; padding-bottom:0.8em;">~/.xprofile</pre>
+<pre style="margin-top: 0; border-top-style:dashed; padding-top: 0.8em;">mkdir -p /tmp/libgl-switcheroo-$USER/fs
+gtkglswitch &amp;
+libgl-switcheroo /tmp/libgl-switcheroo-$USER/fs &amp;</pre>
+<p>To enable this, you must add the below to the shell that you intend to launch applications from (I simply added it to the .xprofile file)
+</p>
+<pre>export LD_LIBRARY_PATH=/tmp/libgl-switcheroo-$USER/fs/\$LIB${LD_LIBRARY_PATH+:}$LD_LIBRARY_PATH
+</pre>
+<p>Once this has all been done, every application you launch from this shell will pop up a GTK+ window asking which card you want to run it with (you can also add an application to the whitelist in the configuration). The configuration is located in <code style="display:inline-block; padding: 0.1em 0.3em;">$XDG_CONFIG_HOME/libgl-switcheroo.conf</code>, usually <code style="display:inline-block; padding: 0.1em 0.3em;">~/.config/libgl-switcheroo.conf</code>
+</p>
+<h2><span class="mw-headline" id="CUDA_without_Bumblebee">CUDA without Bumblebee</span></h2>
+<p>You can use CUDA without bumblebee. All you need to do is ensure that the nvidia card is on:
+</p>
+<pre> # tee /proc/acpi/bbswitch &lt;&lt;&lt; ON
+</pre>
+<p>Now when you start a CUDA application it is going to automatically load all the necessary modules.
+</p><p>To turn off the nvidia card after using CUDA do:
+</p>
+<pre> # rmmod nvidia_uvm
+ # rmmod nvidia
+ # tee /proc/acpi/bbswitch &lt;&lt;&lt; OFF
+</pre>
+<h2><span class="mw-headline" id="Troubleshooting">Troubleshooting</span></h2>
+<div style="padding: 5px; margin: 0.50em 0; background-color: #DDDDFF; border: thin solid #BBBBDD; overflow: hidden;"><strong> Note: </strong>Please report bugs at <a rel="nofollow" class="external text" href="https://github.com/Bumblebee-Project/Bumblebee">Bumblebee-Project</a>'s GitHub tracker as described in its <a rel="nofollow" class="external text" href="https://github.com/Bumblebee-Project/Bumblebee/wiki/Reporting-Issues">wiki</a>.</div>
+<h3><span class="mw-headline" id=".5BVGL.5D_ERROR:_Could_not_open_display_:8">[VGL] ERROR: Could not open display&#160;:8</span></h3>
+<p>There is a known problem with some wine applications that fork and kill the parent process without keeping track of it (for example the free to play online game "Runes of Magic")
+</p><p>This is a known problem with VirtualGL. As of bumblebee 3.1, so long as you have it installed, you can use Primus as your render bridge:
+</p>
+<pre>$ optirun -b primus wine <i>windows program</i>.exe
+</pre>
+<p>If this does not work, an alternative walkaround for this problem is:
+</p>
+<pre>$ optirun bash
+$ optirun wine <i>windows program</i>.exe
+</pre>
+<p>If using NVIDIA drivers a fix for this problem is to edit <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/bumblebee/xorg.conf.nvidia</code> and change Option <code style="display:inline-block; padding: 0.1em 0.3em;">ConnectedMonitor</code> to <code style="display:inline-block; padding: 0.1em 0.3em;">CRT-0</code>.
+</p>
+<h3><span class="mw-headline" id=".5BERROR.5DCannot_access_secondary_GPU:_No_devices_detected">[ERROR]Cannot access secondary GPU: No devices detected</span></h3>
+<p>In some instances, running <code style="display:inline-block; padding: 0.1em 0.3em;">optirun</code> will return:
+</p>
+<pre>[ERROR]Cannot access secondary GPU - error: [XORG] (EE) No devices detected.
+[ERROR]Aborting because fallback start is disabled.
+</pre>
+<p>In this case, you will need to move the file <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/X11/xorg.conf.d/20-intel.conf</code> to somewhere else, <a href="/index.php/Restart" title="Restart" class="mw-redirect">restart</a> the bumblebeed daemon and it should work. If you do need to change some features for the Intel module, a workaround is to merge <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/X11/xorg.conf.d/20-intel.conf</code> to <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/X11/xorg.conf</code>.
+</p><p>It could be also necessary to comment the driver line in <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/X11/xorg.conf.d/10-monitor.conf</code>.
+</p><p>If you're using the <code style="display:inline-block; padding: 0.1em 0.3em;">nouveau</code> driver you could try switching to the <code style="display:inline-block; padding: 0.1em 0.3em;">nvidia</code> driver.
+</p><p>You might need to define the NVIDIA card somewhere (e.g. file <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/X11/xorg.conf.d</code>), using the correct <code style="display:inline-block; padding: 0.1em 0.3em;">BusID</code> according to <code style="display:inline-block; padding: 0.1em 0.3em;">lspci</code> output:
+</p>
+<pre>
+Section "Device"
+    Identifier "nvidiagpu1"
+    Driver "nvidia"
+    BusID "PCI:0:1:0"
+EndSection
+</pre>
+<h4><span class="mw-headline" id="NVIDIA.280.29:_Failed_to_assign_any_connected_display_devices_to_X_screen_0">NVIDIA(0): Failed to assign any connected display devices to X screen 0</span></h4>
+<p>If the console output is:
+</p>
+<pre>[ERROR]Cannot access secondary GPU - error: [XORG] (EE) NVIDIA(0): Failed to assign any connected display devices to X screen 0
+[ERROR]Aborting because fallback start is disabled.
+</pre>
+<p>You can change this line in <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/bumblebee/xorg.conf.nvidia</code>:
+</p>
+<pre>Option "ConnectedMonitor" "DFP"
+</pre>
+<p>to:
+</p>
+<pre>Option "ConnectedMonitor" "CRT"
+</pre>
+<h4><span class="mw-headline" id="systemd-logind:_failed_to_get_session:_PID_XXX_does_not_belong_to_any_known_session">systemd-logind: failed to get session: PID XXX does not belong to any known session</span></h4>
+<p>If the console output is (<i>PID</i> varies):
+</p>
+<pre>[ERROR]Cannot access secondary GPU - error: [XORG] (EE) systemd-logind: failed to get session: PID 753 does not belong to any known session
+[ERROR]Aborting because fallback start is disabled.
+</pre>
+<p>In /etc/mkinitcpio.conf change the MODULES var to:
+</p>
+<pre>MODULES="i915 bbswitch"
+</pre>
+<p>And run:
+</p>
+<pre># mkinitcpio -p linux
+</pre>
+<p>You must run this command again after every kernel update.
+</p>
+<h4><span class="mw-headline" id="Could_not_load_GPU_driver">Could not load GPU driver</span></h4>
+<p>If the console output is:
+</p>
+<pre>[ERROR]Cannot access secondary GPU - error: Could not load GPU driver
+</pre>
+<p>and if you try to load the nvidia module you get:
+</p>
+<pre>modprobe nvidia
+modprobe: ERROR: could not insert 'nvidia': Exec format error
+</pre>
+<p>You should try manually compiling the nvidia packages against your current kernel, for example with <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://aur.archlinux.org/packages/nvidia-dkms/">nvidia-dkms</a></span> or by compiling <span style="font-family: monospace"><a rel="nofollow" class="external text" href="https://www.archlinux.org/packages/?name=nvidia">nvidia</a></span> from the <a href="/index.php/ABS" title="ABS" class="mw-redirect">ABS</a>.
+</p>
+<h4><span class="mw-headline" id="Failed_to_initialize_the_NVIDIA_GPU_at_PCI:1:0:0_.28GPU_fallen_off_the_bus_.2F_RmInitAdapter_failed.21.29">Failed to initialize the NVIDIA GPU at PCI:1:0:0 (GPU fallen off the bus / RmInitAdapter failed!)</span></h4>
+<p>Add <code style="display:inline-block; padding: 0.1em 0.3em;">rcutree.rcu_idle_gp_delay=1</code> to the kernel parameters. Original topic can be found <a rel="nofollow" class="external text" href="https://bbs.archlinux.org/viewtopic.php?id=169742">here</a>.
+</p>
+<h4><span class="mw-headline" id="NOUVEAU.280.29:_.5Bdrm.5D_failed_to_set_drm_interface_version">NOUVEAU(0): [drm] failed to set drm interface version</span></h4>
+<p>Consider switching to the official nvidia driver. As commented <a rel="nofollow" class="external text" href="https://github.com/Bumblebee-Project/Bumblebee/issues/438#issuecomment-22005923">here</a>, nouveau driver has some issues with some cards and bumblebee.
+</p>
+<h3><span class="mw-headline" id=".2Fdev.2Fdri.2Fcard0:_failed_to_set_DRM_interface_version_1.4:_Permission_denied">/dev/dri/card0: failed to set DRM interface version 1.4: Permission denied</span></h3>
+<p>This could be worked around by appending following lines in <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/bumblebee/xorg.conf.nvidia</code> (see <a rel="nofollow" class="external text" href="https://github.com/Bumblebee-Project/Bumblebee/issues/580">here</a>):
+</p>
+<pre>
+Section "Screen"
+    Identifier "Default Screen"
+    Device "DiscreteNvidia"
+EndSection
+</pre>
+<h3><span class="mw-headline" id="ERROR:_ld.so:_object_.27libdlfaker.so.27_from_LD_PRELOAD_cannot_be_preloaded:_ignored">ERROR: ld.so: object 'libdlfaker.so' from LD_PRELOAD cannot be preloaded: ignored</span></h3>
+<p>You probably want to start a 32-bit application with bumblebee on a 64-bit system. See the "Note" box in <a href="#Installation">Installation</a>.
+</p>
+<h3><span class="mw-headline" id="Fatal_IO_error_11_.28Resource_temporarily_unavailable.29_on_X_server">Fatal IO error 11 (Resource temporarily unavailable) on X server</span></h3>
+<p>Change <code style="display:inline-block; padding: 0.1em 0.3em;">KeepUnusedXServer</code> in <code style="display:inline-block; padding: 0.1em 0.3em;">/etc/bumblebee/bumblebee.conf</code> from <code style="display:inline-block; padding: 0.1em 0.3em;">false</code> to <code style="display:inline-block; padding: 0.1em 0.3em;">true</code>. Your program forks into background and bumblebee don't know anything about it.
+</p>
+<h3><span class="mw-headline" id="Video_tearing">Video tearing</span></h3>
+<p>Video tearing is a somewhat common problem on Bumblebee. To fix it, you need to enable vsync. It should be enabled by default on the Intel card, but verify that from Xorg logs. To check whether or not it is enabled for NVIDIA, run: 
+</p>
+<pre>$ optirun nvidia-settings -c&#160;:8
+</pre>
+<p><code style="display:inline-block; padding: 0.1em 0.3em;">X Server XVideo Settings -&gt; Sync to VBlank</code> and <code style="display:inline-block; padding: 0.1em 0.3em;">OpenGL Settings -&gt; Sync to VBlank</code> should both be enabled. The Intel card has in general less tearing, so use it for video playback. Especially use VA-API for video decoding (e.g. <code style="display:inline-block; padding: 0.1em 0.3em;">mplayer-vaapi</code> and with <code style="display:inline-block; padding: 0.1em 0.3em;">-vsync</code> parameter).
+</p><p>Refer to the <a href="/index.php/Intel#Video_tearing" title="Intel" class="mw-redirect">Intel</a> article on how to fix tearing on the Intel card.
+</p><p>If it is still not fixed, try to disable compositing from your desktop environment. Try also disabling triple buffering.
+</p>
+<h3><span class="mw-headline" id="Bumblebee_cannot_connect_to_socket">Bumblebee cannot connect to socket</span></h3>
+<p>You might get something like:
+</p>
+<pre style="margin-bottom: 0; border-bottom:none; padding-bottom:0.8em;">$ optirun glxspheres</pre>
+<pre style="margin-top: 0; border-top-style:dashed; padding-top: 0.8em;">
+[ 1648.179533] [ERROR]You've no permission to communicate with the Bumblebee daemon. Try adding yourself to the 'bumblebee' group
+[ 1648.179628] [ERROR]Could not connect to bumblebee daemon - is it running?
+</pre>
+<p>If you are already in the <code style="display:inline-block; padding: 0.1em 0.3em;">bumblebee</code> group (<code style="display:inline-block; padding: 0.1em 0.3em;">$ groups | grep bumblebee</code>), you may try <a rel="nofollow" class="external text" href="https://bbs.archlinux.org/viewtopic.php?pid=1178729#p1178729">removing the socket</a> <code style="display:inline-block; padding: 0.1em 0.3em;">/var/run/bumblebeed.socket</code>.
+</p>
+<h3><span class="mw-headline" id="Running_X.org_from_console_after_login_.28rootless_X.org.29">Running X.org from console after login (rootless X.org)</span></h3>
+<p>See <a href="/index.php/Xorg#Rootless_Xorg_.28v1.16.29" title="Xorg">Xorg#Rootless Xorg (v1.16)</a>.
+</p>
+<h2><span class="mw-headline" id="See_also">See also</span></h2>
+<ul>
+<li> <a rel="nofollow" class="external text" href="http://www.bumblebee-project.org">Bumblebee project repository</a>
+</li>
+<li> <a rel="nofollow" class="external text" href="http://wiki.bumblebee-project.org/">Bumblebee project wiki</a>
+</li>
+<li> <a rel="nofollow" class="external text" href="https://github.com/Bumblebee-Project/bbswitch">Bumblebee project bbswitch repository</a>
+</li>
+</ul>
+<p>Join us at #bumblebee at freenode.net.
+</p>
+<!-- 
+NewPP limit report
+CPU time usage: 0.090 seconds
+Real time usage: 0.097 seconds
+Preprocessor visited node count: 1423/1000000
+Preprocessor generated node count: 3423/1000000
+Post‐expand include size: 23888/2097152 bytes
+Template argument size: 11112/2097152 bytes
+Highest expansion depth: 8/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key archwiki:pcache:idhash:11683-0!*!0!!en!*!* and timestamp 20140921094324
+ -->
+</div><div class="printfooter">
+Retrieved from "<a href="https://wiki.archlinux.org/index.php?title=Bumblebee&amp;oldid=336481">https://wiki.archlinux.org/index.php?title=Bumblebee&amp;oldid=336481</a>"</div>
+		<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/index.php/Category:Graphics" title="Category:Graphics">Graphics</a></li><li><a href="/index.php/Category:X_Server" title="Category:X Server">X Server</a></li></ul></div></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<h2>Navigation menu</h2>
+	<div id="p-cactions" class="portlet" role="navigation">
+		<h3>Views</h3>
+		<div class="pBody">
+			<ul>
+				<li id="ca-nstab-main" class="selected"><a href="/index.php/Bumblebee" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk"><a href="/index.php/Talk:Bumblebee" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="/index.php?title=Bumblebee&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="/index.php?title=Bumblebee&amp;action=history" rel="archives" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal" role="navigation">
+		<h3>Personal tools</h3>
+		<div class="pBody">
+			<ul>
+				<li id="pt-createaccount"><a href="/index.php?title=Special:UserLogin&amp;returnto=Bumblebee&amp;type=signup">Create account</a></li>
+				<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Bumblebee" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo" role="banner">
+<a href="/index.php/Main_page" style="background-image: url(/skins/archlinux/archlogo.png);" title="Visit the main page"></a>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage-description"><a href="/index.php/Main_page" title="Visit the main page [z]" accesskey="z">Main page</a></li>
+				<li id="n-categories"><a href="/index.php/Table_of_contents">Categories</a></li>
+				<li id="n-portal"><a href="/index.php/Getting_involved" title="Various ways Archers can contribute to the community">Getting involved</a></li>
+				<li id="n-currentevents"><a href="/index.php/ArchWiki:News" title="The latest lowdown on the wiki">Wiki news</a></li>
+				<li id="n-randompage"><a href="/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet" role="search">
+		<h3><label for="searchInput">Search</label></h3>
+		<div id="searchBody" class="pBody">
+			<form action="/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input type="search" name="search" placeholder="Search" title="Search ArchWiki [f]" accesskey="f" id="searchInput" />
+				<input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchGoButton" class="searchButton" />&#160;
+				<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+			</form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-interaction" role="navigation">
+		<h3>interaction</h3>
+		<div class='pBody'>
+			<ul>
+				<li id="n-help"><a href="/index.php/Category:Help" title="Wiki navigation, reading, and editing help">Help</a></li>
+				<li id="n-Contributing"><a href="/index.php/ArchWiki:Contributing">Contributing</a></li>
+				<li id="n-recentchanges"><a href="/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-Recent-talks"><a href="https://wiki.archlinux.org/index.php/Special:RecentChanges?namespace=0&amp;invert=1" rel="nofollow">Recent talks</a></li>
+				<li id="n-newpages"><a href="/index.php/Special:NewPages">New pages</a></li>
+				<li id="n-Reports"><a href="/index.php/ArchWiki:Reports">Reports</a></li>
+				<li id="n-Requests"><a href="/index.php/ArchWiki:Requests">Requests</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb" role="navigation">
+		<h3>Tools</h3>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Bumblebee" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Bumblebee" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+				<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="/index.php?title=Bumblebee&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+				<li id="t-permalink"><a href="/index.php?title=Bumblebee&amp;oldid=336481" title="Permanent link to this revision of the page">Permanent link</a></li>
+				<li id="t-info"><a href="/index.php?title=Bumblebee&amp;action=info">Page information</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-lang" class="portlet" role="navigation">
+		<h3>In other languages</h3>
+		<div class="pBody">
+			<ul>
+				<li class="interwiki-es"><a href="https://wiki.archlinux.org/index.php/Bumblebee_(Espa%C3%B1ol)" title="Bumblebee – español" lang="es" hreflang="es">Español</a></li>
+				<li class="interwiki-fr"><a href="http://wiki.archlinux.fr/Bumblebee" title="Bumblebee – français" lang="fr" hreflang="fr">Français</a></li>
+				<li class="interwiki-it"><a href="https://wiki.archlinux.org/index.php/Bumblebee_(Italiano)" title="Bumblebee – italiano" lang="it" hreflang="it">Italiano</a></li>
+				<li class="interwiki-ru"><a href="https://wiki.archlinux.org/index.php/Bumblebee_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)" title="Bumblebee – русский" lang="ru" hreflang="ru">Русский</a></li>
+				<li class="interwiki-tr"><a href="http://archtr.org/wiki/index.php?title=Bumblebee" title="Bumblebee – Türkçe" lang="tr" hreflang="tr">Türkçe</a></li>
+				<li class="interwiki-zh-cn"><a href="https://wiki.archlinux.org/index.php/Bumblebee_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)" title="Bumblebee – 中文（中国大陆）‎" lang="zh-CN" hreflang="zh-CN">中文（中国大陆）‎</a></li>
+			</ul>
+		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer" role="contentinfo">
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 21 September 2014, at 09:43.</li>
+		<li id="copyright">Content is available under <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3 or later</a> unless otherwise noted.</li>
+		<li id="privacy"><a href="/index.php/ArchWiki:Privacy_policy" title="ArchWiki:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="/index.php/ArchWiki:About" title="ArchWiki:About">About ArchWiki</a></li>
+		<li id="disclaimer"><a href="/index.php/ArchWiki:General_disclaimer" title="ArchWiki:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"],null,true);
+}</script>
+<script>if(window.mw){
+mw.loader.state({"site":"ready"});
+}</script>
+<!-- Served in 0.018 secs. --></body><!-- Cached/compressed 20140921094334 -->
+</html>

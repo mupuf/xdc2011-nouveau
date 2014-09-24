@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Optimus</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" />
+<link rel="stylesheet" href="../xorg.css" type="text/css" />
+
+<link rel="stylesheet" href="../local.css" type="text/css" />
+
+
+<link rel="alternate" type="application/x-wiki" title="Edit this page" href="https://secure.freedesktop.org/write/nouveau/ikiwiki.cgi?page=Optimus&amp;do=edit" />
+
+
+
+
+
+</head>
+<body>
+
+<div class="page">
+<div class="pageheader">
+<div class="header">
+<span class="logo"><img src="../logo.png" /></span>
+
+
+<form method="get" action="http://www.google.com/search" id="searchform">
+ <div>
+  <input name="sitesearch" value="http://nouveau.freedesktop.org/wiki/" type="hidden" />
+  <input name="q" value="" id="searchbox" size="16" maxlength="255" type="text"
+   />
+ </div>
+</form>
+
+
+<span class="headerpath">
+<span class="parentlinks">
+
+<a href="../">nouveau</a>/ 
+
+</span>
+<span class="title">
+Optimus
+
+</span>
+</span>
+</div>
+
+
+<span class="actions">
+<ul>
+
+<li><a href="https://secure.freedesktop.org/write/nouveau/ikiwiki.cgi?page=Optimus&amp;do=edit" rel="nofollow">Edit</a></li>
+
+
+
+<li><a href="https://secure.freedesktop.org/cgit/nouveau/log/Optimus.mdwn">Page History</a></li>
+
+
+<li><a href="https://secure.freedesktop.org/cgit/nouveau/">Repo Info</a></li>
+
+
+
+
+</ul>
+</span>
+
+
+
+
+
+
+</div>
+
+
+
+<div id="pagebody">
+
+<div id="content">
+<p><meta name="google-translate-customization" content="38b387022ed0f4d4-a4eb7ef5c10c8ae0-g2870fab75904ce51-18"></meta></p>
+
+<div id="google_translate_element"></div>
+
+<script type="text/javascript" src="/wiki/translate.js"></script>
+
+<h1 id="nvidiaoptimus">Nvidia Optimus</h1>
+
+<p>'Optimus technology' is a software [and possibly hardware] solution for automatically switching between an integrated graphics chip or IGP (such as on onboard intel chip) and a more powerful [nvidia] graphics chip. This technology is intended specifically for laptops. The precursor to this technology was 'switchable graphics,' in which the user could manually switch between the graphics card. It may require that the Nvidia GPU has the PCOPY engine. </p>
+
+<p>The graphics system in a laptop has a GPU with some memory, in the case of an IGP, this memory may be a piece of system memory, but otherwise it is usually dedicated memory living on the GPU. This GPU connects to a laptop display, or output port. There are two main problems to solve in order to support optimus under linux: </p>
+
+<p>1) Currently we do not have a way to a priori know what outputs (displays) are connected to what GPU's.  </p>
+
+<p>2) The supposed optimus software, should perform the task of switching between the which of the two graphics processors drives your display. Ideally this would be done by directly flipping a hardware switch, called a mux (<a href="http://en.wikipedia.org/wiki/Multiplexer">multiplexer</a>). However such a mux does not always exist! </p>
+
+<p>If a hardware mux does not exist, there there is no physical way to perform this GPU switching. Thus Optimus is used to effectively "implement" a software mux. Specifically it ensures that relevant data is sent to and processed on the right GPU then the data needed for display is copied to the device that displays the image. </p>
+
+<p>When it comes to how a specific machine is configured, there are a number of possibilities. Again, if the hardware mux exists it would be used to select which GPU drives the internal panel, or the external monitor, or possibly both. It is also possible, that a GPU is hardwired to the internal panel, so the other GPU cannot possibly drive the internal panel. The same goes for external monitor output. In the worst case we have that the:the Intel GPU hardwired to the internal panel and the Nvidia GPU hardwired to the external output! The best case scenario is a mux, which can select which GPU drivers control which outputs. </p>
+
+<p>Basically, you can have <em>any</em> combination of these possibilities. There is no standard on how to wire things. There should be ways to detect the wirings and whether there is a mux and where, but the documentation is not available to the developers (maybe you can help us figure out how to do this, have any ideas? You can also 'petition' nvidia for releasing these specs: <a href="http://nvidia.custhelp.com/">nvidia customer help</a> ? ) </p>
+
+<h2 id="switcheroo-usingonecardatatime">Switcheroo - Using one card at a time</h2>
+
+<p>If your laptop has a hardware mux, the kernel switcheroo driver may be able to set the wanted GPU at boot. There are also hacks based on the switcheroo, like asus-switcheroo, but they offer no extra value. If one of the hacks happens to work, and the switcheroo does not, the switcheroo has a bug. There might already be pending patches waiting to go towards the mainline kernel. </p>
+
+<p>In all other cases, you are stuck with what happens to work by default. No switching, no framebuffer copying. Yet. </p>
+
+<h2 id="usingoptimusprime">Using Optimus/Prime</h2>
+
+<p>'PRIME GPU offloading' and 'Reverse PRIME' is an attempt to support muxless hybrid graphics in the Linux kernel. It requires:</p>
+
+<ul>
+<li>An updated graphic stack (Kernel, xserver and mesa);</li>
+<li>KMS drivers for both GPUs loaded;</li>
+<li>DDX drivers for both GPUs loaded.</li>
+</ul>
+
+<p>If everything went well, <em>xrandr --listproviders</em> should list two providers. In my case, this gives:</p>
+
+<pre><code>&#036; xrandr --listproviders 
+Providers: number : 2
+Provider 0: id: 0x8a cap: 0xb, Source Output, Sink Output, Sink Offload crtcs: 2 outputs: 2 associated providers: 1 name:Intel
+Provider 1: id: 0x66 cap: 0x7, Source Output, Sink Output, Source Offload crtcs: 2 outputs: 5 associated providers: 1 name:nouveau
+</code></pre>
+
+<h3 id="offloading3d">Offloading 3D</h3>
+
+<p>It is then important to tell Prime what card should be used for offloading. In my case, I would like to use Nouveau for offloading the Intel card:</p>
+
+<pre><code>&#036; xrandr --setprovideroffloadsink nouveau Intel
+</code></pre>
+
+<p>When this is done, it becomes very easy to select which card should be used. If you want to offload an application to a GPU, use DRI_PRIME=1. When the application is launched, it will use the second card to do its rendering. If you want to use
+the "regular" GPU, set DRI_PRIME to 0 or omit it. The behaviour can be seen in the following example:</p>
+
+<pre><code>&#036; DRI_PRIME=0 glxinfo | grep "OpenGL vendor string"
+OpenGL vendor string: Intel Open Source Technology Center
+&#036; DRI_PRIME=1 glxinfo | grep "OpenGL vendor string"
+OpenGL vendor string: nouveau
+</code></pre>
+
+<h3 id="usingoutputsondiscretegpu">Using outputs on discrete GPU</h3>
+
+<p>If the second GPU has outputs that aren't accessible by the primary GPU, you can use "Reverse PRIME" to make use of them. This will involve using the primary GPU to render the images, and then pass them off to the secondary GPU. In the scenario above, you would do</p>
+
+<pre><code>&#036; xrandr --setprovideroutputsource nouveau Intel
+</code></pre>
+
+<p>When this is done, the nvidia card's outputs should be available in xrandr, and you could do something like</p>
+
+<pre><code>&#036; xrandr --output HDMI-1 --auto --above LVDS1
+</code></pre>
+
+<p>in order to add a second screen that is hosted by the nvidia card.</p>
+
+<h3 id="powermanagement">Power management</h3>
+
+<p>When an application is using 'PRIME GPU offloading', both the discrete and the integrated GPUs are active and aside from optimizations at the driver level, nothing else can be done. However, when no application is making use of the discrete GPU, the default behaviour should be for the card to automatically power down entirely after 5 seconds. Note that using an output on the discrete GPU will force it to stay on.</p>
+
+<p>This dynamic power management feature has been added in Linux 3.12 but requires Linux 3.13 to work properly with Nouveau. If you cannot make use of this feature and do not mind not using your NVIDIA GPU, it is recommended to blacklist the 'nouveau' module and to use bbswitch to turn off the NVIDIA GPU. Look onto your distribution's wiki for more information.</p>
+
+<h4 id="checkingthecurrentpowerstate">Checking the current power state</h4>
+
+<p>You can query the current power state and policy by running as root:</p>
+
+<pre><code> # cat /sys/kernel/debug/vgaswitcheroo/switch
+ 0:DIS: :DynOff:0000:01:00.0
+ 1:IGD:+:Pwr:0000:00:02.0
+ 2:DIS-Audio: :Off:0000:01:00.1
+</code></pre>
+
+<p>Each line of the output is of the following format:</p>
+
+<ul>
+<li>A number: not important</li>
+<li>A string:
+<ul>
+<li>DIS: Discrete GPU (your AMD or NVIDIA GPU)</li>
+<li>IGD: Integrated Graphics (your Intel card?)</li>
+<li>DIS-Audio: The audio device exported by your discrete GPU for HDMI sound playback</li>
+</ul></li>
+<li>A sign:
+<ul>
+<li>'+': This device is connected to graphics connectors</li>
+<li>' ': This device is not connected to graphics connectors</li>
+</ul></li>
+<li>A power state:
+<ul>
+<li>OFF: The device is powered off</li>
+<li>ON: The device is powered on</li>
+<li>DynOff: The device is currently powered off but will be powered on when needed </li>
+<li>DynPwr: The device is currently powered on but will be powered off when not needed</li>
+</ul></li>
+<li>The PCI-ID of the device</li>
+</ul>
+
+<h4 id="forcingthepowerstateofthedevices">Forcing the power state of the devices</h4>
+
+<p>Turn on the GPU that is not currently driving the outputs:</p>
+
+<pre><code> echo ON &gt; /sys/kernel/debug/vgaswitcheroo/switch
+</code></pre>
+
+<p>Turn off the GPU that is not currently driving the outputs:</p>
+
+<pre><code> echo OFF &gt; /sys/kernel/debug/vgaswitcheroo/switch
+</code></pre>
+
+<p>Connect the graphics connectors to the integrated GPU:</p>
+
+<pre><code>echo IGD &gt; /sys/kernel/debug/vgaswitcheroo/switch
+</code></pre>
+
+<p>Connect the graphics connectors to the discrete GPU:</p>
+
+<pre><code> echo DIS &gt; /sys/kernel/debug/vgaswitcheroo/switch
+</code></pre>
+
+<p>Prepare a switch to the integrated GPU to occur when the X server gets restarted:</p>
+
+<pre><code> echo DIGD &gt; /sys/kernel/debug/vgaswitcheroo/switch
+</code></pre>
+
+<p>Prepare a switch to the discrete GPU to occur when the X server gets restarted:</p>
+
+<pre><code> echo DDIS &gt; /sys/kernel/debug/vgaswitcheroo/switch
+</code></pre>
+
+<h3 id="knownissues">Known issues</h3>
+
+<h4 id="everythingseemstoworkbuttheoutputisblack">Everything seems to work but the output is black</h4>
+
+<p>Try using a re-parenting compositor. Those compositors usually provide 3D effects.</p>
+
+<p><em>WARNING</em>: Currently, Kwin only works when using the desktop effects. In the case where the window would be pure black, please try minimizing/maximizing or redimensioning the window. This bug is being investigated.</p>
+
+<h4 id="poorperformancewhenusingthenouveaucard">Poor performance when using the Nouveau card</h4>
+
+<p>Right now, Nouveau does not support reclocking and other power management feature. This cripples the performance of the GPU a lot along with increasing the power consumption compared to the proprietary driver.</p>
+
+<p>Using Prime with Nouveau may not result in any performance gain right now, but it should in a not-so-distant future.</p>
+
+</div>
+
+
+
+
+
+</div>
+
+<div id="footer" class="pagefooter">
+
+<div id="pageinfo">
+
+
+
+
+
+
+<div id="backlinks">
+Links:
+
+<a href="../MultiMonitorDesktop/">MultiMonitorDesktop</a>
+
+<a href="../">index</a>
+
+<a href="../index-old/">index-old</a>
+
+
+</div>
+
+
+
+
+
+
+<div class="pagedate">
+Last edited <span class="date">Wed Feb 26 13:32:45 2014</span>
+<!-- Created <span class="date">Mon May 13 18:26:30 2013</span> -->
+</div>
+
+</div>
+
+
+<!-- from nouveau -->
+</div>
+
+</div>
+
+</body>
+</html>
