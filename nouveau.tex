@@ -146,6 +146,7 @@
 			\item When/How the dGPU should be turned on/off?
 			\item Who drives the outputs?
 			\item How to copy buffers from one driver to another?
+			\item How should we do application migration?
 			\item How should we handle the HDMI ``sound card''?
 		\end{itemize}
 	\end{block}
@@ -202,16 +203,6 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}
-	\frametitle{Switching from one GPU to another : How windows does it}
-
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=1\linewidth]{imgs/optimus_arch.png}
-		\caption{The global hardware/software infrastructure}
-	\end{figure}
-\end{frame}
-
 \subsection{How to share buffers across drivers?}
 
 \begin{frame}
@@ -238,33 +229,64 @@
 	\end{block}
 \end{frame}
 
-% TODO: Ajoute une image pour montrer le fonctionnement de virtualGL / Primus
-
 \begin{frame}
-	\frametitle{Sharing buffers across drivers : VirtualGL/Primus}
+	\frametitle{Sharing buffers across drivers : VirtualGL}
 
-	TODO
+	\begin{center}
+		\includegraphics[width=\linewidth]{imgs/vgltransport.png}
+	\end{center}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Sharing buffers across drivers : DMA-Buf}
 
-	\begin{block}{Roles}
-		\item Exporter: 
-		\item User:
-	\end{block}
-
-	\begin{block}{Operations}
+	\begin{block}{Driver roles}
 		\begin{itemize}
-			% \item can't remember what I wanted to write here!
-			\item The memory representation for buffers is different from hardware to hardware:
-			\begin{itemize}
-				\item pitch: number of pixels per row;
-				\item tiling: technique that increases the spatial locality.
-			\end{itemize}
-			\item Synchronising rendering across drivers.
+			\item Exporter: Being able to export a buffer;
+			\item User: Being able to import a buffer.
 		\end{itemize}
 	\end{block}
+
+	\begin{block}{General overview}
+		\begin{itemize}
+			\item No standardised memory allocation: It's up to the exporter;
+			\item An arbitrary buffer can be wrapped into a DMA buffer;
+			\item An fd can be returned to the userspace to reference this buffer;
+			\item The fd can be passed to another process;
+			\item The fd can be mmapped and accessed by the CPU;
+			\item The fd can be imported by any driver supporting the user role.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\includegraphics[page=13,width=\linewidth]{DMA_Buffer_Sharing-_An_Introduction.pdf}
+\end{frame}
+
+\begin{frame}
+	\frametitle{How should we do application migration?}
+
+	\begin{block}{Short answer}
+		\textbf{We don't!}
+	\end{block}
+
+	\begin{block}{Why?}
+		\begin{itemize}
+			\item The context is hardware-dependent;
+			\item The context can be HUGE (hundreds of MB);
+			\item The best way is to ask the application to re-upload its context: GL\_ARB\_robustness.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Optimus : How windows does it}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\linewidth]{imgs/optimus_arch.png}
+		\caption{The global hardware/software infrastructure}
+	\end{figure}
 \end{frame}
 
 \section{Prime}
@@ -276,9 +298,9 @@
 		Prime is the name for all the ustream open source technologies
 		that make hybrid graphics possible:
 		\begin{itemize}
-			\item vgaswitcheroo: switching graphics (Linux 2.6.34); % TODO: Check
-			\item DMA-Buf: sharing buffers across drivers (Linux 3.XX); % TODO: Find out!
-			\item Cross-device fence mechanism: make a driver wait on another driver to complete a task (Linux 3.17); % TODO: Check
+			\item DMA-Buf: sharing buffers across drivers (Linux 3.3);
+			\item vgaswitcheroo: switching graphics (Linux 3.12);
+			\item Cross-device fence mechanism: make a driver wait on another driver to complete a task (Linux 3.17);
 			\item DMA-Buf synchronisation: Wait for rendering completion of a DMA-Buf before compositing to avoid tearing (Linux 3.19?).
 		\end{itemize}
 	\end{block}
@@ -295,8 +317,6 @@
 \begin{frame}
 	\frametitle{Prime: Simplified how-to for Nouveau}
 
-	% TODO: Inline verbatim
-
 	\begin{block}{vgaswitcheroo}
 		\begin{itemize}
 			\item \# cd /sys/kernel/debug/vgaswitcheroo/
@@ -308,8 +328,8 @@
 
 	\begin{block}{XRandr}
 		\begin{itemize}
-			\item \$ xrandr --listproviders
-			\item \$ xrandr --setprovideroffloadsink nouveau Intel
+			\item \$ xrandr $--$listproviders
+			\item \$ xrandr $--$setprovideroffloadsink nouveau Intel
 			\item This sets the order: Nouveau == offload, Intel == default
 		\end{itemize}
 	\end{block}
@@ -317,8 +337,6 @@
 
 \begin{frame}
 	\frametitle{Prime: Simplified how-to for Nouveau}
-
-	% TODO: Inline verbatim
 
 	\begin{block}{Usage}
 		\begin{itemize}
@@ -329,11 +347,9 @@
 	\end{block}
 
 	\begin{block}{Longer How-to for Nouveau}
-		\url{http://nouveau.freedesktop.org/wiki/Optimus} % TODO: Check the URL
+		\url{http://nouveau.freedesktop.org/wiki/Optimus}
 	\end{block}
 \end{frame}
-
-% TODO: Auto-mount debugfs
 
 \subsection{Demos}
 \begin{frame}
@@ -369,7 +385,7 @@
 
 	\begin{block}{Nouveau: An Open Source Linux driver for NVIDIA GPUs}
 		\begin{itemize}
-			\item Merged in Linux 2.6.33; % TODO: Check
+			\item Merged in Linux 2.6.33 \& left staging on Linux 3.4;
 			\item Mostly developed by Red Hat and students.
 		\end{itemize}
 	\end{block}
@@ -391,7 +407,7 @@
 		\begin{itemize}
 			\item Maxwell support:
 			\begin{itemize}
-				\item Released in two times (April then September); % TODO: Find the release dates
+				\item Released in two times (March then September);
 				\item Modesetting: DONE;
 				\item 2D/3D support: MOSTLY DONE;
 				\item Video decoding: TODO
