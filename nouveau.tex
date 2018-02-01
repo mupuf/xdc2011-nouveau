@@ -167,8 +167,86 @@
 \begin{frame}
 	\frametitle{OpenCL}
 
+	% Small intro/history of OpenCL ~30sec
+	% SPIR-V: quick summary, why interesting? ~1min
+	% modifications to clover, for SPIR-V, affects everyone 2min
+	% how to try it ~30sec
+	% quick overview on current SPIR-V -> NVIR work ~1-2min
+	% how to try it? ~30sec
+	% Total: ~6-7min
+	\begin{block}{}
+	\end{block}
 % 	TODO: Pmoreau
 
+\end{frame}
+
+\begin{frame}{Try out the SPIR-V support}
+	\begin{block}{Prerequisites}
+		\begin{itemize}
+			\item SPIRV-Tools:
+				\url{https://github.com/KhronosGroup/SPIRV-Tools}
+			\item llvm-spirv:
+				\url{https://gitlab.collabora.com/tomeu/llvm-spirv}
+			\item LLVM $\geq 5.0$
+			\item Mesa: \url{https://github.com/pierremoreau/mesa}
+				(branch: clover\_spirv\_series\_v3)
+		\end{itemize}
+	\end{block}
+	\begin{block}{How to use/test it?}
+		\begin{itemize}
+			\item Set CLOVER\_USE\_SPIRV=1;
+			\item Use clCreateProgramWithILKHR(), clCreateProgramWithIL();
+			\item Or for AMD owners, use clCreateProgramWithSource().
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Overview of SPIR-V to NVIR}
+	\begin{block}{Status for OpenCL 1.2 support}
+		\begin{itemize}
+			\item Supported:
+			\begin{itemize}
+				\item Most arithmetic/relational/bit/etc. operations;
+				\item Most atomics and convert operations;
+				\item Function calling and control flow.
+			\end{itemize}
+			\item Work in progress:
+			\begin{itemize}
+				\item Image support;
+				\item Finishing off the various memory operations.
+			\end{itemize}
+			\item Still missing:
+			\begin{itemize}
+				\item Group operations;
+				\item Most OpenCL specific operations.
+			\end{itemize}
+		\end{itemize}
+
+		OpenCL CTS passing rates for test\_basic: 36/95 (27 of the
+		failing ones are image tests)
+	\end{block}
+\end{frame}
+
+\begin{frame}{Trying out OpenCL on Nouveau}
+	\begin{block}{Prerequisites}
+		\begin{itemize}
+			\item Same as for testing the SPIR-V support;
+			\item except for Mesa, for which the branch is
+				nouveau\_spirv\_support.
+		\end{itemize}
+	\end{block}
+	\begin{block}{Hardware status}
+		\begin{itemize}
+			\item Tesla: needs changes to the memory management
+				code;
+			\item Fermi: should work;
+			\item Kepler: should work;
+			\item Maxwell: partially works;
+			\item Pascal: untested;
+			\item Volta: needs reverse engineering for Linux and
+				Mesa support.
+		\end{itemize}
+	\end{block}
 \end{frame}
 
 % Xexaxo
