@@ -10,8 +10,8 @@
 \usecolortheme{whale}
 \title{Nouveau}
 \subtitle{Recap, on-going and future work}
-\author{Marcin Kościelnicki, Maarten Lankhorst, Martin Peres \& Emil Velikov}
-\institute{Nouveau developers (or related)}
+\author{Karol Herbst, Pierre Moreau \& Martin Peres}
+\institute{Nouveau developers}
 
 \AtBeginSection[]{
   \begin{frame}{Summary}
@@ -27,7 +27,6 @@
 	\titlepage
 \end{frame}
 
-% mupuf
 \section{Introduction}
 \subsection*{Introduction}
 \begin{frame}
@@ -35,65 +34,46 @@
 
 	\begin{block}{Introduction}
 		\begin{itemize}
-			\item Last nouveau update was at FOSDEM 2012;
-			\item Many improvements since then :).
+			\item Nouveau is Linux's OSS driver for NVIDIA GPUs;
+			\item We want to provide a good out-of-the-box desktop experience;
+			\item We wish to run games and compute workloads too!
+		\end{itemize}
+	\end{block}
+
+	\pause
+
+	\begin{block}{Support}
+		\begin{itemize}
+			\item All NVIDIA desktop GPUs since 1998 (partial support);
+			\item 2D and 3D acceleration on all recent GPUs (2003+);
+			\item OpenGL 4.4 (non official) \& Direct X 9 (through Wine);
+			\item Video decoding on GPUs between 2004 and 2013.
 		\end{itemize}
 	\end{block}
 \end{frame}
 
-\section{Kepler support}
-\subsection*{Kepler support}
+\section{Pascal support}
+\subsection*{Pascal support}
 \begin{frame}
-	\frametitle{Kepler support}
+	\frametitle{Pascal support}
 
-	\begin{block}{Kepler}
+	\begin{block}{Pascal GPUs}
 		\begin{itemize}
-			\item New NVIDIA card family released in March 2012;
-			\item Modesetting support released on the same day;
-			\item Un-released 3D support happened a few days later;
-			\item 2D/3D accel support released less than a month after (after libdrm2).
+			\item Current generation of GPUs, released in March 2016;
+			\item Most locked-up NVIDIA GPUs to date;
+			\pause
+			\item Supported features:
+			\begin{itemize}
+				\item Modesetting: Complete support (Linux 4.14);
+				\item 2D/3D acceleration: Yes, but firmwares came after 1+ year;
+				\item Temperature reading: Yes;
+				\pause
+				\item Fan management: Impossible (locked down);
+				\item Reclocking: Impossible (locked down);
+				\item Video BIOS uploading: Impossible (locked down);
+				\item Power reading: Impossible (locked down).
+			\end{itemize}
 		\end{itemize}
-	\end{block}
-\end{frame}
-
-\section{Kernel}
-\subsection*{Kernel updates}
-\begin{frame}
-	\frametitle{Kernel updates}
-
-	\begin{block}{Kernel updates}
-		\begin{itemize}
-			\item Nouveau left staging (Linux 3.4);
-			\item Major internal re-architecturing, called core (Linux 3.7);
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{The core architecture}
-		\begin{itemize}
-			\item Separate code per-chipset;
-			\item Can partially be used from the userspace;
-			\item Kind of object-oriented (ctor, dtor, init \& fini);
-			\item Should limit regressions when adding support to new cards;
-			\item Contribution by Ben Skeggs.
-		\end{itemize}
-	\end{block}
-\end{frame}
-
-% Maarten
-\subsection{Optimus/prime}
-
-\begin{frame}
-	\frametitle{Optimus/prime}
-
-	\begin{block}{Optimus/Prime support}
-		\begin{itemize}
-			\item Offloading support added by Dave Airlie in Linux 3.9;
-			\item Synchronisation between drivers, worked on by mlankhorst;
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{More information + how to}
-		\url{http://nouveau.freedesktop.org/wiki/Optimus/}
 	\end{block}
 \end{frame}
 
@@ -103,137 +83,46 @@
 \begin{frame}
 	\frametitle{Power Management}
 
-	\begin{block}{Thermal management}
+	\begin{block}{Clock gating (Lyude Paul)}
 		\begin{itemize}
-			\item Temperature monitoring support added for most cards;
-			\item Except for the i2c-only temperature probes.
+			\item Increases the battery life of laptops without performance loss;
+			\item Experimental version for Kepler about to land in Nouveau.
 		\end{itemize}
 	\end{block}
 
-	\begin{block}{Fan management}
+	\begin{block}{Fan management (Martin Peres)}
 		\begin{itemize}
-			\item Static fan management added in Linux 3.7;
-			\item Experimental automatic fan management added in
-Linux 3.9;
-			\item Enabled by default in Linux 3.13;
-			\item Doesn't work on all Keplers...
+			\item Adjusts the fan speed based on the temperature;
+			\item Full support for most GPUs since Linux 3.13;
+			\item Some GPUs require a weird calibration: Loud fans!
+			\item NVIDIA is about to release some documentation for this.
 		\end{itemize}
-	\end{block}
-
-	\begin{block}{}
-		Contact Martin Peres (mupuf) if you have problems!
 	\end{block}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Power Management}
 
-	\begin{block}{Reclocking}
+	\begin{block}{Reclocking (Karol Herbst \& Roy Spliet)}
 		\begin{itemize}
-			\item Still a work in progress...;
-			\item Will provide much better performance!
+			\item WIP Karol
 		\end{itemize}
 	\end{block}
 
-	\begin{block}{Power and clock gating}
+	\begin{block}{Power monitoring}
 		\begin{itemize}
-			\item Will lower the power consumption (good for
-laptops);
-			\item Should be released soon for Fermi/Kepler.
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{Performance and power monitoring}
-		\begin{itemize}
-			\item Some Kepler have i2c power sensors!
-			\item Rough engine-usage indicators (Memory, Graph,
-Video);
-			\item Will be exposed ASAP.
+			\item Power consumption exposed when available;
 		\end{itemize}
 	\end{block}
 \end{frame}
 
 \section{Userspace}
-
-\subsection{Performance counters}
-
-\begin{frame}
-	\frametitle{Performance counters}
-
-	\begin{block}{DONE}
-		\begin{itemize}
-			\item MP-counters support for Fermi+;
-			\item Exposed through Gallium-HUD;
-			\item Kepler support by Christoph Bumiller;
-			\item Fermi support by Samuel Pitoiset (GSOC 2013).
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{WIP}
-		\begin{itemize}
-			\item Performance monitoring from PDAEMON(Mem, VDec,
-GR);
-			\item Reverse engineering graphics-related signals on
-W7 (Samuel);
-			\item Export the kernels
-		\end{itemize}
-	\end{block}
-
-\end{frame}
-
-% Maarten
-\subsection{Libdrm\_nouveau2}
-\begin{frame}
-	\frametitle{Userspace updates - Libdrm\_nouveau2}
-
-	\begin{block}{Libdrm\_nouveau2}
-		\begin{itemize}
-			\item Expose BOs' VM addresses;
-			\item Support multiple threads per channel;
-			\item Rework the rellocation mechanism;
-			\item Reduce the occurences of -ENOSPC;
-			\item Released in April 2012 by Ben Skeggs.
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{Libdrm\_nouveau2 : Mesa updates}
-		\begin{itemize}
-			\item Mesa drivers updated to use Libdrm\_nouveau2;
-			\item Nvfx rewritten and renamed nv30;
-			\item Various fixes to the other drivers.
-		\end{itemize}
-	\end{block}
-\end{frame}
-
-\subsection{Video decoding}
-\begin{frame}
-	\frametitle{Userspace updates - Video decoding}
-
-	\begin{block}{Video decoding : Maarten Lankhorst}
-		\begin{itemize}
-			\item Fermi+ support added by Maarten Lankhorst;
-			\item Rely on user-extracted firmwares (mmiotrace).
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{Video decoding : Ilia Mirkin}
-		\begin{itemize}
-			\item Nv50: Full VP2/3/4 support added by Ilia Mirkin;
-			\item Wrote a script to extract firmwares from the blob;
-			\item Added back support for video planes on (nv04-40);
-			\item PMPEG support for MPEG1/2 on nv40-96.
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{More information}
-		\url{http://nouveau.freedesktop.org/wiki/VideoAcceleration}
-	\end{block}
-\end{frame}
-
 \subsection{OpenGL}
 
 \begin{frame}
 	\frametitle{OpenGL}
+
+% 	TODO: Karol
 
 	\begin{block}{History: GL version support}
 		\begin{itemize}
@@ -274,132 +163,22 @@ W7 (Samuel);
 	\end{block}
 \end{frame}
 
-% Marcin
-\section{Tools}
-
-\subsection{Envytools repo moved}
+\subsection{OpenCL}
 \begin{frame}
-	\frametitle{Envytools}
+	\frametitle{OpenCL}
 
-	\begin{block}{Envytools}
-		\begin{itemize}
-			\item is a collection of nvidia-related tools and docs;
-			\item was primarily hosted by Pathscale;
-			\item but was also hosted by mwk \& sourceforge;
-			\item moved to one repo with every dev as admins.
-		\end{itemize}
-	\end{block}
+% 	TODO: Pmoreau
 
-	\begin{block}{More information}
-		\url{http://lists.freedesktop.org/archives/nouveau/2013-July/013089.html}
-	\end{block}
-\end{frame}
-
-\subsection{RESTification of the documentation}
-\begin{frame}
-	\frametitle{Envytools : documentation}
-
-	\begin{block}{hwdocs before}
-		\begin{itemize}
-			\item text-based documentation of NVIDIA hw;
-			\item links written as plain text.
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{hwdocs after}
-		\begin{itemize}
-			\item text-based documentation of NVIDIA hw;
-			\item can generate pretty html documentations;
-			\item Example: \url{http://envytools.readthedocs.org}.
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{hwdocs future}
-		\begin{itemize}
-			\item rnndb generated from the ReST documentation;
-			\item cross referencement of registers and bitfields.
-		\end{itemize}
-	\end{block}
-\end{frame}
-
-\subsection{Falcon C Compiler}
-\begin{frame}
-	\frametitle{Falcon C compiler}
-
-	\begin{block}{Falcon C compiler}
-		\begin{itemize}
-			\item Started by Shinpei Kato;
-			\item work for PGRAPH firmwares;
-			\item can be extended to support PDAEMON.
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{Links}
-		\begin{itemize}
-			\item Source: https://github.com/CS005/guc
-			\item Paper: http://hgpu.org/?p=10251
-		\end{itemize}
-	\end{block}
-\end{frame}
-
-\subsection{Falcon \& other NVIDIA ISAs Decompiler!}
-\begin{frame}
-	\frametitle{NVIDIA ISAs decompiler}
-
-	\begin{block}{decompiler}
-		\begin{itemize}
-			\item Decompiler project started by Marcin Kościelnicki;
-			\item Works on vp2macro and partial support of Falcon;
-			\item Will support xtensa \& possibly vuc;
-			\item Will be released after Marcin's master thesis
-(soon);
-			\item Example: \url{http://ng.0x04.net/~mwk/deco.txt}.
-		\end{itemize}
-	\end{block}
 \end{frame}
 
 % Xexaxo
 \section{Community}
 
-\subsection{Bugzilla cleaning}
-\begin{frame}
-	\frametitle{Community}
-
-	\begin{block}{Bugzilla cleaning}
-		\begin{itemize}
-			\item Started by Ilia Mirkin;
-			\item closed all bugs not updated since 2011;
-			\item asking people to reproduce on current Nouveau;
-			\item Reduced bug reports from ~410 to 167;
-			\item Helped fixing some actual bugs along the way.
-		\end{itemize}
-	\end{block}
-\end{frame}
-
-\subsection{Wiki portage \& rewrite}
-\begin{frame}
-	\frametitle{Community}
-
-	\begin{block}{Wiki portage}
-		\begin{itemize}
-			\item Freedesktop moved to ikiwiki;
-			\item killed a lot of spam along the way;
-			\item but it is now harder to add content.
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{Wiki clean up \& rewrite}
-		\begin{itemize}
-			\item Started by Ilia Mirkin \& Martin Peres;
-			\item Rewrote all the main pages to make them helpful;
-			\item deleted the old cruft.
-		\end{itemize}
-	\end{block}
-\end{frame}
-
-\subsection{New member!?}
+\subsection{History with NVIDIA}
 \begin{frame}
 	\frametitle{Community - Welcome NVIDIA!}
+
+% 	TODO: Martin
 
 	\begin{block}{Flash news}
 		\begin{itemize}
@@ -419,11 +198,5 @@ dumps;
 		\end{itemize}
 	\end{block}
 \end{frame}
-
-% DEMOS:
-% - prime
-% - video decoding
-% - OpenGL 3.3
-% - Perf counters
 
 \end{document}
