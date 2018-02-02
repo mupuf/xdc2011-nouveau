@@ -46,7 +46,7 @@
 		\begin{itemize}
 			\item All NVIDIA desktop GPUs since 1998 (partial support);
 			\item 2D and 3D acceleration on all recent GPUs (2003+);
-			\item OpenGL 4.4 (non official) \& Direct X 9 (through Wine);
+			\item OpenGL 4.5 (non official) \& Direct X 9 (through Wine);
 			\item Video decoding on GPUs between 2004 and 2013.
 		\end{itemize}
 	\end{block}
@@ -105,13 +105,18 @@
 
 	\begin{block}{Reclocking (Karol Herbst \& Roy Spliet)}
 		\begin{itemize}
-			\item WIP Karol
+			\item Move to a partial reclock approach
+			\item Fix issues related to runpm
+			\item Update clock state on temperature changes
+			\item Add support for Engine PMU counters
+			\item Fermi reclocking improvements coming
 		\end{itemize}
 	\end{block}
 
 	\begin{block}{Power monitoring}
 		\begin{itemize}
 			\item Power consumption exposed when available;
+			\item Able to get the power budget on a few cards
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -122,13 +127,11 @@
 \begin{frame}
 	\frametitle{OpenGL}
 
-% 	TODO: Karol
-
-	\begin{block}{History: GL version support}
+	\begin{block}{History: GL version support (NVC0)}
 		\begin{itemize}
-			\item OpenGL 3.0 in Mesa 8.0 (nvc0);
-			\item OpenGL 3.1 in Mesa 9 (nvc0);
-			\item OpenGL 3.3 support in Mesa 10.1 for nv50/nvc0.
+			\item OpenGL 4.1 support in Mesa 11.0
+			\item OpenGL 4.3 support in Mesa 12.0
+			\item OpenGL 4.5 support in Mesa 13.0 (inofficial)
 		\end{itemize}
 	\end{block}
 
@@ -242,7 +245,7 @@
 			\item Fermi: should work;
 			\item Kepler: should work;
 			\item Maxwell: partially works;
-			\item Pascal: untested;
+			\item Pascal: partially works;
 			\item Volta: needs reverse engineering for Linux and
 				Mesa support.
 		\end{itemize}
@@ -259,7 +262,7 @@
 		\begin{itemize}
 			\item Ben Skeggs: maintainer and long time contributor;
 			\item Lyude Paul: part time on power management;
-			\item Karol Herbst: full time on reclocking and mesa.
+			\item Karol Herbst: full time on reclocking, mesa and random stuff.
 		\end{itemize}
 	\end{block}
 
