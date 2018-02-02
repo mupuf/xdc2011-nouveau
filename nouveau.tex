@@ -125,7 +125,7 @@
 \subsection{OpenGL}
 
 \begin{frame}
-	\frametitle{OpenGL}
+	\frametitle{Graphics}
 
 	\begin{block}{History: GL version support (NVC0)}
 		\begin{itemize}
@@ -134,35 +134,15 @@
 			\item OpenGL 4.5 support in Mesa 13.0 (inofficial)
 		\end{itemize}
 	\end{block}
-
-	\begin{block}{Limited support}
+	
+	\pause
+	
+	\begin{block}{Vulkan}
 		\begin{itemize}
-			\item GK110;
-			\item GK208.
+			\item NIR to NVIR started for Vulkan SPIR-V support
+			\item Also helps for OpenGL 4.6 (ARB\_gl\_spirv and ARB\_spirv\_extensions)
+			\item Hopefully some basic Vulkan driver ready this year
 		\end{itemize}
-	\end{block}
-\end{frame}
-
-\subsection{Direct 3D}
-
-\begin{frame}
-	\frametitle{Nine: a d3d9 state tracker}
-
-	\begin{block}{Nine: a d3d9 state tracker}
-		\begin{itemize}
-			\item Started by Joakim Sindholt;
-			\item Completed by Christoph Bumiller
-			\item Runs Skyrim, Civilization 5, Anno 1404 and StarCraft 2;
-			\item Up to 2 times faster than Wine's d3d implementation.
-		\end{itemize}
-	\end{block}
-
-	\begin{block}{Announcement}
-		\url{http://lists.freedesktop.org/archives/mesa-dev/2013-July/041900.html}
-	\end{block}
-
-	\begin{block}{Source tree}
-		\url{https://github.com/chrisbmr/Mesa-3D/tree/gallium-nine}
 	\end{block}
 \end{frame}
 
