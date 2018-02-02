@@ -249,32 +249,94 @@
 	\end{block}
 \end{frame}
 
-% Xexaxo
 \section{Community}
 
-\subsection{History with NVIDIA}
+\subsection{Current members}
 \begin{frame}
-	\frametitle{Community - Welcome NVIDIA!}
+	\frametitle{Community - members}
 
-% 	TODO: Martin
-
-	\begin{block}{Flash news}
+	\begin{block}{Red Hat developers working on Nouveau}
 		\begin{itemize}
-			\item NVIDIA released NDA-free documentation during
-XDC2013!;
-			\item Offered us a contact email to answer questions;
-			\item Are willing to improve the out-of-the-box
-experience of users;
-			\item Provided documentation on the DCB-related vbios
-tables;
-			\item Helped us get MSI IRQs working and fix video
-decoding;
-			\item Released a GPL Tegra K1 driver with extensive reg
-dumps;
-			\item Sent an RFC to support the Tegra K1 driver in Nouveau;
-			\item Welcome to the Nouveau community, NVIDIA!
+			\item Ben Skeggs: maintainer and long time contributor;
+			\item Lyude Paul: part time on power management;
+			\item Karol Herbst: full time on reclocking and mesa.
+		\end{itemize}
+	\end{block}
+
+	\pause
+
+	% TODO
+	\begin{block}{Community}
+		\begin{itemize}
+			\item Ilia Mirkin: Mesa developer, OpenGL;
+			\item Martin Peres: Fan management, power management;
+			\item Roy Spliet: Fermi reclocking, compiler opts;
+			\item You? Join us!
 		\end{itemize}
 	\end{block}
 \end{frame}
+
+\subsection{History with NVIDIA}
+\begin{frame}
+	\frametitle{Community - Relationship with NVIDIA}
+
+	\begin{block}{Recent History with NVIDIA}
+		\begin{itemize}
+			\item Sept 2013: First real contact
+			\begin{itemize}
+				\item NVIDIA released public vbios documentation (DCB);
+				\item Offered us a contact email to answer questions;
+				\item Are willing to improve the out-of-the-box
+experience of users;
+			\end{itemize}
+			\item 2015-2017: NVIDIA hired someone to work on Nouveau
+			\begin{itemize}
+				\item Added Tegra K1/K2 support to Nouveau;
+				\item Led to a Nouveau-based product (Pixel-C);
+				\item Wrote secure-boot support for Maxwell+;
+			\end{itemize}
+			\item 2018: New documentation dump for the vbios tables.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Community - What we need from NVIDIA}
+
+	\begin{block}{Locked GPUs affect development and user experience}
+		\begin{itemize}
+			\item 2015: The Maxwell 2+ GPU are locked, signed FWs prevent:
+			\begin{itemize}
+				\item Accelerated graphics: usually given a year after release;
+				\item Fan management: no FW provided;
+				\item Reclocking: no FW provided;
+				\item Power reading: no FW provided;
+				\item VBIOS reverse engineering.
+			\end{itemize}
+			\item 2018: Some VBIOS documentation landed:
+			\begin{itemize}
+				\item A website appeared to sign some vbios;
+				\item Some signs of opening?
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\section{Conclusion}
+
+\subsection*{Conclusion}
+\begin{frame}
+	\frametitle{Conclusion}
+
+	\begin{block}{Nouveau is improving}
+		\begin{itemize}
+			\item Nouveau is still the default driver in all distributions;
+			\item The GL driver is in good shape: OpenGL 4.4 and 4.5 coming;
+			\item Performance needs to improve for 4K displays: reclocking!;
+			\item Power efficiency for laptop users need to be improved too.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
 
 \end{document}
