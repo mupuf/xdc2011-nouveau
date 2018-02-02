@@ -153,14 +153,35 @@
 	% Small intro/history of OpenCL ~30sec
 	% SPIR-V: quick summary, why interesting? ~1min
 	% modifications to clover, for SPIR-V, affects everyone 2min
-	% how to try it ~30sec
-	% quick overview on current SPIR-V -> NVIR work ~1-2min
-	% how to try it? ~30sec
+	% X how to try it ~30sec
+	% X quick overview on current SPIR-V -> NVIR work ~1-2min
+	% X how to try it? ~30sec
 	% Total: ~6-7min
 	\begin{block}{}
 	\end{block}
 % 	TODO: Pmoreau
 
+\end{frame}
+
+\begin{frame}{Quick overview of OpenCL}
+	% History, goal?, current support by platforms
+	% Short example of OpenCL kernel
+\end{frame}
+
+\begin{frame}{Quick overview of SPIR-V}
+	% History, goal, use, etc.
+	% Short example
+\end{frame}
+
+\begin{frame}{Adding SPIR-V support to clover}
+	% * Two new entrypoints for creating a program: OpenCL >+ 2.1, and
+	%   extension for 1.2 and 2.0
+	% * Previously, compile to device specified IR.
+	% * But now, issue for linking: LLVM IR/NIR/TGSI to link with SPIR-V
+	% * Solution, canonical IR: SPIR-V, translate to device specific IR
+	%   after creating executable
+	\begin{block}{}
+	\end{block}
 \end{frame}
 
 \begin{frame}{Try out the SPIR-V support}
@@ -210,7 +231,7 @@
 	\end{block}
 \end{frame}
 
-\begin{frame}{Trying out OpenCL on Nouveau}
+\begin{frame}{Try out OpenCL on Nouveau}
 	\begin{block}{Prerequisites}
 		\begin{itemize}
 			\item Same as for testing the SPIR-V support;
