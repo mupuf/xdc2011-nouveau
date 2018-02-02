@@ -3,6 +3,7 @@
 \usepackage{verbatim}
 \usepackage{eurosym}
 \usepackage{ stmaryrd }
+\usepackage{listings}
 
 \useoutertheme{smoothbars}
 \useinnertheme[shadow=true]{rounded}
@@ -17,6 +18,10 @@
   \begin{frame}{Summary}
   \small \tableofcontents[currentsection, hideothersubsections]
   \end{frame} 
+}
+
+\lstdefinestyle{customspirv}{
+	basicstyle=\tiny,
 }
 
 \begin{document}
@@ -147,40 +152,82 @@
 \end{frame}
 
 \subsection{OpenCL}
-\begin{frame}
-	\frametitle{OpenCL}
-
-	% Small intro/history of OpenCL ~30sec
-	% SPIR-V: quick summary, why interesting? ~1min
-	% modifications to clover, for SPIR-V, affects everyone 2min
-	% X how to try it ~30sec
-	% X quick overview on current SPIR-V -> NVIR work ~1-2min
-	% X how to try it? ~30sec
-	% Total: ~6-7min
-	\begin{block}{}
-	\end{block}
-% 	TODO: Pmoreau
-
-\end{frame}
+% Small intro/history of OpenCL ~30sec
+% SPIR-V: quick summary, why interesting? ~1min
+% modifications to clover, for SPIR-V, affects everyone 2min
+% X how to try it ~30sec
+% X quick overview on current SPIR-V -> NVIR work ~1-2min
+% X how to try it? ~30sec
+% Total: ~6-7min
 
 \begin{frame}{Quick overview of OpenCL}
-	% History, goal?, current support by platforms
-	% Short example of OpenCL kernel
+	\begin{block}{History}
+		\begin{itemize}
+			\item OpenCL 1.0: 2009;
+			\item OpenCL 1.1: 2010;
+			\item OpenCL 1.2: 2011 (SPIR-V 1.0 support through ext);
+			\item OpenCL 2.0: 2013 (SPIR-V 1.0 support through ext);
+			\item OpenCL 2.1: 2015 (core SPIR-V 1.0 support);
+			\item OpenCL 2.2: 2017 (core SPIR-V $\leq 1.2$ support);
+		\end{itemize}
+	\end{block}
+	\begin{block}{Support, per vendor}
+		\begin{itemize}
+			\item Intel: via Intel SDK: 2.1, via Beignet: 2.0;
+			\item AMD: via ROCm: 1.2–2.0, via clover: 1.1, via
+				APP SDK: 2.0;
+			\item NVIDIA: 1.2–2.0.
+		\end{itemize}
+	\end{block}
 \end{frame}
 
 \begin{frame}{Quick overview of SPIR-V}
-	% History, goal, use, etc.
-	% Short example
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{block}{History}
+				\begin{itemize}
+					\item SPIR-V 1.0: 2015;
+					\item SPIR-V 1.1: 2016;
+					\item SPIR-V 1.2: 2017.
+				\end{itemize}
+
+				Used as intermediate language for
+				\begin{itemize}
+					\item OpenCL (via extension for 1.2 and 2.0, core
+						$\leq$ 2.1);
+					\item OpenGL (core 4.6, or via an extension before);
+					\item Vulkan.
+				\end{itemize}
+			\end{block}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\lstinputlisting[caption=Small SPIR-V example,style=customspirv]{example.spvasm}
+		\end{column}
+	\end{columns}
+
 \end{frame}
 
 \begin{frame}{Adding SPIR-V support to clover}
-	% * Two new entrypoints for creating a program: OpenCL >+ 2.1, and
-	%   extension for 1.2 and 2.0
-	% * Previously, compile to device specified IR.
-	% * But now, issue for linking: LLVM IR/NIR/TGSI to link with SPIR-V
-	% * Solution, canonical IR: SPIR-V, translate to device specific IR
-	%   after creating executable
-	\begin{block}{}
+	\begin{block}{New entrypoints}
+		Create programs directly from SPIR-V binaries using
+		clCreateProgramWithILKHR() or clCreateProgramWithIL().
+	\end{block}
+	\begin{block}{Internal changes}
+		\begin{itemize}
+			\item Compilation and linking is now done in SPIR-V;
+			\item “OpenCL executable” sent to driver using one of
+				its supported IR; SPIR-V is converted to that
+				IR;
+			\item New dependencies added to Mesa (if OpenCL is
+				enabled):
+				\begin{itemize}
+					\item SPIRV-Tools: for validating and
+						linking together SPIR-V
+						binaries;
+					\item llvm-spirv: for converting
+						between LLVM IR and SPIR-V.
+				\end{itemize}
+		\end{itemize}
 	\end{block}
 \end{frame}
 
@@ -206,7 +253,7 @@
 \end{frame}
 
 \begin{frame}{Overview of SPIR-V to NVIR}
-	\begin{block}{Status for OpenCL 1.2 support}
+	\begin{block}{Status for OpenCL 1.2 support for Nouveau}
 		\begin{itemize}
 			\item Supported:
 			\begin{itemize}
@@ -226,7 +273,7 @@
 			\end{itemize}
 		\end{itemize}
 
-		OpenCL CTS passing rates for test\_basic: 36/95 (27 of the
+		OpenCL CTS 1.2 passing rates for test\_basic: 36/95 (27 of the
 		failing ones are image tests)
 	\end{block}
 \end{frame}
@@ -273,7 +320,7 @@
 	\begin{block}{Community}
 		\begin{itemize}
 			\item Ilia Mirkin: Mesa developer, OpenGL;
-			\item Pierre Moreau: SPIRV, OpenCL;
+			\item Pierre Moreau: SPIR-V, OpenCL, compiler opts;
 			\item Martin Peres: Fan management, power management;
 			\item Roy Spliet: DVFS (reclocking), compiler opts;
 			\item You? Join us!
