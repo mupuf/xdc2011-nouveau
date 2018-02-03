@@ -64,8 +64,8 @@
 
 	\begin{block}{Pascal GPUs}
 		\begin{itemize}
-			\item Current generation of GPUs, released in March 2016;
-			\item Most locked-up NVIDIA GPUs to date;
+			\item Current generation of desktop GPUs, released in March 2016;
+			\item Most locked down NVIDIA GPUs to date;
 			\pause
 			\item Supported features:
 			\begin{itemize}
@@ -83,7 +83,8 @@
 \end{frame}
 
 % Martin
-\subsection{Power Management}
+\section{Power management}
+\subsection*{Power Management}
 
 \begin{frame}
 	\frametitle{Power Management}
@@ -108,17 +109,15 @@
 \begin{frame}
 	\frametitle{Power Management}
 
-	\begin{block}{Reclocking (Karol Herbst \& Roy Spliet)}
+	\begin{block}{Reclocking (Karol Herbst, Ben Skeggs \& Roy Spliet)}
 		\begin{itemize}
-			\item Move to a partial reclock approach for faster clock updates
-			\item Fixing issues related to runpm
-			\item Update clock state on temperature changes (needed for dynamic reclocking)
-			\item Add support for Engine PMU counters
-			\item Fermi reclocking improvements coming
+			\item Support: Tesla \& Kepler is mostly good, Fermi is coming
+			\item Thermal throttling: Adjust perf. to limit the temperature;
+			\item On demand reclocking: Adjust the perf. based on the load;
 		\end{itemize}
 	\end{block}
 
-	\begin{block}{Power monitoring}
+	\begin{block}{Power monitoring (Karol Herbst)}
 		\begin{itemize}
 			\item Power consumption exposed when available;
 			\item Able to get the power budget on a few cards
@@ -132,11 +131,11 @@
 \begin{frame}
 	\frametitle{Graphics}
 
-	\begin{block}{History: GL version support (NVC0)}
+	\begin{block}{History: GL version support (NVC0: Fermi+)}
 		\begin{itemize}
 			\item OpenGL 4.1 support in Mesa 11.0
 			\item OpenGL 4.3 support in Mesa 12.0
-			\item OpenGL 4.5 support in Mesa 13.0 (unofficial)
+			\item OpenGL 4.5 support in Mesa 13.0 (unofficial, 4.3 by default)
 		\end{itemize}
 	\end{block}
 	
@@ -160,78 +159,47 @@
 % X how to try it? ~30sec
 % Total: ~6-7min
 
-\begin{frame}{Quick overview of OpenCL}
-	\begin{block}{History}
-		\begin{itemize}
-			\item OpenCL 1.0: 2009;
-			\item OpenCL 1.1: 2010;
-			\item OpenCL 1.2: 2011 (SPIR-V 1.0 support through ext);
-			\item OpenCL 2.0: 2013 (SPIR-V 1.0 support through ext);
-			\item OpenCL 2.1: 2015 (core SPIR-V 1.0 support);
-			\item OpenCL 2.2: 2017 (core SPIR-V $\leq 1.2$ support);
-		\end{itemize}
-	\end{block}
-	\begin{block}{Support, per vendor}
-		\begin{itemize}
-			\item Intel: via Intel SDK: 2.1, via Beignet: 2.0;
-			\item AMD: via ROCm: 1.2–2.0, via clover: 1.1, via
-				APP SDK: 2.0;
-			\item NVIDIA: 1.2–2.0.
-		\end{itemize}
-	\end{block}
-\end{frame}
-
 \begin{frame}{Quick overview of SPIR-V}
 	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			\begin{block}{History}
-				\begin{itemize}
-					\item SPIR-V 1.0: 2015;
-					\item SPIR-V 1.1: 2016;
-					\item SPIR-V 1.2: 2017.
-				\end{itemize}
-
+		\begin{column}{\textwidth}
+			\begin{block}{SPIR-V usage}
 				Used as intermediate language for
 				\begin{itemize}
 					\item OpenCL (via extension for 1.2 and 2.0, core
-						$\leq$ 2.1);
+						$\geq$ 2.1);
 					\item OpenGL (core 4.6, or via an extension before);
 					\item Vulkan.
 				\end{itemize}
 			\end{block}
 		\end{column}
-		\begin{column}{0.5\textwidth}
-			\lstinputlisting[caption=Small SPIR-V example,style=customspirv]{example.spvasm}
-		\end{column}
 	\end{columns}
-
 \end{frame}
 
-\begin{frame}{Adding SPIR-V support to clover}
-	\begin{block}{New entrypoints}
-		Create programs directly from SPIR-V binaries using
-		clCreateProgramWithILKHR() or clCreateProgramWithIL().
-	\end{block}
-	\begin{block}{Internal changes}
-		\begin{itemize}
-			\item Compilation and linking is now done in SPIR-V;
-			\item “OpenCL executable” sent to driver using one of
-				its supported IR; SPIR-V is converted to that
-				IR;
-			\item New dependencies added to Mesa (if OpenCL is
-				enabled):
-				\begin{itemize}
-					\item SPIRV-Tools: for validating and
-						linking together SPIR-V
-						binaries;
-					\item llvm-spirv: for converting
-						between LLVM IR and SPIR-V.
-				\end{itemize}
-		\end{itemize}
-	\end{block}
-\end{frame}
+% \begin{frame}{Adding SPIR-V support to clover}
+% 	\begin{block}{New entrypoints}
+% 		Create programs directly from SPIR-V binaries using
+% 		clCreateProgramWithILKHR() or clCreateProgramWithIL().
+% 	\end{block}
+% 	\begin{block}{Internal changes}
+% 		\begin{itemize}
+% 			\item Compilation and linking is now done in SPIR-V;
+% 			\item “OpenCL executable” sent to driver using one of
+% 				its supported IR; SPIR-V is converted to that
+% 				IR;
+% 			\item New dependencies added to Mesa (if OpenCL is
+% 				enabled):
+% 				\begin{itemize}
+% 					\item SPIRV-Tools: for validating and
+% 						linking together SPIR-V
+% 						binaries;
+% 					\item llvm-spirv: for converting
+% 						between LLVM IR and SPIR-V.
+% 				\end{itemize}
+% 		\end{itemize}
+% 	\end{block}
+% \end{frame}
 
-\begin{frame}{Try out the SPIR-V support}
+\begin{frame}{OpenCL: Try out the SPIR-V support on radeon}
 	\begin{block}{Prerequisites}
 		\begin{itemize}
 			\item SPIRV-Tools:
@@ -294,8 +262,6 @@
 			\item Kepler: should work;
 			\item Maxwell: partially works;
 			\item Pascal: partially works;
-			\item Volta: needs reverse engineering for Linux and
-				Mesa support.
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -319,6 +285,7 @@
 	% TODO
 	\begin{block}{Community}
 		\begin{itemize}
+			\item Rhys Kidd: Tooling (IGT, shader-db), Thermal management;
 			\item Ilia Mirkin: Mesa developer, OpenGL;
 			\item Pierre Moreau: SPIR-V, OpenCL, compiler opts;
 			\item Martin Peres: Fan management, power management;
@@ -343,7 +310,7 @@ experience of users;
 			\end{itemize}
 			\item 2015-2017: NVIDIA hired someone to work on Nouveau
 			\begin{itemize}
-				\item Added Tegra K1/K2 support to Nouveau;
+				\item Added Tegra K1/X1/X2 support to Nouveau;
 				\item Led to a Nouveau-based product (Pixel-C);
 				\item Wrote secure-boot support for Maxwell+;
 			\end{itemize}
@@ -363,7 +330,7 @@ experience of users;
 				\item Fan management: no FW provided;
 				\item Reclocking: no FW provided;
 				\item Power reading: no FW provided;
-				\item VBIOS reverse engineering.
+				\item VBIOS reverse engineering: prevented by software.
 			\end{itemize}
 			\item 2018: Some VBIOS documentation landed:
 			\begin{itemize}
